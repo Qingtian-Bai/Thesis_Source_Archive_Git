@@ -1,0 +1,19 @@
+{
+  "validation_type": "clean-copy full-video smoke test",
+  "purpose": "verify packaged relative paths, weights, configuration, end-to-end inference and evidence writing",
+  "evaluation_scope": "engineering reproducibility only; not an independent generalisation test",
+  "executed_from": "a newly copied release directory outside the original frozen package",
+  "command": "D:\\python 3.13.7\\python.exe code\\run_hybrid_v2.py --source input\\FT_FINAL_UNSEEN_20260812.mp4 --no-display --exit-on-eof --save-output runtime_outputs\\smoke_full_annotated.mp4 --evidence-dir runtime_outputs\\evidence",
+  "started_at": "2026-08-23T21:19:23.140436+01:00",
+  "finished_at": "2026-08-23T21:24:54.100190+01:00",
+  "elapsed_seconds": 330.960,
+  "exit_code": 0,
+  "manifest_status": "completed",
+  "input_frames": 3820,
+  "output_frames": 3820,
+  "input_sha256": "b2ca1d3e214182fbb8da9c098143bbe8d3f0c934b1bb77837e32c74f3cf9149d",
+  "output_bytes": 171893970,
+  "output_sha256": "91c8c0e597663f003738b460ee8f547b209d6f02ffbd7319a96b0df05778d62e",
+  "evidence_files_written": 89,
+  "result": "PASS"
+}

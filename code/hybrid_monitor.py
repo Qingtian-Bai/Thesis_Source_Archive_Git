@@ -16,7 +16,7 @@ import ultralytics
 from pathlib import Path
 
 HYBRID_ROOT = Path(__file__).resolve().parents[1]
-PROJECT_ROOT = HYBRID_ROOT.parents[1]
+PROJECT_ROOT = HYBRID_ROOT
 PHONE_MODEL_PATH = (
     HYBRID_ROOT
     / "weights"
@@ -287,10 +287,22 @@ class DualCoreAntiCheatingSystem:
         self.tracker_path = self._build_tracker_config()
         
         print("Loading core model 1: YOLOv8n-Pose for person tracking and full-frame keypoint extraction...")
-        self.yolo_pose = YOLO("yolov8n-pose.pt")
+        pose_model_path = Path(
+            os.environ.get(
+                "POSE_MODEL_PATH",
+                str(HYBRID_ROOT / "weights" / "yolov8n-pose.pt"),
+            )
+        )
+        self.yolo_pose = YOLO(str(pose_model_path))
 
         print("Loading auxiliary phone model: YOLOv8n COCO (cell phone only)...")
-        self.yolo_coco = YOLO("yolov8n.pt")
+        coco_model_path = Path(
+            os.environ.get(
+                "COCO_MODEL_PATH",
+                str(HYBRID_ROOT / "weights" / "yolov8n.pt"),
+            )
+        )
+        self.yolo_coco = YOLO(str(coco_model_path))
         
         print("Loading authoritative phone model: Door v5 (phone and door only)...")
         if phone_model_path is None:
@@ -517,7 +529,13 @@ class DualCoreAntiCheatingSystem:
     def _build_tracker_config(self):
         """archived text,archived text"""
         default_yaml_path = Path(ultralytics.__file__).parent / "cfg" / "trackers" / "botsort.yaml"
-        custom_yaml_path = PROJECT_ROOT / "auto_exam_tracker.yaml"
+        custom_yaml_path = Path(
+            os.environ.get(
+                "TRACKER_CONFIG_PATH",
+                str(HYBRID_ROOT / "runtime_outputs" / "auto_exam_tracker.yaml"),
+            )
+        )
+        custom_yaml_path.parent.mkdir(parents=True, exist_ok=True)
         
         if default_yaml_path.exists():
             with open(default_yaml_path, "r", encoding="utf-8") as f:

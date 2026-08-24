@@ -17,10 +17,13 @@ from pathlib import Path
 import yaml
 
 
-ROOT = Path(__file__).resolve().parent
-WORKSPACE_ROOT = ROOT.parents[1]
-CONFIG_PATH = ROOT / "hybrid_config.yaml"
-APP_PATH = ROOT / "code" / "hybrid_monitor.py"
+CODE_DIR = Path(__file__).resolve().parent
+RELEASE_ROOT = CODE_DIR.parent
+CONFIG_PATH = RELEASE_ROOT / "config" / "hybrid_config.yaml"
+APP_PATH = CODE_DIR / "hybrid_monitor.py"
+RUNTIME_OUTPUT_ROOT = RELEASE_ROOT / "runtime_outputs"
+MANIFEST_DIR = RUNTIME_OUTPUT_ROOT / "manifests"
+LATEST_MANIFEST_PATH = RUNTIME_OUTPUT_ROOT / "run_manifest.json"
 
 
 ENVIRONMENT_MAP = {
@@ -127,13 +130,15 @@ def load_monitor_class():
 
 
 def write_manifest(manifest, unique_path):
+    unique_path.parent.mkdir(parents=True, exist_ok=True)
+    LATEST_MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(manifest, ensure_ascii=False, indent=2)
     unique_path.write_text(text, encoding="utf-8")
-    (ROOT / "run_manifest.json").write_text(text, encoding="utf-8")
+    LATEST_MANIFEST_PATH.write_text(text, encoding="utf-8")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Post-final hybrid v2 development candidate")
+    parser = argparse.ArgumentParser(description="Frozen 6FE329 post-test regression release")
     parser.add_argument("--source", default="0")
     parser.add_argument("--save-output")
     parser.add_argument("--save-raw")
@@ -144,25 +149,50 @@ def main():
     arguments = parser.parse_args()
 
     config = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
-    phone_model_path = ROOT / config["model"]["phone_weight"]
-    note_context_model_path = ROOT / config["model"]["note_context_weight"]
-    for required in (CONFIG_PATH, APP_PATH, phone_model_path, note_context_model_path):
+    phone_model_path = RELEASE_ROOT / config["model"]["phone_weight"]
+    note_context_model_path = RELEASE_ROOT / config["model"]["note_context_weight"]
+    pose_model_path = RELEASE_ROOT / config["model"]["pose_weight"]
+    coco_model_path = RELEASE_ROOT / config["model"]["coco_weight"]
+    for required in (
+        CONFIG_PATH,
+        APP_PATH,
+        phone_model_path,
+        note_context_model_path,
+        pose_model_path,
+        coco_model_path,
+    ):
         if not required.is_file():
             raise FileNotFoundError(required)
 
     for dotted_key, environment_name in ENVIRONMENT_MAP.items():
         os.environ[environment_name] = str(nested_value(config, dotted_key))
     if arguments.evidence_dir:
-        os.environ["EVIDENCE_OUTPUT_DIR"] = str(
-            Path(arguments.evidence_dir).expanduser().resolve()
-        )
-    os.environ["YOLO_CONFIG_DIR"] = str(ROOT / ".ultralytics_config")
+        evidence_path = Path(arguments.evidence_dir).expanduser()
+        if not evidence_path.is_absolute():
+            evidence_path = RELEASE_ROOT / evidence_path
+        os.environ["EVIDENCE_OUTPUT_DIR"] = str(evidence_path.resolve())
+    os.environ["POSE_MODEL_PATH"] = str(pose_model_path)
+    os.environ["COCO_MODEL_PATH"] = str(coco_model_path)
+    os.environ["TRACKER_CONFIG_PATH"] = str(
+        RUNTIME_OUTPUT_ROOT / "auto_exam_tracker.yaml"
+    )
+    yolo_config_root = RUNTIME_OUTPUT_ROOT / ".ultralytics_config"
+    (yolo_config_root / "Ultralytics").mkdir(parents=True, exist_ok=True)
+    os.environ["YOLO_CONFIG_DIR"] = str(yolo_config_root)
     sys.dont_write_bytecode = True
 
     source = int(arguments.source) if arguments.source.isdigit() else arguments.source
-    source_path = None if isinstance(source, int) else Path(source).expanduser().resolve()
+    source_path = None
+    if not isinstance(source, int):
+        source_path = Path(source).expanduser()
+        if not source_path.is_absolute():
+            release_candidate = RELEASE_ROOT / source_path
+            if release_candidate.exists():
+                source_path = release_candidate
+        source_path = source_path.resolve()
+        source = str(source_path)
     started = datetime.now(timezone.utc)
-    manifest_path = ROOT / "manifests" / f"run_{started.strftime('%Y%m%dT%H%M%SZ')}.json"
+    manifest_path = MANIFEST_DIR / f"run_{started.strftime('%Y%m%dT%H%M%SZ')}.json"
     manifest = {
         "release_id": config["release_id"],
         "status": "starting",
@@ -184,6 +214,14 @@ def main():
                 "path": str(note_context_model_path),
                 "sha256": sha256(note_context_model_path),
             },
+            "pose_weight": {
+                "path": str(pose_model_path),
+                "sha256": sha256(pose_model_path),
+            },
+            "coco_weight": {
+                "path": str(coco_model_path),
+                "sha256": sha256(coco_model_path),
+            },
         },
         "expected_classes": config["model"]["expected_classes"],
         "resolved_configuration": config,
@@ -196,7 +234,7 @@ def main():
     }
     write_manifest(manifest, manifest_path)
 
-    os.chdir(WORKSPACE_ROOT)
+    os.chdir(RELEASE_ROOT)
     try:
         monitor_class = load_monitor_class()
         system = monitor_class(

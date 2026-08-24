@@ -5,8 +5,8 @@ status: development_regression_only
 model:
   phone_weight: weights/door_v5_phone_authority.pt
   note_context_weight: weights/late_note_context.pt
-  pose_weight: yolov8n-pose.pt
-  coco_weight: yolov8n.pt
+  pose_weight: weights/yolov8n-pose.pt
+  coco_weight: weights/yolov8n.pt
   expected_classes:
     0: student
     1: phone
@@ -62,7 +62,7 @@ coco_assist:
   rotated_support_iou: 0.40
 
 evidence:
-  output_directory: Experiments/post_final_hybrid_v2/evidence
+  output_directory: runtime_outputs/evidence
   capture_cooldown_seconds: 5.0
   spatial_cell_pixels: 96
   spatial_match_pixels: 128

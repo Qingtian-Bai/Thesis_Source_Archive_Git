@@ -7,13 +7,20 @@ import os
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent
-APP = ROOT / "code" / "hybrid_monitor.py"
-os.environ["YOLO_CONFIG_DIR"] = str(ROOT / ".ultralytics_test_config")
+RELEASE_ROOT = Path(__file__).resolve().parents[1]
+APP = RELEASE_ROOT / "code" / "hybrid_monitor.py"
+TEST_OUTPUT_ROOT = RELEASE_ROOT / "runtime_outputs" / "unit_test"
+TEST_OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
+YOLO_CONFIG_ROOT = TEST_OUTPUT_ROOT / ".ultralytics_config"
+(YOLO_CONFIG_ROOT / "Ultralytics").mkdir(parents=True, exist_ok=True)
+os.environ["YOLO_CONFIG_DIR"] = str(YOLO_CONFIG_ROOT)
+os.environ["TRACKER_CONFIG_PATH"] = str(TEST_OUTPUT_ROOT / "auto_exam_tracker.yaml")
 
 
 def load_class():
     spec = importlib.util.spec_from_file_location("hybrid_logic_test", APP)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Cannot import monitor: {APP}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module.DualCoreAntiCheatingSystem
@@ -60,13 +67,11 @@ def main():
     assert key(1, phone_a) != key(3, note_same_place)
     monitor._remember_object_evidence(1, phone_a, 10.0)
     assert monitor._object_is_in_spatial_cooldown(1, same_phone, 11.0)
-    # A different track ID does not bypass cooldown when it is the same object
-    # location; this protects against pose-ID drift under occlusion.
     assert monitor._object_is_in_spatial_cooldown(1, other_student, 11.0)
     assert not monitor._object_is_in_spatial_cooldown(1, other_location, 11.0)
     assert not monitor._object_is_in_spatial_cooldown(3, note_same_place, 11.0)
     assert not monitor._object_is_in_spatial_cooldown(1, same_phone, 16.0)
-    print("hybrid cooldown-key tests: PASS")
+    print("UT-01 hybrid cooldown-key tests: PASS")
 
 
 if __name__ == "__main__":

@@ -1,103 +1,148 @@
 {
   "schema_version": 1,
-  "snapshot_id": "6fe329_original",
-  "display_name": "6FE329 original",
+  "snapshot_id": "6fe329_portability_reissue",
+  "display_name": "6FE329 portability reissue",
   "reconstruction_date": "2026-08-24",
-  "source_definition": "Original post-test hybrid v2 engineering-regression snapshot, before portability reissue.",
+  "source_definition": "Portable frozen technical release used for the thesis-submission archive. Only the Git-safe subset is copied; the retained frozen manifest describes the complete release.",
   "notice": "Submission-time reconstruction only; not contemporaneous development history.",
   "artefacts": [
     {
-      "source_path": "Experiments/post_final_hybrid_v2/code/hybrid_monitor.py",
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/code/hybrid_monitor.py",
       "included_as": "code/hybrid_monitor.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 84222,
-      "original_last_write_time": "2026-08-13T13:38:26.2550926+01:00",
-      "sha256": "6FE329EBCDB07F91C84C74FD2DCF4C484DD040962F827899C68C021425002690"
+      "bytes": 84789,
+      "original_last_write_time": "2026-08-23T21:10:50.7160538+01:00",
+      "sha256": "F4D16CCAC17F9100AFA1F4F7F2E24F1B2633B65D026CF61346013E525EDF7297"
     },
     {
-      "source_path": "Experiments/post_final_hybrid_v2/run_hybrid_v2.py",
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/code/run_hybrid_v2.py",
       "included_as": "code/run_hybrid_v2.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 9234,
-      "original_last_write_time": "2026-08-13T13:16:59.6939195+01:00",
-      "sha256": "08A94A1BE7C3D50414B5BDBB467A5743DB81E423187A1AA5B933AE5879E51F1C"
+      "bytes": 10803,
+      "original_last_write_time": "2026-08-23T21:15:56.4227742+01:00",
+      "sha256": "DC44BB7BE2D6D82E93E05C0A7A05877259AC62A3C163B5DE648DD52CE37E8EED"
     },
     {
-      "source_path": "Experiments/post_final_hybrid_v2/make_regression_contact_sheet.py",
-      "included_as": "code/tools/make_regression_contact_sheet.py",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 2002,
-      "original_last_write_time": "2026-08-13T13:25:30.7526550+01:00",
-      "sha256": "652ECD73E35632D50E03D9CD01C3F59F8061A2AF33E4D538CC71E439F90690FB"
-    },
-    {
-      "source_path": "Experiments/post_final_hybrid_v2/English-normalized archival text_English-normalized archival textv2.cmd",
-      "included_as": "code/launch_hybrid_v2.cmd",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 146,
-      "original_last_write_time": "2026-08-13T13:08:57.7641045+01:00",
-      "sha256": "45767858A26AD9920C1BB90C78ECE69C196578A67C3C269E6547107B6DE6C7EC"
-    },
-    {
-      "source_path": "Experiments/post_final_hybrid_v2/hybrid_config.yaml",
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/config/hybrid_config.yaml",
       "included_as": "config/hybrid_config.yaml",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 1975,
-      "original_last_write_time": "2026-08-13T13:16:13.5698789+01:00",
-      "sha256": "A997352BFAF89B81A7722973B2B7E16ECF2F7293BD2FBF730E4E1A6379D9E3BC"
+      "bytes": 1974,
+      "original_last_write_time": "2026-08-23T21:10:52.2597177+01:00",
+      "sha256": "E2AFE7EE2B8555E2CB070141A9749626852635FA5B39F06A9D365D32C910709F"
     },
     {
-      "source_path": "Experiments/post_final_hybrid_v2/test_hybrid_logic.py",
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/documentation/CONSENT_RECORD_CHECKLIST.md",
+      "included_as": "documentation/CONSENT_RECORD_CHECKLIST.md",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 654,
+      "original_last_write_time": "2026-08-23T21:14:11.4650432+01:00",
+      "sha256": "FCF1E4A5EE0E4BE5D5CCC9A16EF154398C2D07059A90D64A68D252D6B1BF3850"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/documentation/ETHICS_AND_CONSENT_STATUS.md",
+      "included_as": "documentation/ETHICS_AND_CONSENT_STATUS.md",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 808,
+      "original_last_write_time": "2026-08-23T21:14:09.6009206+01:00",
+      "sha256": "5E8A1BA634E4F3D333EE7AEFA24F051420DE2A644FF3003394473DCC984B52A4"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/FROZEN_MANIFEST.json",
+      "included_as": "FROZEN_MANIFEST.json",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 33113,
+      "original_last_write_time": "2026-08-23T21:28:39.6392422+01:00",
+      "sha256": "0AE9FEA19ABC52E165005CFD737BDD1508F51E4331C2ACB7A68BADCAB2066BF2"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/README.md",
+      "included_as": "README.md",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 1238,
+      "original_last_write_time": "2026-08-23T21:14:07.7228705+01:00",
+      "sha256": "AE575708876968E1AFCF7E9D6397A81B160EAC35F407BA7CD7DD86277BFDD585"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/requirements.txt",
+      "included_as": "requirements.txt",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 248,
+      "original_last_write_time": "2026-08-23T21:14:05.6957468+01:00",
+      "sha256": "09FAC45F2A5387EE69C5F3EF21A4AF946D8ACFFFE3A0C55AAF6C56AEB8EC4E52"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/SHA256SUMS.txt",
+      "included_as": "SHA256SUMS.txt",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 16847,
+      "original_last_write_time": "2026-08-23T21:28:38.9345985+01:00",
+      "sha256": "241CC93D17A313220FE3BC228790B59843AD88D1D34E0B3843BC2B3CA5FF59CB"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/tests/evidence/full_smoke_run_manifest.json",
+      "included_as": "tests/evidence/full_smoke_run_manifest.json",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 5659,
+      "original_last_write_time": "2026-08-23T21:24:54.1063557+01:00",
+      "sha256": "61184C7CCB6F438A26D68A3BD558BA651DE6D6E60864376CAF8991EB6918A05E"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/tests/evidence/full_smoke_test_log.txt",
+      "included_as": "tests/evidence/full_smoke_test_log.txt",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 833,
+      "original_last_write_time": "2026-08-23T21:25:41.7354307+01:00",
+      "sha256": "DC2A0FA217AA87AEC0437E95820F04DDCF8D7CCF53EDDEAD5A0AF90D1329DC3D"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/tests/evidence/full_smoke_test_summary.json",
+      "included_as": "tests/evidence/full_smoke_test_summary.json",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 1091,
+      "original_last_write_time": "2026-08-23T21:25:40.0891610+01:00",
+      "sha256": "2B9E222ED4FC26350068C1B8A9F80BE6831CD13FE68173472A4E2C22F3BB747F"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/tests/evidence/unit_test_output.txt",
+      "included_as": "tests/evidence/unit_test_output.txt",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 238,
+      "original_last_write_time": "2026-08-23T21:18:51.0782857+01:00",
+      "sha256": "1F07BFC3C70B12A9F4B326C648DB049854F7F2487820F182780D79192106A2B0"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/tests/README.md",
+      "included_as": "tests/README.md",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 891,
+      "original_last_write_time": "2026-08-23T21:14:03.6750327+01:00",
+      "sha256": "01F8EE28152AA89DC9326ECD302080E547C7CAFFD7085990A3EC41D461A5B9FA"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/tests/test_hybrid_logic.py",
       "included_as": "tests/test_hybrid_logic.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 2325,
-      "original_last_write_time": "2026-08-13T13:16:33.5395834+01:00",
-      "sha256": "EE23238007B5EDED840D3F0A7FDB06B776AF1DB0504407BE89EE0B39203B2572"
+      "bytes": 2623,
+      "original_last_write_time": "2026-08-23T21:15:54.7844083+01:00",
+      "sha256": "F0EBF2486E4DCD7A768ECE6236C18A6DB12B758B979FA927B0E7955DDC60CFBD"
     },
     {
-      "source_path": "Experiments/post_final_hybrid_v2/evaluation/final_hash_6fe_regression/build_regression_audit.py",
-      "included_as": "tests/build_regression_audit.py",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 8790,
-      "original_last_write_time": "2026-08-18T15:54:38.0766906+01:00",
-      "sha256": "CC44025ABC73E7E3C608C8511E12B9C37B3D2804589494985B67367DC5DFCEDB"
-    },
-    {
-      "source_path": "Experiments/post_final_hybrid_v2/README.md",
-      "included_as": "README.md and documentation/SOURCE_README.md",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 1564,
-      "original_last_write_time": "2026-08-13T13:26:55.3398849+01:00",
-      "sha256": "0EE68BC0548F87E2309C3EFAE559A8704CA5FEFC94049EF8D87D020D35837B05"
-    },
-    {
-      "source_path": "Experiments/post_final_hybrid_v2/IMPLEMENTATION_REPORT.md",
-      "included_as": "documentation/IMPLEMENTATION_REPORT.md",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 2916,
-      "original_last_write_time": "2026-08-13T13:38:27.7599692+01:00",
-      "sha256": "0C374C8127FCE18A6185AD2CBC3B5AE49C2BEFF58B3EB177BDD0E2BE86529960"
-    },
-    {
-      "source_path": "Experiments/post_final_hybrid_v2/run_manifest.json",
-      "included_as": "documentation/run_manifest.json",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 5113,
-      "original_last_write_time": "2026-08-18T15:52:29.7959838+01:00",
-      "sha256": "9143E63B671FF9617660643101BC730E23FE999FDA4CD773CB0BEF6DC8C060AF"
-    },
-    {
-      "source_path": "Experiments/post_final_hybrid_v2/weights/door_v5_phone_authority.pt",
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/weights/door_v5_phone_authority.pt",
       "included_as": null,
       "status": "excluded",
       "exclusion_reason": "Model-weight binary retained outside Git",
@@ -106,13 +151,49 @@
       "sha256": "9BFA4A156187B1DF0B684C98018EA968AB7317778DEBEF69D51C6665EF0FFA72"
     },
     {
-      "source_path": "Experiments/post_final_hybrid_v2/weights/late_note_context.pt",
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/weights/late_note_context.pt",
       "included_as": null,
       "status": "excluded",
       "exclusion_reason": "Model-weight binary retained outside Git",
       "bytes": 5785466,
       "original_last_write_time": "2026-07-30T14:43:48.5614430+01:00",
       "sha256": "03C750427C0B6E3C19ECF2A54A32DAB7149650664DD87DFC8D4AA87B43BB55A5"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/weights/yolov8n-pose.pt",
+      "included_as": null,
+      "status": "excluded",
+      "exclusion_reason": "Model-weight binary retained outside Git",
+      "bytes": 6832633,
+      "original_last_write_time": "2026-02-13T11:07:14.1204700+00:00",
+      "sha256": "C6FA93DD1EE4A2C18C900A45C1D864A1C6F7ABA75D84F91648A30B7FB641D212"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/weights/yolov8n.pt",
+      "included_as": null,
+      "status": "excluded",
+      "exclusion_reason": "Model-weight binary retained outside Git",
+      "bytes": 6549796,
+      "original_last_write_time": "2026-02-09T17:06:26.6889058+00:00",
+      "sha256": "F59B3D833E2FF32E194B5BB8E08D211DC7C5BDF144B90D2C8412C47CCFC83B36"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/input/FT_FINAL_UNSEEN_20260812.mp4",
+      "included_as": null,
+      "status": "excluded",
+      "exclusion_reason": "Participant recording retained outside Git",
+      "bytes": 129488071,
+      "original_last_write_time": "2026-08-12T19:53:50.6923393+01:00",
+      "sha256": "B2CA1D3E214182FBB8DA9C098143BBE8D3F0C934B1BB77837E32C74F3CF9149D"
+    },
+    {
+      "source_path": "Thesis_Frozen_Release_6FE329_20260818/evaluation/hybrid_v2_6fe_full_annotated.mp4",
+      "included_as": null,
+      "status": "excluded",
+      "exclusion_reason": "Large derived output video retained outside Git",
+      "bytes": 171759558,
+      "original_last_write_time": "2026-08-18T15:52:29.7585220+01:00",
+      "sha256": "308F6262D0115F3462C0FCE12B161ED1B62D82E5D6F4E6ED1C7E600F162475DA"
     }
   ]
 }

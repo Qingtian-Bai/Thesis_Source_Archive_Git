@@ -1,0 +1,22 @@
+Frozen 6FE329 clean-copy full-video smoke test
+Purpose: packaged-path and end-to-end reproducibility check only; not an independent generalisation test.
+
+Command:
+D:\python 3.13.7\python.exe code\run_hybrid_v2.py --source input\FT_FINAL_UNSEEN_20260812.mp4 --no-display --exit-on-eof --save-output runtime_outputs\smoke_full_annotated.mp4 --evidence-dir runtime_outputs\evidence
+
+Start: 2026-08-23T21:19:23.140436+01:00
+Finish: 2026-08-23T21:24:54.100190+01:00
+Elapsed: 330.960 seconds
+Exit code: 0
+Run-manifest status: completed
+Input frames: 3820
+Output frames: 3820
+Evidence files written: 89
+
+Key console checkpoints:
+- all four packaged model weights loaded;
+- tracker configuration generated under runtime_outputs;
+- evidence screenshots and event clips were written;
+- source video reached end of file normally.
+
+Result: PASS

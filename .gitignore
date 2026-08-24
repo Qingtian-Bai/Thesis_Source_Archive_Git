@@ -24,6 +24,8 @@ evaluation/
 evidence/
 input/
 outputs/
+!tests/evidence/
+!tests/evidence/**
 *.jsonl
 *.log
 *.tmp

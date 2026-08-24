@@ -1,0 +1,7 @@
+UT-01 frozen-release unit-test evidence
+Executed: 2026-08-23T21:18:42+01:00
+Working directory: frozen release root
+Command: D:\python 3.13.7\python.exe tests\test_hybrid_logic.py
+Exit code: 0
+Output:
+UT-01 hybrid cooldown-key tests: PASS

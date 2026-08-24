@@ -1,37 +1,45 @@
 {
   "release_id": "post_final_hybrid_v2",
   "status": "completed",
-  "started_at_utc": "2026-08-18T14:45:27.162975+00:00",
+  "started_at_utc": "2026-08-23T20:19:23.140436+00:00",
   "command_arguments": {
-    "source": "Final_Test_20260812\\raw\\FT_FINAL_UNSEEN_20260812.mp4",
-    "save_output": "Experiments\\post_final_hybrid_v2\\evaluation\\final_hash_6fe_regression\\hybrid_v2_6fe_full_annotated.mp4",
+    "source": "input\\FT_FINAL_UNSEEN_20260812.mp4",
+    "save_output": "runtime_outputs\\smoke_full_annotated.mp4",
     "save_raw": null,
     "no_display": true,
     "exit_on_eof": true,
     "max_frames": null,
-    "evidence_dir": "Experiments\\post_final_hybrid_v2\\evaluation\\final_hash_6fe_regression\\evidence"
+    "evidence_dir": "runtime_outputs\\evidence"
   },
   "source": {
-    "value": "Final_Test_20260812\\raw\\FT_FINAL_UNSEEN_20260812.mp4",
+    "value": "D:\\project zero\\YOLO_Project\\Thesis_Final_Chapters_20260818\\smoke_clean_release_20260823\\input\\FT_FINAL_UNSEEN_20260812.mp4",
     "kind": "file",
     "sha256": "b2ca1d3e214182fbb8da9c098143bbe8d3f0c934b1bb77837e32c74f3cf9149d"
   },
   "artifacts": {
     "config": {
-      "path": "D:\\project zero\\YOLO_Project\\Experiments\\post_final_hybrid_v2\\hybrid_config.yaml",
-      "sha256": "a997352bfaf89b81a7722973b2b7e16ecf2f7293bd2fbf730e4e1a6379d9e3bc"
+      "path": "D:\\project zero\\YOLO_Project\\Thesis_Final_Chapters_20260818\\smoke_clean_release_20260823\\config\\hybrid_config.yaml",
+      "sha256": "e2afe7ee2b8555e2cb070141a9749626852635fa5b39f06a9d365d32c910709f"
     },
     "code": {
-      "path": "D:\\project zero\\YOLO_Project\\Experiments\\post_final_hybrid_v2\\code\\hybrid_monitor.py",
-      "sha256": "6fe329ebcdb07f91c84c74fd2dcf4c484dd040962f827899c68c021425002690"
+      "path": "D:\\project zero\\YOLO_Project\\Thesis_Final_Chapters_20260818\\smoke_clean_release_20260823\\code\\hybrid_monitor.py",
+      "sha256": "f4d16ccac17f9100afa1f4f7f2e24f1b2633b65d026cf61346013e525edf7297"
     },
     "phone_weight": {
-      "path": "D:\\project zero\\YOLO_Project\\Experiments\\post_final_hybrid_v2\\weights\\door_v5_phone_authority.pt",
+      "path": "D:\\project zero\\YOLO_Project\\Thesis_Final_Chapters_20260818\\smoke_clean_release_20260823\\weights\\door_v5_phone_authority.pt",
       "sha256": "9bfa4a156187b1df0b684c98018ea968ab7317778debef69d51c6665ef0ffa72"
     },
     "note_context_weight": {
-      "path": "D:\\project zero\\YOLO_Project\\Experiments\\post_final_hybrid_v2\\weights\\late_note_context.pt",
+      "path": "D:\\project zero\\YOLO_Project\\Thesis_Final_Chapters_20260818\\smoke_clean_release_20260823\\weights\\late_note_context.pt",
       "sha256": "03c750427c0b6e3c19ecf2a54a32dab7149650664dd87dfc8d4aa87b43bb55a5"
+    },
+    "pose_weight": {
+      "path": "D:\\project zero\\YOLO_Project\\Thesis_Final_Chapters_20260818\\smoke_clean_release_20260823\\weights\\yolov8n-pose.pt",
+      "sha256": "c6fa93dd1ee4a2c18c900a45c1d864a1c6f7aba75d84f91648a30b7fb641d212"
+    },
+    "coco_weight": {
+      "path": "D:\\project zero\\YOLO_Project\\Thesis_Final_Chapters_20260818\\smoke_clean_release_20260823\\weights\\yolov8n.pt",
+      "sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36"
     }
   },
   "expected_classes": {
@@ -48,8 +56,8 @@
     "model": {
       "phone_weight": "weights/door_v5_phone_authority.pt",
       "note_context_weight": "weights/late_note_context.pt",
-      "pose_weight": "yolov8n-pose.pt",
-      "coco_weight": "yolov8n.pt",
+      "pose_weight": "weights/yolov8n-pose.pt",
+      "coco_weight": "weights/yolov8n.pt",
       "expected_classes": {
         "0": "student",
         "1": "phone",
@@ -106,7 +114,7 @@
       "rotated_support_iou": 0.4
     },
     "evidence": {
-      "output_directory": "Experiments/post_final_hybrid_v2/evidence",
+      "output_directory": "runtime_outputs/evidence",
       "capture_cooldown_seconds": 5.0,
       "spatial_cell_pixels": 96,
       "spatial_match_pixels": 128,
@@ -142,5 +150,5 @@
       ]
     }
   },
-  "finished_at_utc": "2026-08-18T14:52:29.794966+00:00"
+  "finished_at_utc": "2026-08-23T20:24:54.100190+00:00"
 }

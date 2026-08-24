@@ -1,0 +1,761 @@
+{
+  "release_id": "thesis_frozen_release_6FE329_20260818",
+  "created_at_utc": "2026-08-18T15:42:43.384165+00:00",
+  "status": "frozen_read_only",
+  "evaluation_label": "post-test regression evaluation; not a new independent test",
+  "authoritative_artifacts": {
+    "monitor_code_sha256": "F4D16CCAC17F9100AFA1F4F7F2E24F1B2633B65D026CF61346013E525EDF7297",
+    "phone_model": "Door v5",
+    "phone_weight_sha256": "9BFA4A156187B1DF0B684C98018EA968AB7317778DEBEF69D51C6665EF0FFA72",
+    "note_context_weight_sha256": "03C750427C0B6E3C19ECF2A54A32DAB7149650664DD87DFC8D4AA87B43BB55A5",
+    "config_sha256": "E2AFE7EE2B8555E2CB070141A9749626852635FA5B39F06A9D365D32C910709F",
+    "input_video_sha256": "B2CA1D3E214182FBB8DA9C098143BBE8D3F0C934B1BB77837E32C74F3CF9149D",
+    "launcher_sha256": "DC44BB7BE2D6D82E93E05C0A7A05877259AC62A3C163B5DE648DD52CE37E8EED",
+    "pose_weight_sha256": "C6FA93DD1EE4A2C18C900A45C1D864A1C6F7ABA75D84F91648A30B7FB641D212",
+    "coco_weight_sha256": "F59B3D833E2FF32E194B5BB8E08D211DC7C5BDF144B90D2C8412C47CCFC83B36",
+    "requirements_sha256": "09FAC45F2A5387EE69C5F3EF21A4AF946D8ACFFFE3A0C55AAF6C56AEB8EC4E52"
+  },
+  "reported_regression_results": {
+    "frames": 3820,
+    "wall_time_seconds": 422.63,
+    "fps": 9.04,
+    "real_time_factor": 0.308,
+    "phone_events_covered": "6/7",
+    "phone_alerts_total": 32,
+    "phone_alerts_true": 21,
+    "phone_alerts_false": 11,
+    "phone_alert_precision_percent": 65.6,
+    "direct_note_events_covered": "1/5",
+    "cross_track_alerts_total": 17,
+    "cross_track_alerts_true": 15,
+    "cross_track_alerts_false": 2,
+    "combined_note_and_interaction_events_covered": "4/5",
+    "combined_note_and_interaction_precision_percent": 88.9
+  },
+  "files": [
+    {
+      "relative_path": "code/hybrid_monitor.py",
+      "bytes": 84789,
+      "sha256": "F4D16CCAC17F9100AFA1F4F7F2E24F1B2633B65D026CF61346013E525EDF7297"
+    },
+    {
+      "relative_path": "code/run_hybrid_v2.py",
+      "bytes": 10803,
+      "sha256": "DC44BB7BE2D6D82E93E05C0A7A05877259AC62A3C163B5DE648DD52CE37E8EED"
+    },
+    {
+      "relative_path": "config/hybrid_config.yaml",
+      "bytes": 1974,
+      "sha256": "E2AFE7EE2B8555E2CB070141A9749626852635FA5B39F06A9D365D32C910709F"
+    },
+    {
+      "relative_path": "documentation/CONSENT_RECORD_CHECKLIST.md",
+      "bytes": 654,
+      "sha256": "FCF1E4A5EE0E4BE5D5CCC9A16EF154398C2D07059A90D64A68D252D6B1BF3850"
+    },
+    {
+      "relative_path": "documentation/ETHICS_AND_CONSENT_STATUS.md",
+      "bytes": 808,
+      "sha256": "5E8A1BA634E4F3D333EE7AEFA24F051420DE2A644FF3003394473DCC984B52A4"
+    },
+    {
+      "relative_path": "evaluation/audit_comparison_with_previous_run.json",
+      "bytes": 574,
+      "sha256": "FFE0D32DDF65436456B536797C4CA27FF6D78CDE6E3CBC41C61D78A0AC9468B8"
+    },
+    {
+      "relative_path": "evaluation/automatic_window_matching/cross_track_adjudication.csv",
+      "bytes": 439,
+      "sha256": "9AEC5DD53073A771C463597DB6DFAA1BEF5D42B060BC329CDD2CB0F787120FC1"
+    },
+    {
+      "relative_path": "evaluation/automatic_window_matching/note_alert_adjudication.csv",
+      "bytes": 98,
+      "sha256": "E625D781DB9C046F6EAA6BE1CBE75EB279FB4D79B5C3FDDEB9101330FD1C1E04"
+    },
+    {
+      "relative_path": "evaluation/automatic_window_matching/phone_alert_adjudication.csv",
+      "bytes": 5401,
+      "sha256": "FBFCF101E2B08787D5EB83EB4FDA69EFADE622EC87D8CCEE56829E780CC05981"
+    },
+    {
+      "relative_path": "evaluation/automatic_window_matching/README.txt",
+      "bytes": 283,
+      "sha256": "E1AE116259AB13BCD0D3DB03260DC735EC5F9ACB35021074C825161CEC5A68D4"
+    },
+    {
+      "relative_path": "evaluation/automatic_window_matching/regression_result_summary.json",
+      "bytes": 2692,
+      "sha256": "8DF4961AA72AD2B7BC308CAD5EB6127BB9FA868636506D61908515FDF23A88A3"
+    },
+    {
+      "relative_path": "evaluation/build_regression_audit.py",
+      "bytes": 8790,
+      "sha256": "CC44025ABC73E7E3C608C8511E12B9C37B3D2804589494985B67367DC5DFCEDB"
+    },
+    {
+      "relative_path": "evaluation/cross_track_adjudication.csv",
+      "bytes": 5882,
+      "sha256": "7B796270A6C49F43DEA963AFE1E538A59181552CA30155E3D1072D2071A58C43"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_1_2_20260818_155122_168.jpg",
+      "bytes": 241608,
+      "sha256": "88892EDA94BB5266FED94ABA151EB1D10458E3F0F5689890926D932B08D4092E"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_1_33_20260818_155057_793.jpg",
+      "bytes": 249539,
+      "sha256": "5C200BC7E79E80CB10E74C5EC97BC40D17C03EFD85C873B348F07C3BAC449788"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_1_33_20260818_155131_725.jpg",
+      "bytes": 241579,
+      "sha256": "07B9CE621FFDC672C46C71D5E8DA4C148035594F647E92F3757F622F73823EB5"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_1_57_20260818_155213_362.jpg",
+      "bytes": 220505,
+      "sha256": "ED02EE63C52751FEE48AFB21B091BEB62A5D60E8D3745437BCBC7265F5349355"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_1_61_20260818_155131_916.jpg",
+      "bytes": 242674,
+      "sha256": "153E1132FEDA9B575ACC1EAFD7119D88C31408DFD7A97A0C804A6E6D49B64A31"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_1_61_20260818_155157_824.jpg",
+      "bytes": 229111,
+      "sha256": "460E367DEA0F92C763D473923B2A553EF5CC5A4DEDC5E135DDF1E5A47EA1B7FB"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_2_17_20260818_154803_125.jpg",
+      "bytes": 232142,
+      "sha256": "2C16188620311D90BEC660A17B72B42164627282688251BBAC000E351357463D"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_2_21_20260818_154732_696.jpg",
+      "bytes": 227083,
+      "sha256": "824D5C8DAD06AE571AE060B35D1F999339E8A024FB045853B9165B4542038F31"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_2_57_20260818_155119_793.jpg",
+      "bytes": 235046,
+      "sha256": "B3A744FE42548A748D9EA4843425C72F9A37C889F65A8C815F8E23EBD7F65CEF"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_2_57_20260818_155143_090.jpg",
+      "bytes": 229452,
+      "sha256": "9BE13B0E2B80BD23FEA7CDFEC72A1FA37CA9D0C0FE6BF34D596B988ED3E3344F"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_2_57_20260818_155216_668.jpg",
+      "bytes": 229489,
+      "sha256": "77F1A431AA592554D8C4EDC119A9E8C7BC2B33A51176DEECD76C487656FF0FC0"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_2_61_20260818_155120_516.jpg",
+      "bytes": 241943,
+      "sha256": "C7ABBB02C50774FF2BB13559B2DEA28F940BE4B255E968CDEC5F8110EEDA198B"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_2_61_20260818_155141_801.jpg",
+      "bytes": 231655,
+      "sha256": "580942EC1D3FF6A37B4CBDFCF15B8A0D6141654E36B5C87B1CC2A46C595AB17B"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_33_44_20260818_154938_127.jpg",
+      "bytes": 242343,
+      "sha256": "8137BED5081CFB6BF023DAAF7900357D7B5FCC901B52E5018D0C0D6BD7CE10F1"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_33_44_20260818_155034_574.jpg",
+      "bytes": 235921,
+      "sha256": "B760B151EF11232AA7E7A83478F81F819AE32BFB51FEFA9FB1057DF9A6C08FBF"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_3_21_20260818_154649_317.jpg",
+      "bytes": 240004,
+      "sha256": "4FA4ED23F97EE105A7970361147631FBA74906C3E60B89F29F266BF6AD76914A"
+    },
+    {
+      "relative_path": "evaluation/evidence/CrossTrack_57_61_20260818_155156_810.jpg",
+      "bytes": 225743,
+      "sha256": "CA497D7B15D97F37ABC1899C35D384E845F5B8C63B055814275020766E5243D2"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_1_2_20260818_155122_171_0028.mp4",
+      "bytes": 3828044,
+      "sha256": "B4601E8CCC5B3A1A1114CF49424F26D6453AF09DD5F2BB6FB61E6D36DD1457CB"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_1_33_20260818_155057_799_0024.mp4",
+      "bytes": 4170821,
+      "sha256": "3329A58EC4DD4E622A7C4A2F4B29D0842F56E3554A6E60C5758007286F8F674F"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_1_33_20260818_155131_732_0029.mp4",
+      "bytes": 3999348,
+      "sha256": "E8182FA62F62E07F23B1CFFDB3CDDF31E7C0CD476AF1EDEAC72CC184BB488895"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_1_57_20260818_155213_376_0037.mp4",
+      "bytes": 4625257,
+      "sha256": "D70DD09343F3CB2D6A511A63A48C30CDF2BEBA7B3A6CCFE06262AA6BB0FDC8EE"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_1_61_20260818_155131_922_0030.mp4",
+      "bytes": 3999348,
+      "sha256": "E8182FA62F62E07F23B1CFFDB3CDDF31E7C0CD476AF1EDEAC72CC184BB488895"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_1_61_20260818_155157_830_0035.mp4",
+      "bytes": 4125623,
+      "sha256": "DA7616CEB628B5A00BE9942802209AA19ECD30800EF2C6D3EC22F71031AEF6C0"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_2_17_20260818_154803_130_0011.mp4",
+      "bytes": 4470375,
+      "sha256": "E1F496F9AC4C6B2FA3B5BAD15636DD730D4C87B220046124537EE07658D9B5D4"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_2_21_20260818_154732_702_0007.mp4",
+      "bytes": 5135314,
+      "sha256": "B38E1AAA1EB8A7654934651D270572053F004448DA11960526243796A2CC7B64"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_2_57_20260818_155119_798_0026.mp4",
+      "bytes": 3917169,
+      "sha256": "A28B08F5756B90B976FCFC183E524D3A48FFDCD0DB8604811E8B732A15492EE9"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_2_57_20260818_155143_095_0032.mp4",
+      "bytes": 4110522,
+      "sha256": "D771AFE99238199F2962BB918CA7A2CC60018175ECF1A4535E28A0A128D1763F"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_2_57_20260818_155216_674_0038.mp4",
+      "bytes": 4593325,
+      "sha256": "D0AE4BE70DA41331B78B0B1E4AE7747DC127959DF14A4E8FF2FEF9EBE787F460"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_2_61_20260818_155120_522_0027.mp4",
+      "bytes": 3894536,
+      "sha256": "0803630161C50BA8389F29F33E0E52DD6F79BDA1C9DEC2CB430788D7977690C2"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_2_61_20260818_155141_806_0031.mp4",
+      "bytes": 4159924,
+      "sha256": "F7BCDB22A1B4902F50730C13959DC8A34F47F835F7B9173A3EF3B801671986EB"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_33_44_20260818_154938_135_0020.mp4",
+      "bytes": 3528153,
+      "sha256": "CADDD760C2672B930DCCD2FFB21E5F3A7B757FAE344F8AB033EF631634A2612C"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_33_44_20260818_155034_580_0022.mp4",
+      "bytes": 4385461,
+      "sha256": "B4E567C32458D874A2DF3B41B80B236B409851A62BC7C46260C227692983774C"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_3_21_20260818_154649_331_0003.mp4",
+      "bytes": 4004179,
+      "sha256": "AFCD95D01A9A2789CF4A28756473B4805F7BE6544E7296DF13838D4457B9A0A3"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_cross_track_57_61_20260818_155156_816_0034.mp4",
+      "bytes": 4103649,
+      "sha256": "EBD7301BA9EE8C5CEB3D2994F1644BF979B225D497487AB2C9D524CCCBA72077"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_note_20260818_154926_215_0017.mp4",
+      "bytes": 4216170,
+      "sha256": "49EBE6DD00248A65768224EB6AE17AE004F9024124824B6BE4991AE00F573B3E"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154604_544_0001.mp4",
+      "bytes": 5156591,
+      "sha256": "8436FEB9419510E8E963DF1978FA54BDF88B076D0675739E579A32F26A7B76DD"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154643_484_0002.mp4",
+      "bytes": 4234651,
+      "sha256": "1EABD56095DD0FFC2F758DBE51CE102503004CC53AC17E9EC766C2E4C98E944F"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154653_866_0004.mp4",
+      "bytes": 6310544,
+      "sha256": "BAFE7E949BD43490DB85C52D7BF3A6537270844A8FE2B9BE0E17D54858BC05E4"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154710_265_0005.mp4",
+      "bytes": 5811040,
+      "sha256": "78361807D118078FADCAB68C6B59C7F89A41CAD21735576F901389FDF8EA33FD"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154727_664_0006.mp4",
+      "bytes": 4629612,
+      "sha256": "082DBB5550D1FAE2457D39A7A15E2DCB73DA0212F63EF5AE83DDEE333D9491D0"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154739_846_0008.mp4",
+      "bytes": 5097354,
+      "sha256": "C22EC1ABCF07B51CC1B34926CB1913208E641323DDB2A6D520D6267BC5BDD2C4"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154747_413_0009.mp4",
+      "bytes": 4006192,
+      "sha256": "0431E09353196B05EBBB5B4582442CE66263B72E51C47D054CBD892ECECB9799"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154756_826_0010.mp4",
+      "bytes": 4129786,
+      "sha256": "86DE0A381B3FBD0A96E254D476576228AD3C21EBA7AE98EE9958C7270858C9E2"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154809_592_0012.mp4",
+      "bytes": 5458384,
+      "sha256": "096CD846F80732C20B5D3C3841DB04561AC0C576F0CC62FB8AE04A9DC2E25E19"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154829_222_0013.mp4",
+      "bytes": 3435898,
+      "sha256": "8A2DA10CBA23604A2AE48EDE0D851F9392D0C8C59B12F6954A356995B1372DF1"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154841_524_0014.mp4",
+      "bytes": 6033016,
+      "sha256": "2B43E9DC16E61EF97944ACD6591D57F5C8797FF83A09B1CACDFC87231FB1A988"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154859_351_0015.mp4",
+      "bytes": 4452473,
+      "sha256": "C8CD5CFD64E05E76C25841E13AEC080CF6086F5CBE74F1B34AEAA3DB8770BCDB"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154905_701_0016.mp4",
+      "bytes": 7560659,
+      "sha256": "702BE1638E8E7C96A7B813C414800427D155E24D8D7567809FED9ECD3EF5A8A2"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154927_716_0018.mp4",
+      "bytes": 4239813,
+      "sha256": "6843B17AD11AFDAF320F8777ADE15C32C59412FCA963AC1EB523CBD050BD0451"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154935_144_0019.mp4",
+      "bytes": 3814371,
+      "sha256": "55E1D8159868EBC9D4F31A0DC72F4E8158FC41832A0246B36276EF8DBFAAA4FD"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_154942_763_0021.mp4",
+      "bytes": 3453398,
+      "sha256": "8C796D5C9A3A4E863BA2B37107AABDB203F36EBC4775A650FA01ACD89EB0D92A"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_155051_683_0023.mp4",
+      "bytes": 4047625,
+      "sha256": "21DE5FDDFA38719F1A09A68E4F8E7057D4A719BCDE3A8DE235F5F481E32BA8A0"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_155104_594_0025.mp4",
+      "bytes": 3796033,
+      "sha256": "CBC3FD34E09DCDDBED73E0C7C664A94EB6FA5723A4086CF7195E89EB6685A6A1"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_155155_576_0033.mp4",
+      "bytes": 4095453,
+      "sha256": "EA064B39F2992B7777F820BC55790E0AF03DEDB974A0EE1BB23B7473C0BB7D05"
+    },
+    {
+      "relative_path": "evaluation/evidence/Event_Clips_v14/Event_object_phone_20260818_155207_134_0036.mp4",
+      "bytes": 7547343,
+      "sha256": "32B5AB776506C4BB3B7A869C3D0B0D717CC3991DAFE686C1CBEB403BE5079334"
+    },
+    {
+      "relative_path": "evaluation/evidence/log_20260818.jsonl",
+      "bytes": 34999,
+      "sha256": "64DFB5E8DCD2A635E0A5827BA9D630C8D3B7E8B21EC4CCC9106B7BE367A253D4"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_note_20260818_154926_208_47a564f2.jpg",
+      "bytes": 241901,
+      "sha256": "B427E65717157824648BC337E1B5B0EDDBD28D15EC693F4F3C5BF61FB8592663"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154604_533_ebcdca7e.jpg",
+      "bytes": 242702,
+      "sha256": "54263AB8CE7D2602E4F0A5FA987F02EF0AF6BBEF5603842F9DB7B640074E348F"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154643_478_44346a8d.jpg",
+      "bytes": 243210,
+      "sha256": "6C83CB1583685F067367133E8E889ED0914D01EA5828E17D67CC63B39E084A3E"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154653_861_f8ccb1ab.jpg",
+      "bytes": 229920,
+      "sha256": "CDC4B7213D0B3B9858F3C73205FE06ADD694F577D2B4CA3F9B75F7322628DC6C"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154659_656_e028f546.jpg",
+      "bytes": 227058,
+      "sha256": "A5994BF7C6B6B2FEAF01F9C92D4E32143CCD00D7C8F662698B304808D1EC64FE"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154710_260_d033752e.jpg",
+      "bytes": 235506,
+      "sha256": "7313829609345BD11A3F95EB97CBCE56EC1260BE88B2D14146F7103FB0711F21"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154713_970_19eb6999.jpg",
+      "bytes": 234256,
+      "sha256": "6F197F6F70F9E6E629E700D293452198791C92AE1C8B8E143104595079191B92"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154714_437_512e1315.jpg",
+      "bytes": 235152,
+      "sha256": "74D28310BDCB841154A5ACA5F5FBEBC367C9584957C40DFA162B71CE08D8390D"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154727_657_fb718896.jpg",
+      "bytes": 234332,
+      "sha256": "6E2FCF4CA35AFFD03F0F14F17C7EEAB3B806070A00ACE36DF8D8248EAA87E707"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154739_837_13de0fa0.jpg",
+      "bytes": 231461,
+      "sha256": "CBCFB92F0AFB238D89E26F8D46E5B88DC8345878DEA897C04DAE320B82C9C440"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154740_506_88ea341b.jpg",
+      "bytes": 234985,
+      "sha256": "308EF06B85BA2D29428346354BBD94FA36F0F4168AB1CA9F28358AD85334432D"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154747_406_55677d0c.jpg",
+      "bytes": 228611,
+      "sha256": "98A6A1E041B24787745383254EA50C3A5EA29BB716A6A4E21806B1F84BFE5241"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154756_821_13de0fa0.jpg",
+      "bytes": 214974,
+      "sha256": "5EA3BF3009DA964E4FFED373C6D191991CF6796B7C674211EBCF7BB5F5A31276"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154809_585_747b74d3.jpg",
+      "bytes": 233820,
+      "sha256": "3E4CB3985B5DDCD4B8936E9F558BCF797E85C7C03743D162F07626D15BF462CC"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154810_195_c32472de.jpg",
+      "bytes": 238551,
+      "sha256": "87EB40AEE86CFAAA87D621E74FF2D72D2B37969A48AFD9EBB9B9995EA0472005"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154812_588_405f040a.jpg",
+      "bytes": 230769,
+      "sha256": "17BD0BA0B106F7CE00896190BB4A6A193A9C5D00F670A3074F1DC02ED6B88582"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154829_216_405f040a.jpg",
+      "bytes": 222017,
+      "sha256": "AB73E4985BF731B26DA56B3B8CCFA3F3398E3A78773E67A84CC354A54E50345B"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154841_517_b69d125b.jpg",
+      "bytes": 219750,
+      "sha256": "0F6879C098369236EABFF4B145E83AB74F42111E9F1CDEF1E7F4FC52D04253FB"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154843_896_405f040a.jpg",
+      "bytes": 223619,
+      "sha256": "F745DEF955190D20F170A8285238D5B2BCF3548AA3DA3BB36F94C305942EFE90"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154847_851_bf835172.jpg",
+      "bytes": 225495,
+      "sha256": "482171BD7E50AABAA47FC062EFF96CB54E4B2325E2A344FCDFC255E63151EAFB"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154859_345_f2c94a97.jpg",
+      "bytes": 228995,
+      "sha256": "6E4083F08262C066E6BA9B2C424CF165B158DB2E8701FE896A61E84FFBAA8388"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154905_695_8dc0063d.jpg",
+      "bytes": 238325,
+      "sha256": "88B318762E798DC65C8720E0750803D27350443EEE34BB60F7968B87312C58C9"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154909_117_f253d187.jpg",
+      "bytes": 233936,
+      "sha256": "F513ABE4E63E42634E0FC2DD4DE162F697197B6FA52367B63E3EC0A7E082BE3E"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154913_751_6d763077.jpg",
+      "bytes": 229530,
+      "sha256": "57D181963AC52C605CA7B717B39B20FCC498B695E017CEB8C64F98D5AC04F0AE"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154927_710_6d763077.jpg",
+      "bytes": 247578,
+      "sha256": "A2256EFA2B0E09F2765E91C3DC34682E27F14DC69E411048C94F25BBB73DB701"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154935_138_730a05ee.jpg",
+      "bytes": 235700,
+      "sha256": "D7AE2BAF2088C976DDBE148267F57AF116B706992710FEC70A21DA7318C21161"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_154942_757_6d763077.jpg",
+      "bytes": 237680,
+      "sha256": "E88390F101799529B1ED98087DFDBD05113F53E6DA2E1670F542915049BA1637"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_155051_677_67a52fff.jpg",
+      "bytes": 241830,
+      "sha256": "7A2741F7F89349382BFF512EF551E4DAF5DB1F7B531172210F213305C344A202"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_155104_581_e7ac57f1.jpg",
+      "bytes": 229026,
+      "sha256": "2633E52473EBF21E476F9385B8C266219502CEE5345DF6649CF9DB55B2E0E025"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_155155_570_82745ebe.jpg",
+      "bytes": 225817,
+      "sha256": "8E7C151FFCFDF98181F84139541262CBAA7DB686CB247DD91432133F7D86B78D"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_155207_128_747b74d3.jpg",
+      "bytes": 228819,
+      "sha256": "B0B469276A5D33507A23E12E5270C7380BDBBFB8600764B18410B836F966C7F8"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_155214_168_7aacae08.jpg",
+      "bytes": 221825,
+      "sha256": "F3EA21D1166219C94E1ADE4E8E93679D7702D012F770AA393FF33F89683AD6EA"
+    },
+    {
+      "relative_path": "evaluation/evidence/Violation_Object_phone_20260818_155215_076_a74e57e1.jpg",
+      "bytes": 217940,
+      "sha256": "3E81BBF526CD7E3834E5BDFFE81903172F69C1BBC0162476C65AA94F6337D9DF"
+    },
+    {
+      "relative_path": "evaluation/hybrid_v2_6fe_full_annotated.mp4",
+      "bytes": 171759558,
+      "sha256": "308F6262D0115F3462C0FCE12B161ED1B62D82E5D6F4E6ED1C7E600F162475DA"
+    },
+    {
+      "relative_path": "evaluation/manual_review/cross_track_adjudication.csv",
+      "bytes": 5882,
+      "sha256": "7B796270A6C49F43DEA963AFE1E538A59181552CA30155E3D1072D2071A58C43"
+    },
+    {
+      "relative_path": "evaluation/manual_review/final_human_review_conclusion.json",
+      "bytes": 2112,
+      "sha256": "6FA868902ABF1EBCF522C325084A99B3426F182B35076601C74437FC74BA1062"
+    },
+    {
+      "relative_path": "evaluation/manual_review/note_alert_adjudication.csv",
+      "bytes": 490,
+      "sha256": "4F3C591AC2BCDF34D032C95729A2535C2F2BD99D944AB9BCB8DF7FA255E80940"
+    },
+    {
+      "relative_path": "evaluation/manual_review/note_event_review.csv",
+      "bytes": 381,
+      "sha256": "88D77A67682DC1D2CEE73E58EDA991A462950CDF09A8F35DF61E1FCDDC6DB357"
+    },
+    {
+      "relative_path": "evaluation/manual_review/phone_alert_adjudication.csv",
+      "bytes": 11150,
+      "sha256": "1C3F1D7DB9E9472E8B1B05B1B3E7711E8254A8881115123C8AC92E38BB6D1A05"
+    },
+    {
+      "relative_path": "evaluation/manual_review/phone_event_review.csv",
+      "bytes": 501,
+      "sha256": "475D6D994A1062E92F3179953DCEB1654A285BA3E4A90FB19581D4B01EF7BF97"
+    },
+    {
+      "relative_path": "evaluation/note_alert_adjudication.csv",
+      "bytes": 490,
+      "sha256": "4F3C591AC2BCDF34D032C95729A2535C2F2BD99D944AB9BCB8DF7FA255E80940"
+    },
+    {
+      "relative_path": "evaluation/phone_alert_adjudication.csv",
+      "bytes": 11150,
+      "sha256": "1C3F1D7DB9E9472E8B1B05B1B3E7711E8254A8881115123C8AC92E38BB6D1A05"
+    },
+    {
+      "relative_path": "evaluation/regression_result_summary.json",
+      "bytes": 3322,
+      "sha256": "8FD42486DC962074338BC94823B0986CAC4265FCC307258CAE7E842A03AEA728"
+    },
+    {
+      "relative_path": "evaluation/run_manifest_6fe.json",
+      "bytes": 5113,
+      "sha256": "9143E63B671FF9617660643101BC730E23FE999FDA4CD773CB0BEF6DC8C060AF"
+    },
+    {
+      "relative_path": "input/FT_FINAL_UNSEEN_20260812.mp4",
+      "bytes": 129488071,
+      "sha256": "B2CA1D3E214182FBB8DA9C098143BBE8D3F0C934B1BB77837E32C74F3CF9149D"
+    },
+    {
+      "relative_path": "README.md",
+      "bytes": 1238,
+      "sha256": "AE575708876968E1AFCF7E9D6397A81B160EAC35F407BA7CD7DD86277BFDD585"
+    },
+    {
+      "relative_path": "README_FREEZE_NOTICE.md",
+      "bytes": 677,
+      "sha256": "294E4C44C574ECE4D2F2A66B58CE9233BA9E1899FCCF5F1A287501C975E22C60"
+    },
+    {
+      "relative_path": "requirements.txt",
+      "bytes": 248,
+      "sha256": "09FAC45F2A5387EE69C5F3EF21A4AF946D8ACFFFE3A0C55AAF6C56AEB8EC4E52"
+    },
+    {
+      "relative_path": "SHA256SUMS.txt",
+      "bytes": 16847,
+      "sha256": "241CC93D17A313220FE3BC228790B59843AD88D1D34E0B3843BC2B3CA5FF59CB"
+    },
+    {
+      "relative_path": "tests/evidence/full_smoke_run_manifest.json",
+      "bytes": 5659,
+      "sha256": "61184C7CCB6F438A26D68A3BD558BA651DE6D6E60864376CAF8991EB6918A05E"
+    },
+    {
+      "relative_path": "tests/evidence/full_smoke_test_log.txt",
+      "bytes": 833,
+      "sha256": "DC2A0FA217AA87AEC0437E95820F04DDCF8D7CCF53EDDEAD5A0AF90D1329DC3D"
+    },
+    {
+      "relative_path": "tests/evidence/full_smoke_test_summary.json",
+      "bytes": 1091,
+      "sha256": "2B9E222ED4FC26350068C1B8A9F80BE6831CD13FE68173472A4E2C22F3BB747F"
+    },
+    {
+      "relative_path": "tests/evidence/unit_test_output.txt",
+      "bytes": 238,
+      "sha256": "1F07BFC3C70B12A9F4B326C648DB049854F7F2487820F182780D79192106A2B0"
+    },
+    {
+      "relative_path": "tests/README.md",
+      "bytes": 891,
+      "sha256": "01F8EE28152AA89DC9326ECD302080E547C7CAFFD7085990A3EC41D461A5B9FA"
+    },
+    {
+      "relative_path": "tests/test_hybrid_logic.py",
+      "bytes": 2623,
+      "sha256": "F0EBF2486E4DCD7A768ECE6236C18A6DB12B758B979FA927B0E7955DDC60CFBD"
+    },
+    {
+      "relative_path": "weights/door_v5_phone_authority.pt",
+      "bytes": 5747514,
+      "sha256": "9BFA4A156187B1DF0B684C98018EA968AB7317778DEBEF69D51C6665EF0FFA72"
+    },
+    {
+      "relative_path": "weights/late_note_context.pt",
+      "bytes": 5785466,
+      "sha256": "03C750427C0B6E3C19ECF2A54A32DAB7149650664DD87DFC8D4AA87B43BB55A5"
+    },
+    {
+      "relative_path": "weights/yolov8n-pose.pt",
+      "bytes": 6832633,
+      "sha256": "C6FA93DD1EE4A2C18C900A45C1D864A1C6F7ABA75D84F91648A30B7FB641D212"
+    },
+    {
+      "relative_path": "weights/yolov8n.pt",
+      "bytes": 6549796,
+      "sha256": "F59B3D833E2FF32E194B5BB8E08D211DC7C5BDF144B90D2C8412C47CCFC83B36"
+    }
+  ],
+  "reissued_at_utc": "2026-08-23T20:28:39.613222+00:00",
+  "revision_note": "Reissued to correct release-root path resolution, package all four model weights explicitly, add an installable dependency list, retain UT-01 and clean-copy full-video smoke-test evidence, and record the unresolved ethics/consent handover status. Detection thresholds, reported manual adjudication and dissertation results were not changed.",
+  "superseded_automatic_matching_results": {
+    "status": "retained for audit history; not authoritative for final thesis reporting",
+    "summary": "evaluation/automatic_window_matching/regression_result_summary.json",
+    "phone_events_covered": "7/7",
+    "phone_alerts_true": 28,
+    "phone_alerts_false": 4,
+    "phone_alert_precision_percent": 87.5,
+    "cross_track_alerts_inside_windows": 8,
+    "cross_track_alerts_outside_windows": 9
+  },
+  "portability_revision": {
+    "published_release_label": "6FE329",
+    "original_monitor_code_sha256": "6FE329EBCDB07F91C84C74FD2DCF4C484DD040962F827899C68C021425002690",
+    "scope": "packaging and runtime path resolution only",
+    "launcher": {
+      "relative_path": "code/run_hybrid_v2.py",
+      "bytes": 10803,
+      "sha256": "DC44BB7BE2D6D82E93E05C0A7A05877259AC62A3C163B5DE648DD52CE37E8EED"
+    },
+    "monitor": {
+      "relative_path": "code/hybrid_monitor.py",
+      "bytes": 84789,
+      "sha256": "F4D16CCAC17F9100AFA1F4F7F2E24F1B2633B65D026CF61346013E525EDF7297"
+    },
+    "configuration": {
+      "relative_path": "config/hybrid_config.yaml",
+      "bytes": 1974,
+      "sha256": "E2AFE7EE2B8555E2CB070141A9749626852635FA5B39F06A9D365D32C910709F"
+    }
+  },
+  "runtime_validation": {
+    "unit_test": {
+      "test_id": "UT-01",
+      "command": "python tests/test_hybrid_logic.py",
+      "result": "PASS",
+      "test_script": {
+        "relative_path": "tests/test_hybrid_logic.py",
+        "bytes": 2623,
+        "sha256": "F0EBF2486E4DCD7A768ECE6236C18A6DB12B758B979FA927B0E7955DDC60CFBD"
+      },
+      "retained_output": {
+        "relative_path": "tests/evidence/unit_test_output.txt",
+        "bytes": 238,
+        "sha256": "1F07BFC3C70B12A9F4B326C648DB049854F7F2487820F182780D79192106A2B0"
+      }
+    },
+    "clean_copy_full_video_smoke_test": {
+      "scope": "engineering reproducibility only; not an independent generalisation test",
+      "result": "PASS",
+      "exit_code": 0,
+      "manifest_status": "completed",
+      "input_frames": 3820,
+      "output_frames": 3820,
+      "elapsed_seconds": 330.96,
+      "summary": {
+        "relative_path": "tests/evidence/full_smoke_test_summary.json",
+        "bytes": 1091,
+        "sha256": "2B9E222ED4FC26350068C1B8A9F80BE6831CD13FE68173472A4E2C22F3BB747F"
+      },
+      "log": {
+        "relative_path": "tests/evidence/full_smoke_test_log.txt",
+        "bytes": 833,
+        "sha256": "DC2A0FA217AA87AEC0437E95820F04DDCF8D7CCF53EDDEAD5A0AF90D1329DC3D"
+      },
+      "run_manifest": {
+        "relative_path": "tests/evidence/full_smoke_run_manifest.json",
+        "bytes": 5659,
+        "sha256": "61184C7CCB6F438A26D68A3BD558BA651DE6D6E60864376CAF8991EB6918A05E"
+      }
+    }
+  },
+  "ethics_and_consent_handover": {
+    "status": "not closed within the technical release",
+    "approval_or_exemption_reference_included": false,
+    "participant_consent_records_included": false,
+    "status_document": {
+      "relative_path": "documentation/ETHICS_AND_CONSENT_STATUS.md",
+      "bytes": 808,
+      "sha256": "5E8A1BA634E4F3D333EE7AEFA24F051420DE2A644FF3003394473DCC984B52A4"
+    },
+    "required_action": "The author and supervisor must confirm the genuine approval/exemption status and the secure location and permitted handover route for actual consent records."
+  }
+}
