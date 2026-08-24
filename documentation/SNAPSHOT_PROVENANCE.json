@@ -1,109 +1,82 @@
 {
   "schema_version": 1,
-  "snapshot_id": "note_v6",
-  "display_name": "Note v6",
+  "snapshot_id": "final_candidate_v1",
+  "display_name": "Final candidate v1",
   "reconstruction_date": "2026-08-24",
-  "source_definition": "Frozen paper/note success baseline dated 2026-07-30.",
+  "source_definition": "Candidate frozen before the 2026-08-12 formal comparison run.",
   "notice": "Submission-time reconstruction only; not contemporaneous development history.",
   "artefacts": [
     {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/code/monitor.py",
-      "included_as": "code/monitor.py",
+      "source_path": "Experiments/final_candidate_v1/code/final_monitor.py",
+      "included_as": "code/final_monitor.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 68173,
-      "original_last_write_time": "2026-07-29T23:10:19.8487204+01:00",
-      "sha256": "A1179B18C6E6280316B07CC87EFD78B742DDFA939F825EB8B5F263C426B1B75D"
+      "bytes": 80367,
+      "original_last_write_time": "2026-08-06T15:28:41.1965828+01:00",
+      "sha256": "72DBF2C60256ABFAF282157C164379257114F66635466BA4F9B698EB94F871AE"
     },
     {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/run_frozen_paper_note_success.py",
-      "included_as": "code/run_frozen_paper_note_success.py",
+      "source_path": "Experiments/final_candidate_v1/run_final_candidate.py",
+      "included_as": "code/run_final_candidate.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 2659,
-      "original_last_write_time": "2026-07-30T10:26:14.2249890+01:00",
-      "sha256": "A7A55D80A08880A76171AF3845FEE033325D32962B523838C5C3AE7DA3C00314"
+      "bytes": 8400,
+      "original_last_write_time": "2026-08-06T15:27:26.1217202+01:00",
+      "sha256": "9FAA1B007BB1ACA15C4B1A7D88318DDB67748CD3790AD38DCE6B75CA4CCCC46E"
     },
     {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/launch_frozen_note_v6.cmd",
-      "included_as": "code/launch_frozen_note_v6.cmd",
+      "source_path": "Experiments/final_candidate_v1/English-normalized archival text_English-normalized archival text.cmd",
+      "included_as": "code/launch_final_candidate.cmd",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 179,
-      "original_last_write_time": "2026-07-30T10:26:15.5449829+01:00",
-      "sha256": "CAC7D00451201D1061C8F864634668212EDA4A049AF1AF05F90C43847B1F0177"
+      "bytes": 110,
+      "original_last_write_time": "2026-08-06T15:27:27.6860121+01:00",
+      "sha256": "A92BECB98AD9E6AA3533C6986EFE100A6516621CAC23D7B2F5899D12254E5D7B"
     },
     {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/config/frozen_runtime_parameters.json",
-      "included_as": "config/frozen_runtime_parameters.json",
+      "source_path": "Experiments/final_candidate_v1/final_config.yaml",
+      "included_as": "config/final_config.yaml",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 496,
-      "original_last_write_time": "2026-07-29T22:02:18.2261274+01:00",
-      "sha256": "B48D20057F30E6AEFC1DE2DEA8930730B5B83CFCF37E75B7E4F52C1B20D82433"
+      "bytes": 1830,
+      "original_last_write_time": "2026-08-06T15:27:24.5910440+01:00",
+      "sha256": "5751DBC0566242664BF67536AE77822AA735CEE634E0D97C917D741DB15D1BC6"
     },
     {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/README.md",
+      "source_path": "Experiments/final_candidate_v1/README.md",
       "included_as": "README.md and documentation/SOURCE_README.md",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 874,
-      "original_last_write_time": "2026-07-30T10:26:16.8993829+01:00",
-      "sha256": "C87C5A537FF393CC58CABF182C7ABCECEB39A83312B461A64E197C112DB2093A"
+      "bytes": 1051,
+      "original_last_write_time": "2026-08-06T15:27:29.1893062+01:00",
+      "sha256": "F478855B0701B2AD4FBB91381C745F626BDCB5190EC94EC3CE361DAD32FDF28F"
     },
     {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/ORIGINAL_README.md",
-      "included_as": "documentation/ORIGINAL_README.md",
+      "source_path": "Experiments/final_candidate_v1/run_manifest.json",
+      "included_as": "documentation/run_manifest.json",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 1991,
-      "original_last_write_time": "2026-07-29T23:27:43.7069135+01:00",
-      "sha256": "A1D896A3CAF6B1CDF85406003238C7ADA24BADB46E2EC33C7B4C762BCD4067EA"
+      "bytes": 4651,
+      "original_last_write_time": "2026-08-12T21:07:07.6639435+01:00",
+      "sha256": "85389D95748DBE4123EECF319547559EA691BD082462266A5BE2EABBF0388E23"
     },
     {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/RESULTS_V13.md",
-      "included_as": "documentation/RESULTS_V13.md",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 1398,
-      "original_last_write_time": "2026-07-29T23:27:45.0320324+01:00",
-      "sha256": "3CB10A5E49785BCA3F0B7B02E40E239A2E150EC6CB2BFD251C381D34BDB223A5"
-    },
-    {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/release.sha256",
-      "included_as": "documentation/source_release.sha256",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 985,
-      "original_last_write_time": "2026-07-30T10:38:08.9331395+01:00",
-      "sha256": "79BC1F43AC27766CBB02435DAE3B95F3CED6B53FA161483C33391370C6677E1A"
-    },
-    {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/evaluation/model_comparison.json",
-      "included_as": "documentation/model_comparison.json",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 4854,
-      "original_last_write_time": "2026-07-29T22:46:28.4974652+01:00",
-      "sha256": "9EC3B180011E71D2F0F35B7C0893CD929663701C996275377BA42020E6C25B51"
-    },
-    {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/evaluation/note_transfer_evidence_v13.jpg",
+      "source_path": "Experiments/final_candidate_v1/manifests/run_20260812T200316Z.json",
       "included_as": null,
       "status": "excluded",
-      "exclusion_reason": "Derived evidence image retained outside Git",
-      "bytes": 204208,
-      "original_last_write_time": "2026-07-29T23:25:29.8713672+01:00",
-      "sha256": "4E0DDFC1D96CA62ED7A69E50775ECF9D05C85793ED8A5A1CFB8B4644692DE2D0"
+      "exclusion_reason": "Byte-identical duplicate of the retained run manifest",
+      "bytes": 4651,
+      "original_last_write_time": "2026-08-12T21:07:07.6629388+01:00",
+      "sha256": "85389D95748DBE4123EECF319547559EA691BD082462266A5BE2EABBF0388E23"
     },
     {
-      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/weights/yolov10n_5class_paper_note_v1_success_frozen.pt",
+      "source_path": "Experiments/final_candidate_v1/weights/yolov10n_5class_phone_hardcases_v1_candidate.pt",
       "included_as": null,
       "status": "excluded",
       "exclusion_reason": "Model-weight binary retained outside Git",
-      "bytes": 5785786,
-      "original_last_write_time": "2026-07-29T22:41:58.5002256+01:00",
-      "sha256": "E5554B4E576217B44669A939453D3D5E6763BEAC95E28280E01CEC6D53843B1D"
+      "bytes": 5785466,
+      "original_last_write_time": "2026-07-30T14:43:48.5614430+01:00",
+      "sha256": "03C750427C0B6E3C19ECF2A54A32DAB7149650664DD87DFC8D4AA87B43BB55A5"
     }
   ]
 }

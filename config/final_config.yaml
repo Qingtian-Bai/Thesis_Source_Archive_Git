@@ -1,0 +1,74 @@
+schema_version: 1
+release_id: final_candidate_v1
+status: frozen_before_independent_test
+
+model:
+  custom_weight: weights/yolov10n_5class_phone_hardcases_v1_candidate.pt
+  pose_weight: yolov8n-pose.pt
+  coco_weight: yolov8n.pt
+  expected_classes:
+    0: student
+    1: phone
+    2: paper
+    3: note
+    4: door
+
+runtime:
+  pose_confidence: 0.45
+  pose_track_confidence: 0.40
+  max_students: 30
+  camera_frame_queue_size: 3
+  camera_reopen_interval: 100
+  state_max_step_seconds: 0.35
+  crossing_trigger_seconds: 0.50
+  occlusion_grace_seconds: 1.50
+
+custom_detector:
+  confidence: 0.50
+  phone_person_margin_pixels: 30
+  phone_max_frame_area_ratio: 0.15
+  door_neutral_confidence: 0.65
+  paper_neutral_confidence: 0.55
+  paper_counter_confidence: 0.20
+
+note_detector:
+  confidence: 0.30
+  inference_size: 960
+  confirm_seconds: 0.15
+  track_gap_seconds: 0.35
+  transfer_window_seconds: 1.20
+  minimum_hand_observations: 2
+  hand_distance_factor: 0.80
+  max_person_area_ratio: 0.12
+  max_shoulder_width_ratio: 0.55
+  max_shoulder_height_ratio: 0.65
+
+coco_assist:
+  mode: counter_evidence
+  phone_confidence: 0.15
+  inference_size: 1280
+  minimum_observations: 3
+  confirm_seconds: 0.20
+  max_gap_seconds: 0.45
+  distractor_confidence: 0.55
+  distractor_iou: 0.25
+  person_margin_ratio: 0.13
+  person_margin_min_pixels: 80
+  minimum_aspect_ratio: 1.12
+  strong_confidence: 0.20
+  rotated_support_angle_degrees: 30
+  rotated_support_confidence: 0.20
+  rotated_support_iou: 0.40
+
+evidence:
+  capture_cooldown_seconds: 5.0
+  event_pre_seconds: 1.0
+  event_post_seconds: 2.0
+  minimum_free_space_mb: 200
+
+evaluation_protocol:
+  event_type_must_match: true
+  temporal_iou_threshold: 0.30
+  matching: one_to_one_highest_temporal_iou
+  duplicate_predictions: false_positive
+  ambiguous_ground_truth: exclude_from_primary_report_separately

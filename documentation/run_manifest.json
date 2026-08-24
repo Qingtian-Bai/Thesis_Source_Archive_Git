@@ -1,0 +1,137 @@
+{
+  "release_id": "final_candidate_v1",
+  "status": "completed",
+  "started_at_utc": "2026-08-12T20:03:16.339180+00:00",
+  "command_arguments": {
+    "source": "D:\\project zero\\YOLO_Project\\Final_Test_20260812\\raw\\FT_FINAL_UNSEEN_20260812.mp4",
+    "save_output": "D:\\project zero\\YOLO_Project\\Final_Test_20260812\\outputs\\FT_FINAL_UNSEEN_20260812_annotated.mp4",
+    "save_raw": null,
+    "no_display": true,
+    "exit_on_eof": true,
+    "max_frames": null
+  },
+  "source": {
+    "value": "D:\\project zero\\YOLO_Project\\Final_Test_20260812\\raw\\FT_FINAL_UNSEEN_20260812.mp4",
+    "kind": "file",
+    "sha256": "b2ca1d3e214182fbb8da9c098143bbe8d3f0c934b1bb77837e32c74f3cf9149d"
+  },
+  "artifacts": {
+    "config": {
+      "path": "D:\\project zero\\YOLO_Project\\Experiments\\final_candidate_v1\\final_config.yaml",
+      "sha256": "5751dbc0566242664bf67536ae77822aa735cee634e0d97c917d741db15d1bc6"
+    },
+    "code": {
+      "path": "D:\\project zero\\YOLO_Project\\Experiments\\final_candidate_v1\\code\\final_monitor.py",
+      "sha256": "72dbf2c60256abfaf282157c164379257114f66635466ba4f9b698eb94f871ae"
+    },
+    "weight": {
+      "path": "D:\\project zero\\YOLO_Project\\Experiments\\final_candidate_v1\\weights\\yolov10n_5class_phone_hardcases_v1_candidate.pt",
+      "sha256": "03c750427c0b6e3c19ecf2a54a32dab7149650664dd87dfc8d4aa87b43bb55a5"
+    }
+  },
+  "expected_classes": {
+    "0": "student",
+    "1": "phone",
+    "2": "paper",
+    "3": "note",
+    "4": "door"
+  },
+  "resolved_configuration": {
+    "schema_version": 1,
+    "release_id": "final_candidate_v1",
+    "status": "frozen_before_independent_test",
+    "model": {
+      "custom_weight": "weights/yolov10n_5class_phone_hardcases_v1_candidate.pt",
+      "pose_weight": "yolov8n-pose.pt",
+      "coco_weight": "yolov8n.pt",
+      "expected_classes": {
+        "0": "student",
+        "1": "phone",
+        "2": "paper",
+        "3": "note",
+        "4": "door"
+      }
+    },
+    "runtime": {
+      "pose_confidence": 0.45,
+      "pose_track_confidence": 0.4,
+      "max_students": 30,
+      "camera_frame_queue_size": 3,
+      "camera_reopen_interval": 100,
+      "state_max_step_seconds": 0.35,
+      "crossing_trigger_seconds": 0.5,
+      "occlusion_grace_seconds": 1.5
+    },
+    "custom_detector": {
+      "confidence": 0.5,
+      "phone_person_margin_pixels": 30,
+      "phone_max_frame_area_ratio": 0.15,
+      "door_neutral_confidence": 0.65,
+      "paper_neutral_confidence": 0.55,
+      "paper_counter_confidence": 0.2
+    },
+    "note_detector": {
+      "confidence": 0.3,
+      "inference_size": 960,
+      "confirm_seconds": 0.15,
+      "track_gap_seconds": 0.35,
+      "transfer_window_seconds": 1.2,
+      "minimum_hand_observations": 2,
+      "hand_distance_factor": 0.8,
+      "max_person_area_ratio": 0.12,
+      "max_shoulder_width_ratio": 0.55,
+      "max_shoulder_height_ratio": 0.65
+    },
+    "coco_assist": {
+      "mode": "counter_evidence",
+      "phone_confidence": 0.15,
+      "inference_size": 1280,
+      "minimum_observations": 3,
+      "confirm_seconds": 0.2,
+      "max_gap_seconds": 0.45,
+      "distractor_confidence": 0.55,
+      "distractor_iou": 0.25,
+      "person_margin_ratio": 0.13,
+      "person_margin_min_pixels": 80,
+      "minimum_aspect_ratio": 1.12,
+      "strong_confidence": 0.2,
+      "rotated_support_angle_degrees": 30,
+      "rotated_support_confidence": 0.2,
+      "rotated_support_iou": 0.4
+    },
+    "evidence": {
+      "capture_cooldown_seconds": 5.0,
+      "event_pre_seconds": 1.0,
+      "event_post_seconds": 2.0,
+      "minimum_free_space_mb": 200
+    },
+    "evaluation_protocol": {
+      "event_type_must_match": true,
+      "temporal_iou_threshold": 0.3,
+      "matching": "one_to_one_highest_temporal_iou",
+      "duplicate_predictions": "false_positive",
+      "ambiguous_ground_truth": "exclude_from_primary_report_separately"
+    }
+  },
+  "environment": {
+    "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "ultralytics": "8.4.105",
+      "torch": "2.8.0+cu128",
+      "torchvision": "0.23.0+cu128",
+      "opencv-python": "4.13.0.92",
+      "numpy": "2.4.4",
+      "PyYAML": "6.0.3"
+    },
+    "device": {
+      "cuda_available": true,
+      "torch_cuda_version": "12.8",
+      "device_count": 1,
+      "device_names": [
+        "NVIDIA GeForce RTX 5060 Laptop GPU"
+      ]
+    }
+  },
+  "finished_at_utc": "2026-08-12T20:07:07.663207+00:00"
+}
