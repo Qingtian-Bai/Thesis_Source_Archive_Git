@@ -1,0 +1,47 @@
+# Participant, consent and other personal records are not part of this repository.
+consent_records/
+participant_records/
+personal_data/
+
+# Raw or derived media and model binaries are retained outside Git.
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Runtime evidence, logs and temporary outputs.
+runtime_outputs/
+evaluation/
+evidence/
+input/
+outputs/
+*.jsonl
+*.log
+*.tmp
+*.temp
+
+# Python and editor artefacts.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Dissertation documents are distributed separately.
+*.docx
+*.pdf

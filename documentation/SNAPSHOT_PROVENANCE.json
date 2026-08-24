@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "snapshot_id": "legacy_v4",
+  "display_name": "Legacy v4",
+  "reconstruction_date": "2026-08-24",
+  "source_definition": "Final_Test_20260812/comparisons/four_version_comparison_summary.json identifies Baselines/legacy_baseline.py as the Legacy v4 comparison code.",
+  "notice": "Submission-time reconstruction only; not contemporaneous development history.",
+  "artefacts": [
+    {
+      "source_path": "Baselines/legacy_baseline.py",
+      "included_as": "code/legacy_baseline.py",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 16242,
+      "original_last_write_time": "2026-07-26T20:22:22.5869636+01:00",
+      "sha256": "42E277BFBA92B87F9CDF97942027CD58150C99E7BE2E5CD3D25B6605787A9C5F"
+    },
+    {
+      "source_path": "Baselines/LEGACY_BASELINE_MANIFEST.md",
+      "included_as": "documentation/LEGACY_BASELINE_MANIFEST.md",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 1319,
+      "original_last_write_time": "2026-07-26T20:22:48.8392373+01:00",
+      "sha256": "D69BC520B5E7E8EC197E31DEB3A4211E031F582B9C3E52A5A7EEF382047E2525"
+    },
+    {
+      "source_path": "Model_Vault/yolov10n_4class_v1_baseline_epoch78.pt",
+      "included_as": null,
+      "status": "excluded",
+      "exclusion_reason": "Model-weight binary retained outside Git",
+      "bytes": 5762682,
+      "original_last_write_time": "2026-07-02T16:44:18.9614540+01:00",
+      "sha256": "72F0F03D3BCB9883E9554EA7EB4B7C299FB4B1A154609A0ED191671BB5B7ABDB"
+    },
+    {
+      "source_path": "yolov8n-pose.pt",
+      "included_as": null,
+      "status": "excluded",
+      "exclusion_reason": "Third-party model-weight binary retained outside Git",
+      "bytes": 6832633,
+      "original_last_write_time": "2026-02-13T11:07:14.1204700+00:00",
+      "sha256": "C6FA93DD1EE4A2C18C900A45C1D864A1C6F7ABA75D84F91648A30B7FB641D212"
+    },
+    {
+      "source_path": "yolov8n.pt",
+      "included_as": null,
+      "status": "excluded",
+      "exclusion_reason": "Third-party model-weight binary retained outside Git",
+      "bytes": 6549796,
+      "original_last_write_time": "2026-02-09T17:06:26.6889058+00:00",
+      "sha256": "F59B3D833E2FF32E194B5BB8E08D211DC7C5BDF144B90D2C8412C47CCFC83B36"
+    }
+  ]
+}
