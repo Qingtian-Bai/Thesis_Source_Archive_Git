@@ -1,0 +1,17 @@
+{
+  "snapshot_name": "baseline_20260729_v5_door_success",
+  "created": "2026-07-29",
+  "model_classes": {
+    "0": "student",
+    "1": "phone",
+    "2": "paper",
+    "3": "note",
+    "4": "door"
+  },
+  "custom_object_confidence": 0.5,
+  "door_display_confidence": 0.65,
+  "door_policy": "neutral_context_no_warning_no_phone_suppression",
+  "coco_assist_mode": "fallback",
+  "starting_weights": "yolov10n_4class_v1_baseline_epoch78.pt",
+  "training_device": "NVIDIA GeForce RTX 5060 Laptop GPU"
+}

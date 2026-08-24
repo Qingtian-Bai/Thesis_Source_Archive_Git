@@ -1,0 +1,44 @@
+Model: YOLOv10n five-class door candidate v1
+Created: 2026-07-29
+Starting weights: yolov10n_4class_v1_baseline_epoch78.pt
+Dataset: ultimate_exam_dataset_camera_v5_door/dataset.yaml
+Classes: 0 student, 1 phone, 2 paper, 3 note, 4 door
+
+Training:
+- Stage 1: 15 epochs, backbone frozen
+- Stage 2: early-stopped at epoch 86
+- Best stage-2 checkpoint: epoch 61
+- GPU: NVIDIA GeForce RTX 5060 Laptop GPU
+
+Validation (best.pt):
+- all: P 0.975, R 0.903, mAP50 0.974, mAP50-95 0.737
+- student: P 0.993, R 1.000, mAP50 0.995, mAP50-95 0.908
+- phone: P 0.990, R 0.896, mAP50 0.956, mAP50-95 0.869
+- paper: P 0.928, R 0.792, mAP50 0.947, mAP50-95 0.494
+- note: P 1.000, R 0.929, mAP50 0.995, mAP50-95 0.630
+- door: P 0.962, R 0.900, mAP50 0.980, mAP50-95 0.784
+
+Independent test:
+- all: P 0.856, R 0.876, mAP50 0.874, mAP50-95 0.699
+- student: P 0.985, R 1.000, mAP50 0.995, mAP50-95 0.913
+- phone: P 0.919, R 0.928, mAP50 0.954, mAP50-95 0.879
+- paper: P 0.803, R 1.000, mAP50 0.994, mAP50-95 0.621
+- note: P 0.579, R 0.500, mAP50 0.437, mAP50-95 0.215
+- door: P 0.993, R 0.950, mAP50 0.990, mAP50-95 0.869
+
+Door-only test at confidence 0.25:
+- 40 images
+- door boxes: 38 in 38 images
+- phone false-positive boxes: 0
+
+Runtime calibration on the independent test:
+- Frozen baseline at confidence 0.45: phone P 0.979, R 0.859
+- Five-class candidate at confidence 0.45: phone P 0.960, R 0.912
+- Five-class candidate at confidence 0.50: phone P 0.973, R 0.903
+- Selected candidate runtime confidence: 0.50
+
+Runtime policy:
+- Door is drawn as a neutral grey context box.
+- Door never creates an evidence/violation alert.
+- Door does not forcibly suppress a phone box, avoiding false negatives when
+  a student holds a real phone in front of a door.

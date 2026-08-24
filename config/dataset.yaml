@@ -1,0 +1,6 @@
+path: D:/project zero/YOLO_Project/ultimate_exam_dataset_camera_v5_door
+train: images/train
+val: images/val
+test: images/test
+nc: 5
+names: ['student', 'phone', 'paper', 'note', 'door']
