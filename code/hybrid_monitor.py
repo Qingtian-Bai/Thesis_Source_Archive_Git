@@ -1,6 +1,7 @@
 import cv2
 import math
 import argparse
+import hashlib
 import time
 import traceback
 import threading
@@ -14,12 +15,17 @@ from datetime import datetime
 import ultralytics
 from pathlib import Path
 
-FINAL_CANDIDATE_ROOT = Path(__file__).resolve().parents[1]
-PROJECT_ROOT = FINAL_CANDIDATE_ROOT.parents[1]
-FINAL_MODEL_PATH = (
-    FINAL_CANDIDATE_ROOT
+HYBRID_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = HYBRID_ROOT.parents[1]
+PHONE_MODEL_PATH = (
+    HYBRID_ROOT
     / "weights"
-    / "yolov10n_5class_phone_hardcases_v1_candidate.pt"
+    / "door_v5_phone_authority.pt"
+)
+NOTE_CONTEXT_MODEL_PATH = (
+    HYBRID_ROOT
+    / "weights"
+    / "late_note_context.pt"
 )
 EXPECTED_CUSTOM_CLASSES = {
     0: "student",
@@ -185,6 +191,17 @@ class EventVideoBuffer:
         if not self._has_disk_space():
             return None
 
+        # Several students may expose phones in the same moment. Keep their
+        # screenshots/log entries separate, but let overlapping alerts of the
+        # same class share one event clip instead of opening many encoders.
+        for clip in self.active.values():
+            if clip.get("alert_key") == alert_key:
+                clip["end_time"] = max(
+                    clip["end_time"],
+                    event_time + self.post_seconds,
+                )
+                return clip["final_path"]
+
         height, width = frame_shape[:2]
         self.clip_sequence += 1
         wall_time = datetime.now()
@@ -210,6 +227,7 @@ class EventVideoBuffer:
 
         clip_id = self.clip_sequence
         self.active[clip_id] = {
+            "alert_key": alert_key,
             "writer": writer,
             "writing_path": writing_path,
             "final_path": final_path,
@@ -249,8 +267,20 @@ class EventVideoBuffer:
 
 
 class DualCoreAntiCheatingSystem:
-    def __init__(self, custom_model_path=None):
-        print("Starting the dual-core monitoring system: YOLOv8-Pose for people plus a custom object model...")
+    @staticmethod
+    def _normalized_model_names(model_names):
+        if isinstance(model_names, dict):
+            return {
+                int(class_id): str(name).strip().lower()
+                for class_id, name in model_names.items()
+            }
+        return {
+            class_id: str(name).strip().lower()
+            for class_id, name in enumerate(model_names)
+        }
+
+    def __init__(self, phone_model_path=None, note_context_model_path=None):
+        print("Starting Hybrid Candidate v2 monitoring system: Door v5 phone evidence plus later note and interaction logic...")
         
         # ==============================================================
         # ==============================================================
@@ -262,30 +292,29 @@ class DualCoreAntiCheatingSystem:
         print("Loading auxiliary phone model: YOLOv8n COCO (cell phone only)...")
         self.yolo_coco = YOLO("yolov8n.pt")
         
-        print("Loading core model 2: the custom prohibited-item detector...")
-        if custom_model_path is None:
-            custom_model_path = FINAL_MODEL_PATH
-        self.yolo_custom = YOLO(str(custom_model_path))
+        print("Loading authoritative phone model: Door v5 (phone and door only)...")
+        if phone_model_path is None:
+            phone_model_path = PHONE_MODEL_PATH
+        self.yolo_phone = YOLO(str(phone_model_path))
+        print("Loading the later context model (paper and note only)...")
+        if note_context_model_path is None:
+            note_context_model_path = NOTE_CONTEXT_MODEL_PATH
+        self.yolo_note_context = YOLO(str(note_context_model_path))
         # Only a phone and a temporally confirmed small note are forbidden.
         # Ordinary exam paper is contextual counter-evidence, like a door.
         self.custom_class_names = {1: 'phone', 3: 'note'}
-        model_names = self.yolo_custom.names
-        if isinstance(model_names, dict):
-            normalized_model_names = {
-                int(class_id): str(name).strip().lower()
-                for class_id, name in model_names.items()
-            }
-        else:
-            normalized_model_names = {
-                class_id: str(name).strip().lower()
-                for class_id, name in enumerate(model_names)
-            }
-        if normalized_model_names != EXPECTED_CUSTOM_CLASSES:
-            raise RuntimeError(
-                "archived text class mismatch:"
-                f"expected={EXPECTED_CUSTOM_CLASSES}, actual={normalized_model_names}"
-            )
-        model_name_items = normalized_model_names.items()
+        phone_model_names = self._normalized_model_names(self.yolo_phone.names)
+        note_model_names = self._normalized_model_names(self.yolo_note_context.names)
+        for role, actual_names in (
+            ("Door v5 phone weights", phone_model_names),
+            ("later paper and note context weights", note_model_names),
+        ):
+            if actual_names != EXPECTED_CUSTOM_CLASSES:
+                raise RuntimeError(
+                    f"{role} class mismatch:"
+                    f"expected={EXPECTED_CUSTOM_CLASSES}, actual={actual_names}"
+                )
+        model_name_items = phone_model_names.items()
         self.DOOR_CLASS_ID = next(
             (int(class_id) for class_id, name in model_name_items if str(name).lower() == "door"),
             None,
@@ -434,12 +463,30 @@ class DualCoreAntiCheatingSystem:
             int(os.environ.get("CAMERA_FRAME_QUEUE_SIZE", "3")),
         )
 
-        self.evidence_dir = PROJECT_ROOT / "Evidence_Vault"
+        evidence_directory = os.environ.get(
+            "EVIDENCE_OUTPUT_DIR",
+            "Experiments/post_final_hybrid_v2/evidence",
+        )
+        evidence_path = Path(evidence_directory)
+        self.evidence_dir = (
+            evidence_path
+            if evidence_path.is_absolute()
+            else PROJECT_ROOT / evidence_path
+        )
         os.makedirs(self.evidence_dir, exist_ok=True)  
         self.last_capture_time = {}                    
         self.CAPTURE_COOLDOWN = float(
             os.environ.get("CAPTURE_COOLDOWN_SECONDS", "5.0")
         )
+        self.EVIDENCE_SPATIAL_CELL_PIXELS = max(
+            32,
+            int(os.environ.get("EVIDENCE_SPATIAL_CELL_PIXELS", "96")),
+        )
+        self.EVIDENCE_SPATIAL_MATCH_PIXELS = max(
+            float(self.EVIDENCE_SPATIAL_CELL_PIXELS),
+            float(os.environ.get("EVIDENCE_SPATIAL_MATCH_PIXELS", "128")),
+        )
+        self.object_evidence_cooldowns = []
         self.manual_exit_requested = False
         self.EVENT_PRE_SECONDS = float(
             os.environ.get("EVENT_PRE_SECONDS", "1.0")
@@ -636,7 +683,7 @@ class DualCoreAntiCheatingSystem:
             flags=cv2.INTER_LINEAR,
             borderMode=cv2.BORDER_REFLECT_101,
         )
-        results = self.yolo_custom.predict(
+        results = self.yolo_phone.predict(
             rotated,
             classes=[1],
             conf=self.COCO_ROTATED_SUPPORT_CONFIDENCE,
@@ -713,7 +760,7 @@ class DualCoreAntiCheatingSystem:
         color = (0, 215, 255)  # yellow: auxiliary result, not the custom model
         cv2.rectangle(frame, (x1, y1), (x2, y2), color, 3)
         cv2.putText(
-            frame, "COCO ASSIST: PHONE", (x1, max(20, y1 - 10)),
+        frame, "COCO REVIEW: PHONE (not evidence)", (x1, max(20, y1 - 10)),
             cv2.FONT_HERSHEY_SIMPLEX, 0.65, color, 2,
         )
 
@@ -1020,13 +1067,32 @@ class DualCoreAntiCheatingSystem:
         detections = detections or []
         
         for cls_id in detected_custom_classes:
-            cooldown_key = f"object_{cls_id}"
-            last_time = self.last_capture_time.get(cooldown_key)
-            
-            if last_time is None or event_time - last_time > self.CAPTURE_COOLDOWN:
+            class_detections = [
+                detection
+                for detection in detections
+                if int(detection.get("class_id", -1)) == cls_id
+            ]
+            detection_groups = class_detections or [None]
+            seen_keys = set()
+            for detection in detection_groups:
+                cooldown_key = self._object_cooldown_key(cls_id, detection)
+                if cooldown_key in seen_keys:
+                    continue
+                seen_keys.add(cooldown_key)
+                if self._object_is_in_spatial_cooldown(
+                    cls_id,
+                    detection,
+                    event_time,
+                ):
+                    continue
                 obj_name = self.custom_class_names[cls_id]
                 timestamp_str = current_time.strftime("%Y%m%d_%H%M%S_%f")[:-3]
-                img_filename = f"Violation_Object_{obj_name}_{timestamp_str}.jpg"
+                key_suffix = hashlib.sha256(
+                    repr(cooldown_key).encode("utf-8")
+                ).hexdigest()[:8]
+                img_filename = (
+                    f"Violation_Object_{obj_name}_{timestamp_str}_{key_suffix}.jpg"
+                )
                 img_path = os.path.join(self.evidence_dir, img_filename)
                 
                 cv2.imwrite(img_path, frame)
@@ -1045,19 +1111,82 @@ class DualCoreAntiCheatingSystem:
                     "alert_type": f"Forbidden Object Detected: {obj_name.upper()}",
                     "image_path": img_path,
                     "event_clip_path": None if clip_path is None else str(clip_path),
-                    "detections": [
-                        detection
-                        for detection in detections
-                        if int(detection.get("class_id", -1)) == cls_id
-                    ],
+                    "cooldown_key": list(cooldown_key),
+                    "detections": [] if detection is None else [detection],
                 }
                 day_str = current_time.strftime("%Y%m%d")
                 log_file = os.path.join(self.evidence_dir, f"log_{day_str}.jsonl")
                 with open(log_file, "a", encoding="utf-8") as f:
                     f.write(json.dumps(log_data, ensure_ascii=False) + "\n")
                     
-                self.last_capture_time[cooldown_key] = event_time
+                self._remember_object_evidence(cls_id, detection, event_time)
                 print(f"[EVIDENCE SAVED] Prohibited-item alert evidence saved: {img_filename}")
+
+    def _object_cooldown_key(self, class_id, detection):
+        """Separate evidence cooldown by class, related track and image region."""
+        class_id = int(class_id)
+        if not detection:
+            return ("object", class_id, "unassigned", -1, -1)
+        track_ids = tuple(sorted(int(value) for value in detection.get("track_ids", [])))
+        track_token = track_ids if track_ids else ("unassigned",)
+        box = detection.get("bbox_xyxy")
+        if box is None or len(box) != 4:
+            return ("object", class_id, track_token, -1, -1)
+        x1, y1, x2, y2 = map(float, box)
+        cell = float(self.EVIDENCE_SPATIAL_CELL_PIXELS)
+        cell_x = int(((x1 + x2) / 2.0) // cell)
+        cell_y = int(((y1 + y2) / 2.0) // cell)
+        return ("object", class_id, track_token, cell_x, cell_y)
+
+    @staticmethod
+    def _detection_center(detection):
+        if not detection:
+            return None
+        box = detection.get("bbox_xyxy")
+        if box is None or len(box) != 4:
+            return None
+        x1, y1, x2, y2 = map(float, box)
+        return ((x1 + x2) / 2.0, (y1 + y2) / 2.0)
+
+    def _prune_object_cooldowns(self, event_time):
+        self.object_evidence_cooldowns = [
+            record
+            for record in self.object_evidence_cooldowns
+            if event_time - record["event_time"] <= self.CAPTURE_COOLDOWN
+        ]
+
+    def _object_is_in_spatial_cooldown(self, class_id, detection, event_time):
+        """Suppress only a recent alert of the same class in the same vicinity."""
+        self._prune_object_cooldowns(event_time)
+        center = self._detection_center(detection)
+        if center is None:
+            return any(
+                record["class_id"] == int(class_id)
+                and record["center"] is None
+                for record in self.object_evidence_cooldowns
+            )
+        return any(
+            record["class_id"] == int(class_id)
+            and record["center"] is not None
+            and self.calculate_distance(center, record["center"])
+            <= self.EVIDENCE_SPATIAL_MATCH_PIXELS
+            for record in self.object_evidence_cooldowns
+        )
+
+    def _remember_object_evidence(self, class_id, detection, event_time):
+        self._prune_object_cooldowns(event_time)
+        self.object_evidence_cooldowns.append(
+            {
+                "class_id": int(class_id),
+                "center": self._detection_center(detection),
+                "track_ids": []
+                if not detection
+                else sorted(
+                    int(value) for value in detection.get("track_ids", [])
+                ),
+                "event_time": float(event_time),
+            }
+        )
 
     def update_scene_context(self, students, event_time):
         """Infer broad depth layers and short-term occlusion state from current tracks."""
@@ -1424,13 +1553,13 @@ class DualCoreAntiCheatingSystem:
             prediction_classes = [1]
             if self.DOOR_CLASS_ID is not None:
                 prediction_classes.append(self.DOOR_CLASS_ID)
-            results_items = self.yolo_custom.predict(
+            results_items = self.yolo_phone.predict(
                 frame,
                 classes=prediction_classes,
                 conf=self.CUSTOM_OBJECT_CONFIDENCE,
                 verbose=False,
             )
-            results_paper_notes = self.yolo_custom.predict(
+            results_paper_notes = self.yolo_note_context.predict(
                 frame,
                 classes=[self.PAPER_CLASS_ID, self.NOTE_CLASS_ID],
                 conf=min(
@@ -1554,7 +1683,7 @@ class DualCoreAntiCheatingSystem:
                     )
                     custom_phone_records.append(
                         {
-                            "source": "custom_exam_model",
+                            "source": "door_v5_phone_authority",
                             "class_id": 1,
                             "class_name": "phone",
                             "confidence": best_confidence,
@@ -1699,41 +1828,10 @@ class DualCoreAntiCheatingSystem:
                 )
                 if confirmed_coco_phone is not None:
                     self.draw_coco_assisted_phone(frame, confirmed_coco_phone)
-                    confirmed_confidence = max(
-                        (
-                            float(confidence)
-                            for candidate_box, confidence in zip(
-                                coco_boxes,
-                                coco_confidences,
-                            )
-                            if self.calculate_iou(
-                                confirmed_coco_phone,
-                                candidate_box,
-                            ) >= 0.30
-                        ),
-                        default=None,
-                    )
-                    self.check_and_log_objects(
-                        frame,
-                        [1],
-                        event_time,
-                        detections=[
-                            {
-                                "source": "coco_auxiliary",
-                                "class_id": 1,
-                                "class_name": "phone",
-                                "confidence": confirmed_confidence,
-                                "bbox_xyxy": [
-                                    float(value)
-                                    for value in confirmed_coco_phone
-                                ],
-                                "track_ids": self._related_track_ids(
-                                    confirmed_coco_phone,
-                                    current_frame_wrists,
-                                ),
-                            }
-                        ],
-                    )
+                    # Hybrid v2 keeps COCO as a yellow review-only overlay.
+                    # Only the Door v5 phone authority may create formal phone
+                    # evidence, so an auxiliary false positive cannot enter the
+                    # red evidence stream or suppress a later real phone.
 
             if valid_boxes:
                 self.draw_forbidden_objects(frame, valid_boxes, valid_classes)

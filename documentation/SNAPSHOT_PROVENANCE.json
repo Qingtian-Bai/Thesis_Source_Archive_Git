@@ -1,76 +1,112 @@
 {
   "schema_version": 1,
-  "snapshot_id": "final_candidate_v1",
-  "display_name": "Final candidate v1",
+  "snapshot_id": "6fe329_original",
+  "display_name": "6FE329 original",
   "reconstruction_date": "2026-08-24",
-  "source_definition": "Candidate frozen before the 2026-08-12 formal comparison run.",
+  "source_definition": "Original post-test hybrid v2 engineering-regression snapshot, before portability reissue.",
   "notice": "Submission-time reconstruction only; not contemporaneous development history.",
   "artefacts": [
     {
-      "source_path": "Experiments/final_candidate_v1/code/final_monitor.py",
-      "included_as": "code/final_monitor.py",
+      "source_path": "Experiments/post_final_hybrid_v2/code/hybrid_monitor.py",
+      "included_as": "code/hybrid_monitor.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 80367,
-      "original_last_write_time": "2026-08-06T15:28:41.1965828+01:00",
-      "sha256": "72DBF2C60256ABFAF282157C164379257114F66635466BA4F9B698EB94F871AE"
+      "bytes": 84222,
+      "original_last_write_time": "2026-08-13T13:38:26.2550926+01:00",
+      "sha256": "6FE329EBCDB07F91C84C74FD2DCF4C484DD040962F827899C68C021425002690"
     },
     {
-      "source_path": "Experiments/final_candidate_v1/run_final_candidate.py",
-      "included_as": "code/run_final_candidate.py",
+      "source_path": "Experiments/post_final_hybrid_v2/run_hybrid_v2.py",
+      "included_as": "code/run_hybrid_v2.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 8400,
-      "original_last_write_time": "2026-08-06T15:27:26.1217202+01:00",
-      "sha256": "9FAA1B007BB1ACA15C4B1A7D88318DDB67748CD3790AD38DCE6B75CA4CCCC46E"
+      "bytes": 9234,
+      "original_last_write_time": "2026-08-13T13:16:59.6939195+01:00",
+      "sha256": "08A94A1BE7C3D50414B5BDBB467A5743DB81E423187A1AA5B933AE5879E51F1C"
     },
     {
-      "source_path": "Experiments/final_candidate_v1/English-normalized archival text_English-normalized archival text.cmd",
-      "included_as": "code/launch_final_candidate.cmd",
+      "source_path": "Experiments/post_final_hybrid_v2/make_regression_contact_sheet.py",
+      "included_as": "code/tools/make_regression_contact_sheet.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 110,
-      "original_last_write_time": "2026-08-06T15:27:27.6860121+01:00",
-      "sha256": "A92BECB98AD9E6AA3533C6986EFE100A6516621CAC23D7B2F5899D12254E5D7B"
+      "bytes": 2002,
+      "original_last_write_time": "2026-08-13T13:25:30.7526550+01:00",
+      "sha256": "652ECD73E35632D50E03D9CD01C3F59F8061A2AF33E4D538CC71E439F90690FB"
     },
     {
-      "source_path": "Experiments/final_candidate_v1/final_config.yaml",
-      "included_as": "config/final_config.yaml",
+      "source_path": "Experiments/post_final_hybrid_v2/English-normalized archival text_English-normalized archival textv2.cmd",
+      "included_as": "code/launch_hybrid_v2.cmd",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 1830,
-      "original_last_write_time": "2026-08-06T15:27:24.5910440+01:00",
-      "sha256": "5751DBC0566242664BF67536AE77822AA735CEE634E0D97C917D741DB15D1BC6"
+      "bytes": 146,
+      "original_last_write_time": "2026-08-13T13:08:57.7641045+01:00",
+      "sha256": "45767858A26AD9920C1BB90C78ECE69C196578A67C3C269E6547107B6DE6C7EC"
     },
     {
-      "source_path": "Experiments/final_candidate_v1/README.md",
+      "source_path": "Experiments/post_final_hybrid_v2/hybrid_config.yaml",
+      "included_as": "config/hybrid_config.yaml",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 1975,
+      "original_last_write_time": "2026-08-13T13:16:13.5698789+01:00",
+      "sha256": "A997352BFAF89B81A7722973B2B7E16ECF2F7293BD2FBF730E4E1A6379D9E3BC"
+    },
+    {
+      "source_path": "Experiments/post_final_hybrid_v2/test_hybrid_logic.py",
+      "included_as": "tests/test_hybrid_logic.py",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 2325,
+      "original_last_write_time": "2026-08-13T13:16:33.5395834+01:00",
+      "sha256": "EE23238007B5EDED840D3F0A7FDB06B776AF1DB0504407BE89EE0B39203B2572"
+    },
+    {
+      "source_path": "Experiments/post_final_hybrid_v2/evaluation/final_hash_6fe_regression/build_regression_audit.py",
+      "included_as": "tests/build_regression_audit.py",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 8790,
+      "original_last_write_time": "2026-08-18T15:54:38.0766906+01:00",
+      "sha256": "CC44025ABC73E7E3C608C8511E12B9C37B3D2804589494985B67367DC5DFCEDB"
+    },
+    {
+      "source_path": "Experiments/post_final_hybrid_v2/README.md",
       "included_as": "README.md and documentation/SOURCE_README.md",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 1051,
-      "original_last_write_time": "2026-08-06T15:27:29.1893062+01:00",
-      "sha256": "F478855B0701B2AD4FBB91381C745F626BDCB5190EC94EC3CE361DAD32FDF28F"
+      "bytes": 1564,
+      "original_last_write_time": "2026-08-13T13:26:55.3398849+01:00",
+      "sha256": "0EE68BC0548F87E2309C3EFAE559A8704CA5FEFC94049EF8D87D020D35837B05"
     },
     {
-      "source_path": "Experiments/final_candidate_v1/run_manifest.json",
+      "source_path": "Experiments/post_final_hybrid_v2/IMPLEMENTATION_REPORT.md",
+      "included_as": "documentation/IMPLEMENTATION_REPORT.md",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 2916,
+      "original_last_write_time": "2026-08-13T13:38:27.7599692+01:00",
+      "sha256": "0C374C8127FCE18A6185AD2CBC3B5AE49C2BEFF58B3EB177BDD0E2BE86529960"
+    },
+    {
+      "source_path": "Experiments/post_final_hybrid_v2/run_manifest.json",
       "included_as": "documentation/run_manifest.json",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 4651,
-      "original_last_write_time": "2026-08-12T21:07:07.6639435+01:00",
-      "sha256": "85389D95748DBE4123EECF319547559EA691BD082462266A5BE2EABBF0388E23"
+      "bytes": 5113,
+      "original_last_write_time": "2026-08-18T15:52:29.7959838+01:00",
+      "sha256": "9143E63B671FF9617660643101BC730E23FE999FDA4CD773CB0BEF6DC8C060AF"
     },
     {
-      "source_path": "Experiments/final_candidate_v1/manifests/run_20260812T200316Z.json",
+      "source_path": "Experiments/post_final_hybrid_v2/weights/door_v5_phone_authority.pt",
       "included_as": null,
       "status": "excluded",
-      "exclusion_reason": "Byte-identical duplicate of the retained run manifest",
-      "bytes": 4651,
-      "original_last_write_time": "2026-08-12T21:07:07.6629388+01:00",
-      "sha256": "85389D95748DBE4123EECF319547559EA691BD082462266A5BE2EABBF0388E23"
+      "exclusion_reason": "Model-weight binary retained outside Git",
+      "bytes": 5747514,
+      "original_last_write_time": "2026-07-29T15:22:51.7138332+01:00",
+      "sha256": "9BFA4A156187B1DF0B684C98018EA968AB7317778DEBEF69D51C6665EF0FFA72"
     },
     {
-      "source_path": "Experiments/final_candidate_v1/weights/yolov10n_5class_phone_hardcases_v1_candidate.pt",
+      "source_path": "Experiments/post_final_hybrid_v2/weights/late_note_context.pt",
       "included_as": null,
       "status": "excluded",
       "exclusion_reason": "Model-weight binary retained outside Git",

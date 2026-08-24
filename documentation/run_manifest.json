@@ -1,31 +1,36 @@
 {
-  "release_id": "final_candidate_v1",
+  "release_id": "post_final_hybrid_v2",
   "status": "completed",
-  "started_at_utc": "2026-08-12T20:03:16.339180+00:00",
+  "started_at_utc": "2026-08-18T14:45:27.162975+00:00",
   "command_arguments": {
-    "source": "D:\\project zero\\YOLO_Project\\Final_Test_20260812\\raw\\FT_FINAL_UNSEEN_20260812.mp4",
-    "save_output": "D:\\project zero\\YOLO_Project\\Final_Test_20260812\\outputs\\FT_FINAL_UNSEEN_20260812_annotated.mp4",
+    "source": "Final_Test_20260812\\raw\\FT_FINAL_UNSEEN_20260812.mp4",
+    "save_output": "Experiments\\post_final_hybrid_v2\\evaluation\\final_hash_6fe_regression\\hybrid_v2_6fe_full_annotated.mp4",
     "save_raw": null,
     "no_display": true,
     "exit_on_eof": true,
-    "max_frames": null
+    "max_frames": null,
+    "evidence_dir": "Experiments\\post_final_hybrid_v2\\evaluation\\final_hash_6fe_regression\\evidence"
   },
   "source": {
-    "value": "D:\\project zero\\YOLO_Project\\Final_Test_20260812\\raw\\FT_FINAL_UNSEEN_20260812.mp4",
+    "value": "Final_Test_20260812\\raw\\FT_FINAL_UNSEEN_20260812.mp4",
     "kind": "file",
     "sha256": "b2ca1d3e214182fbb8da9c098143bbe8d3f0c934b1bb77837e32c74f3cf9149d"
   },
   "artifacts": {
     "config": {
-      "path": "D:\\project zero\\YOLO_Project\\Experiments\\final_candidate_v1\\final_config.yaml",
-      "sha256": "5751dbc0566242664bf67536ae77822aa735cee634e0d97c917d741db15d1bc6"
+      "path": "D:\\project zero\\YOLO_Project\\Experiments\\post_final_hybrid_v2\\hybrid_config.yaml",
+      "sha256": "a997352bfaf89b81a7722973b2b7e16ecf2f7293bd2fbf730e4e1a6379d9e3bc"
     },
     "code": {
-      "path": "D:\\project zero\\YOLO_Project\\Experiments\\final_candidate_v1\\code\\final_monitor.py",
-      "sha256": "72dbf2c60256abfaf282157c164379257114f66635466ba4f9b698eb94f871ae"
+      "path": "D:\\project zero\\YOLO_Project\\Experiments\\post_final_hybrid_v2\\code\\hybrid_monitor.py",
+      "sha256": "6fe329ebcdb07f91c84c74fd2dcf4c484dd040962f827899c68c021425002690"
     },
-    "weight": {
-      "path": "D:\\project zero\\YOLO_Project\\Experiments\\final_candidate_v1\\weights\\yolov10n_5class_phone_hardcases_v1_candidate.pt",
+    "phone_weight": {
+      "path": "D:\\project zero\\YOLO_Project\\Experiments\\post_final_hybrid_v2\\weights\\door_v5_phone_authority.pt",
+      "sha256": "9bfa4a156187b1df0b684c98018ea968ab7317778debef69d51c6665ef0ffa72"
+    },
+    "note_context_weight": {
+      "path": "D:\\project zero\\YOLO_Project\\Experiments\\post_final_hybrid_v2\\weights\\late_note_context.pt",
       "sha256": "03c750427c0b6e3c19ecf2a54a32dab7149650664dd87dfc8d4aa87b43bb55a5"
     }
   },
@@ -38,10 +43,11 @@
   },
   "resolved_configuration": {
     "schema_version": 1,
-    "release_id": "final_candidate_v1",
-    "status": "frozen_before_independent_test",
+    "release_id": "post_final_hybrid_v2",
+    "status": "development_regression_only",
     "model": {
-      "custom_weight": "weights/yolov10n_5class_phone_hardcases_v1_candidate.pt",
+      "phone_weight": "weights/door_v5_phone_authority.pt",
+      "note_context_weight": "weights/late_note_context.pt",
       "pose_weight": "yolov8n-pose.pt",
       "coco_weight": "yolov8n.pt",
       "expected_classes": {
@@ -100,7 +106,10 @@
       "rotated_support_iou": 0.4
     },
     "evidence": {
+      "output_directory": "Experiments/post_final_hybrid_v2/evidence",
       "capture_cooldown_seconds": 5.0,
+      "spatial_cell_pixels": 96,
+      "spatial_match_pixels": 128,
       "event_pre_seconds": 1.0,
       "event_post_seconds": 2.0,
       "minimum_free_space_mb": 200
@@ -133,5 +142,5 @@
       ]
     }
   },
-  "finished_at_utc": "2026-08-12T20:07:07.663207+00:00"
+  "finished_at_utc": "2026-08-18T14:52:29.794966+00:00"
 }

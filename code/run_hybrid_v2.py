@@ -1,4 +1,4 @@
-"""Reproducible entry point for the frozen pre-test dissertation candidate."""
+"""Reproducible entry point for the post-final hybrid v2 experiment."""
 
 from __future__ import annotations
 
@@ -19,8 +19,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent
 WORKSPACE_ROOT = ROOT.parents[1]
-CONFIG_PATH = ROOT / "final_config.yaml"
-APP_PATH = ROOT / "code" / "final_monitor.py"
+CONFIG_PATH = ROOT / "hybrid_config.yaml"
+APP_PATH = ROOT / "code" / "hybrid_monitor.py"
 
 
 ENVIRONMENT_MAP = {
@@ -64,6 +64,9 @@ ENVIRONMENT_MAP = {
     "coco_assist.rotated_support_confidence": "COCO_ROTATED_SUPPORT_CONFIDENCE",
     "coco_assist.rotated_support_iou": "COCO_ROTATED_SUPPORT_IOU",
     "evidence.capture_cooldown_seconds": "CAPTURE_COOLDOWN_SECONDS",
+    "evidence.output_directory": "EVIDENCE_OUTPUT_DIR",
+    "evidence.spatial_cell_pixels": "EVIDENCE_SPATIAL_CELL_PIXELS",
+    "evidence.spatial_match_pixels": "EVIDENCE_SPATIAL_MATCH_PIXELS",
     "evidence.event_pre_seconds": "EVENT_PRE_SECONDS",
     "evidence.event_post_seconds": "EVENT_POST_SECONDS",
     "evidence.minimum_free_space_mb": "EVENT_MIN_FREE_MB",
@@ -115,7 +118,7 @@ def device_details():
 
 
 def load_monitor_class():
-    spec = importlib.util.spec_from_file_location("final_candidate_monitor", APP_PATH)
+    spec = importlib.util.spec_from_file_location("post_final_hybrid_v2_monitor", APP_PATH)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Cannot import monitor: {APP_PATH}")
     module = importlib.util.module_from_spec(spec)
@@ -130,23 +133,29 @@ def write_manifest(manifest, unique_path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Frozen dissertation candidate")
+    parser = argparse.ArgumentParser(description="Post-final hybrid v2 development candidate")
     parser.add_argument("--source", default="0")
     parser.add_argument("--save-output")
     parser.add_argument("--save-raw")
     parser.add_argument("--no-display", action="store_true")
     parser.add_argument("--exit-on-eof", action="store_true")
     parser.add_argument("--max-frames", type=int)
+    parser.add_argument("--evidence-dir")
     arguments = parser.parse_args()
 
     config = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
-    model_path = ROOT / config["model"]["custom_weight"]
-    for required in (CONFIG_PATH, APP_PATH, model_path):
+    phone_model_path = ROOT / config["model"]["phone_weight"]
+    note_context_model_path = ROOT / config["model"]["note_context_weight"]
+    for required in (CONFIG_PATH, APP_PATH, phone_model_path, note_context_model_path):
         if not required.is_file():
             raise FileNotFoundError(required)
 
     for dotted_key, environment_name in ENVIRONMENT_MAP.items():
         os.environ[environment_name] = str(nested_value(config, dotted_key))
+    if arguments.evidence_dir:
+        os.environ["EVIDENCE_OUTPUT_DIR"] = str(
+            Path(arguments.evidence_dir).expanduser().resolve()
+        )
     os.environ["YOLO_CONFIG_DIR"] = str(ROOT / ".ultralytics_config")
     sys.dont_write_bytecode = True
 
@@ -167,7 +176,14 @@ def main():
         "artifacts": {
             "config": {"path": str(CONFIG_PATH), "sha256": sha256(CONFIG_PATH)},
             "code": {"path": str(APP_PATH), "sha256": sha256(APP_PATH)},
-            "weight": {"path": str(model_path), "sha256": sha256(model_path)},
+            "phone_weight": {
+                "path": str(phone_model_path),
+                "sha256": sha256(phone_model_path),
+            },
+            "note_context_weight": {
+                "path": str(note_context_model_path),
+                "sha256": sha256(note_context_model_path),
+            },
         },
         "expected_classes": config["model"]["expected_classes"],
         "resolved_configuration": config,
@@ -183,7 +199,10 @@ def main():
     os.chdir(WORKSPACE_ROOT)
     try:
         monitor_class = load_monitor_class()
-        system = monitor_class(custom_model_path=model_path)
+        system = monitor_class(
+            phone_model_path=phone_model_path,
+            note_context_model_path=note_context_model_path,
+        )
         manifest["status"] = "running"
         write_manifest(manifest, manifest_path)
         system.run_forever(

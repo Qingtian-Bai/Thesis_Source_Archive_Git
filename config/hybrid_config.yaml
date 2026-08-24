@@ -1,9 +1,10 @@
 schema_version: 1
-release_id: final_candidate_v1
-status: frozen_before_independent_test
+release_id: post_final_hybrid_v2
+status: development_regression_only
 
 model:
-  custom_weight: weights/yolov10n_5class_phone_hardcases_v1_candidate.pt
+  phone_weight: weights/door_v5_phone_authority.pt
+  note_context_weight: weights/late_note_context.pt
   pose_weight: yolov8n-pose.pt
   coco_weight: yolov8n.pt
   expected_classes:
@@ -61,7 +62,10 @@ coco_assist:
   rotated_support_iou: 0.40
 
 evidence:
+  output_directory: Experiments/post_final_hybrid_v2/evidence
   capture_cooldown_seconds: 5.0
+  spatial_cell_pixels: 96
+  spatial_match_pixels: 128
   event_pre_seconds: 1.0
   event_post_seconds: 2.0
   minimum_free_space_mb: 200

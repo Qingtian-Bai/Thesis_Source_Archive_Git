@@ -6,6 +6,13 @@
 
 
 
+
+
+
 ```powershell
-& "D:\python 3.13.7\python.exe" "D:\project zero\YOLO_Project\Experiments\final_candidate_v1\run_final_candidate.py" --source "D:\path\test.mp4" --save-output "D:\path\annotated.mp4" --no-display --exit-on-eof
+& "D:\python 3.13.7\python.exe" "Experiments\post_final_hybrid_v2\run_hybrid_v2.py" `
+  --source "D:\path\video.mp4" --save-output "D:\path\annotated.mp4" `
+  --no-display --exit-on-eof
 ```
+
+
