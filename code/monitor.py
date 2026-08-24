@@ -325,7 +325,9 @@ class DualCoreAntiCheatingSystem:
         if custom_model_path is None:
             custom_model_path = PROJECT_ROOT / "Model_Vault" / "yolov10n_4class_v1_baseline_epoch78.pt"
         self.yolo_custom = YOLO(str(custom_model_path))
-        self.custom_class_names = {1: 'phone', 2: 'paper', 3: 'note'}
+        # Only a phone and a temporally confirmed small note are forbidden.
+        # Ordinary exam paper is contextual counter-evidence, like a door.
+        self.custom_class_names = {1: 'phone', 3: 'note'}
         model_names = self.yolo_custom.names
         if isinstance(model_names, dict):
             model_name_items = model_names.items()
@@ -343,6 +345,33 @@ class DualCoreAntiCheatingSystem:
         self.CUSTOM_OBJECT_CONFIDENCE = float(
             os.environ.get("CUSTOM_OBJECT_CONFIDENCE", "0.45")
         )
+        self.PAPER_CLASS_ID = 2
+        self.NOTE_CLASS_ID = 3
+        self.PAPER_NEUTRAL_CONFIDENCE = float(
+            os.environ.get("PAPER_NEUTRAL_CONFIDENCE", "0.55")
+        )
+        self.PAPER_COUNTER_CONFIDENCE = float(
+            os.environ.get("PAPER_COUNTER_CONFIDENCE", "0.20")
+        )
+        # Notes are often much smaller than phones. Run a dedicated high-
+        # resolution note pass at a lower proposal threshold, then require
+        # person/hand association and persistence before creating an alert.
+        self.NOTE_DETECTION_CONFIDENCE = float(
+            os.environ.get("NOTE_DETECTION_CONFIDENCE", "0.30")
+        )
+        self.NOTE_INFERENCE_SIZE = int(
+            os.environ.get("NOTE_INFERENCE_SIZE", "960")
+        )
+        self.NOTE_CONFIRM_FRAMES = int(
+            os.environ.get("NOTE_CONFIRM_FRAMES", "4")
+        )
+        self.NOTE_MAX_MISSES = 4
+        self.NOTE_HAND_DISTANCE_FACTOR = 0.80
+        self.NOTE_MAX_PERSON_AREA_RATIO = 0.12
+        self.NOTE_MAX_SHOULDER_WIDTH_RATIO = 0.55
+        self.NOTE_MAX_SHOULDER_HEIGHT_RATIO = 0.65
+        self.note_tracks = {}
+        self.next_note_track_id = 1
 
         self.POSE_CONFIDENCE = 0.45
         self.MAX_STUDENTS = 30
@@ -436,6 +465,17 @@ class DualCoreAntiCheatingSystem:
         intersection = intersection_w * intersection_h
         union = (ax2 - ax1) * (ay2 - ay1) + (bx2 - bx1) * (by2 - by1) - intersection
         return intersection / union if union > 0 else 0.0
+
+    @staticmethod
+    def calculate_containment(inner_box, outer_box):
+        """Return the fraction of ``inner_box`` covered by ``outer_box``."""
+        ix1, iy1, ix2, iy2 = inner_box
+        ox1, oy1, ox2, oy2 = outer_box
+        intersection_w = max(0, min(ix2, ox2) - max(ix1, ox1))
+        intersection_h = max(0, min(iy2, oy2) - max(iy1, oy1))
+        intersection = intersection_w * intersection_h
+        inner_area = max(0, ix2 - ix1) * max(0, iy2 - iy1)
+        return intersection / inner_area if inner_area > 0 else 0.0
 
     @staticmethod
     def calculate_skin_ratio(frame, box):
@@ -644,6 +684,226 @@ class DualCoreAntiCheatingSystem:
                 color,
                 2,
             )
+
+    def draw_neutral_papers(self, frame, boxes, confidences):
+        """Show ordinary exam paper as neutral context, never as evidence."""
+        color = (180, 180, 180)
+        for box, confidence in zip(boxes, confidences):
+            if float(confidence) < self.PAPER_NEUTRAL_CONFIDENCE:
+                continue
+            x1, y1, x2, y2 = map(int, box)
+            cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
+            cv2.putText(
+                frame,
+                f"PAPER (context) {float(confidence):.2f}",
+                (x1, max(20, y1 - 10)),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.50,
+                color,
+                2,
+            )
+
+    @staticmethod
+    def _box_center_and_size(box):
+        x1, y1, x2, y2 = map(float, box)
+        return (
+            (x1 + x2) / 2.0,
+            (y1 + y2) / 2.0,
+            max(1.0, x2 - x1),
+            max(1.0, y2 - y1),
+        )
+
+    def _associate_note_with_hand(self, box, students):
+        """Return the most plausible holder using scale relative to each person."""
+        center_x, center_y, note_w, note_h = self._box_center_and_size(box)
+        best = None
+        for student_id, data in students.items():
+            px1, py1, px2, py2 = map(float, data["box"])
+            person_w = max(1.0, px2 - px1)
+            person_h = max(1.0, py2 - py1)
+            person_area = person_w * person_h
+            note_area_ratio = (note_w * note_h) / person_area
+            if note_area_ratio > self.NOTE_MAX_PERSON_AREA_RATIO:
+                continue
+
+            shoulder_width = max(25.0, float(data["shoulder_width"]))
+            if (
+                note_w / shoulder_width > self.NOTE_MAX_SHOULDER_WIDTH_RATIO
+                or note_h / shoulder_width > self.NOTE_MAX_SHOULDER_HEIGHT_RATIO
+            ):
+                continue
+            margin = shoulder_width * 0.55
+            if not (
+                px1 - margin <= center_x <= px2 + margin
+                and py1 - margin <= center_y <= py2 + margin
+            ):
+                continue
+
+            wrists = data.get("wrists") or []
+            if not wrists:
+                continue
+            hand_distance = min(
+                self.calculate_distance((center_x, center_y), wrist)
+                for wrist in wrists
+            )
+            normalized_distance = hand_distance / shoulder_width
+            if normalized_distance > self.NOTE_HAND_DISTANCE_FACTOR:
+                continue
+            if best is None or normalized_distance < best[1]:
+                best = (student_id, normalized_distance)
+        return best
+
+    def update_note_candidates(
+        self,
+        note_boxes,
+        note_confidences,
+        paper_boxes,
+        paper_confidences,
+        students,
+    ):
+        """Track low-threshold note proposals and promote only persistent hand-held ones."""
+        candidates = []
+        for box, confidence in zip(note_boxes, note_confidences):
+            confidence = float(confidence)
+            _, _, note_w, note_h = self._box_center_and_size(box)
+            if min(note_w, note_h) < 6:
+                continue
+
+            # When the detector describes essentially the same region as
+            # ordinary paper with at least comparable confidence, keep it
+            # neutral. A small note lying on a large exam sheet has low IoU and
+            # is therefore not automatically suppressed.
+            contradicted_by_paper = any(
+                float(paper_confidence) >= self.PAPER_COUNTER_CONFIDENCE
+                and (
+                    (
+                        float(paper_confidence) >= confidence - 0.15
+                        and self.calculate_iou(box, paper_box) >= 0.35
+                    )
+                    or (
+                        float(paper_confidence) >= confidence
+                        and self.calculate_containment(box, paper_box) >= 0.75
+                    )
+                )
+                for paper_box, paper_confidence in zip(
+                    paper_boxes, paper_confidences
+                )
+            )
+            if contradicted_by_paper:
+                continue
+
+            holder = self._associate_note_with_hand(box, students)
+            candidates.append(
+                {
+                    "box": [float(value) for value in box],
+                    "confidence": confidence,
+                    "holder": None if holder is None else holder[0],
+                }
+            )
+
+        unmatched_tracks = set(self.note_tracks)
+        current_track_ids = []
+        for candidate in candidates:
+            center_x, center_y, note_w, note_h = self._box_center_and_size(
+                candidate["box"]
+            )
+            best_track_id = None
+            best_score = -1.0
+            for track_id in unmatched_tracks:
+                track_box = self.note_tracks[track_id]["box"]
+                old_x, old_y, old_w, old_h = self._box_center_and_size(track_box)
+                iou = self.calculate_iou(candidate["box"], track_box)
+                center_distance = self.calculate_distance(
+                    (center_x, center_y), (old_x, old_y)
+                )
+                match_radius = max(
+                    30.0,
+                    2.5 * max(note_w, note_h, old_w, old_h),
+                )
+                if iou < 0.12 and center_distance > match_radius:
+                    continue
+                score = iou + max(0.0, 1.0 - center_distance / match_radius)
+                if score > best_score:
+                    best_score = score
+                    best_track_id = track_id
+
+            if best_track_id is None:
+                best_track_id = self.next_note_track_id
+                self.next_note_track_id += 1
+                self.note_tracks[best_track_id] = {
+                    "box": candidate["box"],
+                    "hits": 0,
+                    "misses": 0,
+                    "observations": [],
+                }
+            else:
+                unmatched_tracks.remove(best_track_id)
+
+            track = self.note_tracks[best_track_id]
+            track["box"] = candidate["box"]
+            track["hits"] += 1
+            track["misses"] = 0
+            track["observations"].append(candidate["holder"])
+            track["observations"] = track["observations"][-30:]
+            candidate["track_id"] = best_track_id
+            hand_observations = sum(
+                holder is not None for holder in track["observations"]
+            )
+            candidate["confirmed"] = (
+                track["hits"] >= self.NOTE_CONFIRM_FRAMES
+                and hand_observations >= 2
+                and candidate["holder"] is not None
+            )
+            holder_counts = {}
+            for holder in track["observations"]:
+                if holder is not None:
+                    holder_counts[holder] = holder_counts.get(holder, 0) + 1
+            candidate["transfer"] = sum(
+                count >= 2 for count in holder_counts.values()
+            ) >= 2
+            current_track_ids.append(best_track_id)
+
+        for track_id in list(self.note_tracks):
+            if track_id in current_track_ids:
+                continue
+            track = self.note_tracks[track_id]
+            track["misses"] += 1
+            track["hits"] = max(0, track["hits"] - 1)
+            if track["misses"] > self.NOTE_MAX_MISSES:
+                del self.note_tracks[track_id]
+
+        return candidates
+
+    @staticmethod
+    def draw_note_candidates(frame, candidates):
+        """Distinguish proposals from confirmed, hand-associated notes."""
+        confirmed_boxes = []
+        for candidate in candidates:
+            x1, y1, x2, y2 = map(int, candidate["box"])
+            if candidate["confirmed"] and candidate["transfer"]:
+                color = (0, 0, 255)
+                label = "WARNING: NOTE TRANSFER"
+                confirmed_boxes.append(candidate["box"])
+                thickness = 3
+            elif candidate["confirmed"]:
+                color = (0, 128, 255)
+                label = "NOTE HELD (review)"
+                thickness = 2
+            else:
+                color = (0, 200, 255)
+                label = "NOTE CANDIDATE"
+                thickness = 2
+            cv2.rectangle(frame, (x1, y1), (x2, y2), color, thickness)
+            cv2.putText(
+                frame,
+                f"{label} {candidate['confidence']:.2f}",
+                (x1, max(20, y1 - 10)),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.55,
+                color,
+                2,
+            )
+        return confirmed_boxes
 
     def check_and_log_objects(self, frame, classes):
         current_time = datetime.now()
@@ -868,13 +1128,26 @@ class DualCoreAntiCheatingSystem:
 
             results_pose = self.yolo_pose.track(frame, classes=[0], conf=0.4, tracker=self.tracker_path, persist=True, verbose=False)
             
-            prediction_classes = [1, 2, 3]
+            # Preserve the successful phone/door operating point. Notes use a
+            # separate high-resolution, low-threshold proposal pass and are
+            # never promoted without hand association and temporal support.
+            prediction_classes = [1]
             if self.DOOR_CLASS_ID is not None:
                 prediction_classes.append(self.DOOR_CLASS_ID)
             results_items = self.yolo_custom.predict(
                 frame,
                 classes=prediction_classes,
                 conf=self.CUSTOM_OBJECT_CONFIDENCE,
+                verbose=False,
+            )
+            results_paper_notes = self.yolo_custom.predict(
+                frame,
+                classes=[self.PAPER_CLASS_ID, self.NOTE_CLASS_ID],
+                conf=min(
+                    self.PAPER_COUNTER_CONFIDENCE,
+                    self.NOTE_DETECTION_CONFIDENCE,
+                ),
+                imgsz=self.NOTE_INFERENCE_SIZE,
                 verbose=False,
             )
 
@@ -948,6 +1221,8 @@ class DualCoreAntiCheatingSystem:
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 165, 255), 2)
 
             valid_boxes, valid_classes = [], []
+            paper_boxes = np.empty((0, 4), dtype=np.float32)
+            paper_confidences = np.empty((0,), dtype=np.float32)
             if len(results_items[0].boxes) > 0:
                 raw_boxes = results_items[0].boxes.xyxy.cpu().numpy()
                 raw_classes = results_items[0].boxes.cls.cpu().numpy()
@@ -962,9 +1237,51 @@ class DualCoreAntiCheatingSystem:
                     forbidden_mask = ~door_mask
                     raw_boxes = raw_boxes[forbidden_mask]
                     raw_classes = raw_classes[forbidden_mask]
+                    raw_confidences = raw_confidences[forbidden_mask]
+
+                phone_mask = raw_classes.astype(np.int32) == 1
                 valid_boxes, valid_classes = self.filter_false_positives(
-                    frame_width, frame_height, raw_boxes, raw_classes, current_person_boxes
+                    frame_width,
+                    frame_height,
+                    raw_boxes[phone_mask],
+                    raw_classes[phone_mask],
+                    current_person_boxes,
                 )
+
+            note_boxes = np.empty((0, 4), dtype=np.float32)
+            note_confidences = np.empty((0,), dtype=np.float32)
+            if len(results_paper_notes[0].boxes) > 0:
+                auxiliary_boxes = (
+                    results_paper_notes[0].boxes.xyxy.cpu().numpy()
+                )
+                auxiliary_classes = (
+                    results_paper_notes[0].boxes.cls.cpu().numpy().astype(np.int32)
+                )
+                auxiliary_confidences = (
+                    results_paper_notes[0].boxes.conf.cpu().numpy()
+                )
+                paper_mask = auxiliary_classes == self.PAPER_CLASS_ID
+                note_mask = auxiliary_classes == self.NOTE_CLASS_ID
+                paper_boxes = auxiliary_boxes[paper_mask]
+                paper_confidences = auxiliary_confidences[paper_mask]
+                note_boxes = auxiliary_boxes[note_mask]
+                note_confidences = auxiliary_confidences[note_mask]
+                self.draw_neutral_papers(
+                    frame,
+                    paper_boxes,
+                    paper_confidences,
+                )
+            note_candidates = self.update_note_candidates(
+                note_boxes,
+                note_confidences,
+                paper_boxes,
+                paper_confidences,
+                current_frame_wrists,
+            )
+            confirmed_note_boxes = self.draw_note_candidates(
+                frame,
+                note_candidates,
+            )
 
             # The custom exam model remains authoritative.  COCO is queried only
             # when that model has no surviving phone result in this frame.
@@ -1011,6 +1328,8 @@ class DualCoreAntiCheatingSystem:
             if valid_boxes:
                 self.draw_forbidden_objects(frame, valid_boxes, valid_classes)
                 self.check_and_log_objects(frame, valid_classes)
+            if confirmed_note_boxes:
+                self.check_and_log_objects(frame, [self.NOTE_CLASS_ID])
 
             if len(current_frame_wrists) >= 2:
                 self.analyze_interactions(frame, current_frame_wrists)

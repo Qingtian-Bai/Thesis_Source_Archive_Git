@@ -1,68 +1,41 @@
 {
   "schema_version": 1,
-  "snapshot_id": "door_v5",
-  "display_name": "Door v5",
+  "snapshot_id": "note_v6",
+  "display_name": "Note v6",
   "reconstruction_date": "2026-08-24",
-  "source_definition": "Frozen success baseline dated 2026-07-29.",
+  "source_definition": "Frozen paper/note success baseline dated 2026-07-30.",
   "notice": "Submission-time reconstruction only; not contemporaneous development history.",
   "artefacts": [
     {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/code/monitor.py",
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/code/monitor.py",
       "included_as": "code/monitor.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 55153,
-      "original_last_write_time": "2026-07-29T15:37:50.9881968+01:00",
-      "sha256": "461A05FCFEFC235BCC49E094BE7F499DDCC9121601DBB4494A2BEE61B39D5EEB"
+      "bytes": 68173,
+      "original_last_write_time": "2026-07-29T23:10:19.8487204+01:00",
+      "sha256": "A1179B18C6E6280316B07CC87EFD78B742DDFA939F825EB8B5F263C426B1B75D"
     },
     {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/code/run_frozen_v5_door.py",
-      "included_as": "code/run_frozen_v5_door.py",
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/run_frozen_paper_note_success.py",
+      "included_as": "code/run_frozen_paper_note_success.py",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 2255,
-      "original_last_write_time": "2026-07-29T22:04:34.2897625+01:00",
-      "sha256": "7E0B03C588C95E7870A53F5B35C5568B4A4F26311322AA38183F47F487262E79"
+      "bytes": 2659,
+      "original_last_write_time": "2026-07-30T10:26:14.2249890+01:00",
+      "sha256": "A7A55D80A08880A76171AF3845FEE033325D32962B523838C5C3AE7DA3C00314"
     },
     {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/training/train_camera_v5_door_from_baseline.py",
-      "included_as": "code/training/train_camera_v5_door_from_baseline.py",
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/launch_frozen_note_v6.cmd",
+      "included_as": "code/launch_frozen_note_v6.cmd",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 3361,
-      "original_last_write_time": "2026-07-29T14:53:04.7652661+01:00",
-      "sha256": "9FB4EDEABCF99CA5C5E99598B7D3D009582D8A49CD3CA2319811EC39F9A245D5"
+      "bytes": 179,
+      "original_last_write_time": "2026-07-30T10:26:15.5449829+01:00",
+      "sha256": "CAC7D00451201D1061C8F864634668212EDA4A049AF1AF05F90C43847B1F0177"
     },
     {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/launch_frozen_v5_door.cmd",
-      "included_as": "code/launch_frozen_v5_door.cmd",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 167,
-      "original_last_write_time": "2026-07-29T22:02:16.9583503+01:00",
-      "sha256": "E5B9FFA46454BBC9C37E4458C5796A38AB6E21AAC734E08E98C884C40218E7F3"
-    },
-    {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/config/auto_exam_tracker.yaml",
-      "included_as": "config/auto_exam_tracker.yaml",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 1406,
-      "original_last_write_time": "2026-07-29T15:49:49.2105198+01:00",
-      "sha256": "5251BC3A7E33B9C40AE43443528868806062CE15C3080341F1542E9B52A28FFF"
-    },
-    {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/config/dataset.yaml",
-      "included_as": "config/dataset.yaml",
-      "status": "included",
-      "exclusion_reason": null,
-      "bytes": 191,
-      "original_last_write_time": "2026-07-29T14:37:13.8447945+01:00",
-      "sha256": "E74AD578A691372F92B35C0D872997F736C3F2CCF89BDFE11BFE60FD637F2AD0"
-    },
-    {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/config/runtime_parameters.json",
-      "included_as": "config/runtime_parameters.json",
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/config/frozen_runtime_parameters.json",
+      "included_as": "config/frozen_runtime_parameters.json",
       "status": "included",
       "exclusion_reason": null,
       "bytes": 496,
@@ -70,40 +43,67 @@
       "sha256": "B48D20057F30E6AEFC1DE2DEA8930730B5B83CFCF37E75B7E4F52C1B20D82433"
     },
     {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/README.md",
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/README.md",
       "included_as": "README.md and documentation/SOURCE_README.md",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 1506,
-      "original_last_write_time": "2026-07-29T22:02:19.4795317+01:00",
-      "sha256": "0935615F833E230BDD501A37F5E3A7B02F1A8A169294372814C952E18FE89BD8"
+      "bytes": 874,
+      "original_last_write_time": "2026-07-30T10:26:16.8993829+01:00",
+      "sha256": "C87C5A537FF393CC58CABF182C7ABCECEB39A83312B461A64E197C112DB2093A"
     },
     {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/checksums.sha256",
-      "included_as": "documentation/source_checksums.sha256",
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/ORIGINAL_README.md",
+      "included_as": "documentation/ORIGINAL_README.md",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 947,
-      "original_last_write_time": "2026-07-29T22:05:04.6520294+01:00",
-      "sha256": "64C625966B8D1376D944D49459C3B13AC7EB4F8D307D1AB017FDA62C542E1965"
+      "bytes": 1991,
+      "original_last_write_time": "2026-07-29T23:27:43.7069135+01:00",
+      "sha256": "A1D896A3CAF6B1CDF85406003238C7ADA24BADB46E2EC33C7B4C762BCD4067EA"
     },
     {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/metrics/model_metrics.txt",
-      "included_as": "documentation/model_metrics.txt",
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/RESULTS_V13.md",
+      "included_as": "documentation/RESULTS_V13.md",
       "status": "included",
       "exclusion_reason": null,
-      "bytes": 1733,
-      "original_last_write_time": "2026-07-29T15:38:14.3424153+01:00",
-      "sha256": "DA89E552611C18383EEF956C73625E36F3DEFF7D06F5E85F017EE27DFC21B0B6"
+      "bytes": 1398,
+      "original_last_write_time": "2026-07-29T23:27:45.0320324+01:00",
+      "sha256": "3CB10A5E49785BCA3F0B7B02E40E239A2E150EC6CB2BFD251C381D34BDB223A5"
     },
     {
-      "source_path": "Baselines/baseline_20260729_v5_door_success/weights/yolov10n_5class_door_v1_frozen.pt",
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/release.sha256",
+      "included_as": "documentation/source_release.sha256",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 985,
+      "original_last_write_time": "2026-07-30T10:38:08.9331395+01:00",
+      "sha256": "79BC1F43AC27766CBB02435DAE3B95F3CED6B53FA161483C33391370C6677E1A"
+    },
+    {
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/evaluation/model_comparison.json",
+      "included_as": "documentation/model_comparison.json",
+      "status": "included",
+      "exclusion_reason": null,
+      "bytes": 4854,
+      "original_last_write_time": "2026-07-29T22:46:28.4974652+01:00",
+      "sha256": "9EC3B180011E71D2F0F35B7C0893CD929663701C996275377BA42020E6C25B51"
+    },
+    {
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/evaluation/note_transfer_evidence_v13.jpg",
+      "included_as": null,
+      "status": "excluded",
+      "exclusion_reason": "Derived evidence image retained outside Git",
+      "bytes": 204208,
+      "original_last_write_time": "2026-07-29T23:25:29.8713672+01:00",
+      "sha256": "4E0DDFC1D96CA62ED7A69E50775ECF9D05C85793ED8A5A1CFB8B4644692DE2D0"
+    },
+    {
+      "source_path": "Baselines/baseline_20260730_v6_paper_note_success/weights/yolov10n_5class_paper_note_v1_success_frozen.pt",
       "included_as": null,
       "status": "excluded",
       "exclusion_reason": "Model-weight binary retained outside Git",
-      "bytes": 5747514,
-      "original_last_write_time": "2026-07-29T15:22:51.7138332+01:00",
-      "sha256": "9BFA4A156187B1DF0B684C98018EA968AB7317778DEBEF69D51C6665EF0FFA72"
+      "bytes": 5785786,
+      "original_last_write_time": "2026-07-29T22:41:58.5002256+01:00",
+      "sha256": "E5554B4E576217B44669A939453D3D5E6763BEAC95E28280E01CEC6D53843B1D"
     }
   ]
 }
