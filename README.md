@@ -1,21 +1,51 @@
-# 6FE329 frozen technical release
+# Thesis source version-control archive
 
-This package contains the code, configuration, model weights, regression input and retained evaluation evidence for the 6FE329 post-test engineering regression described in the dissertation. The regression result is not an independent generalisation test.
+This is the Git-controlled source archive for the examination-monitoring dissertation project. It preserves six genuine development and release snapshots as a linear, inspectable history.
 
-## Environment
+## Version-control status
 
-The recorded environment used Python 3.13.7 on Windows 11, PyTorch 2.8.0 with CUDA 12.8, torchvision 0.23.0, Ultralytics 8.4.105, OpenCV 4.13.0.92, NumPy 2.4.4 and PyYAML 6.0.3. See `requirements.txt`.
+During development, versions were controlled through named and dated snapshot directories, including the Legacy v4, Door v5, Note v6, Final candidate v1 and 6FE329 snapshots. On 24 August 2026, those existing snapshots were migrated into Git so that their differences, provenance and final release state could be inspected with standard version-control tools.
 
-## Run the packaged video
+The Git commits record the migration operation. Their 24 August commit dates are not substitutes for the original file timestamps. Original paths, timestamps and SHA-256 values are retained in `documentation/SNAPSHOT_PROVENANCE.json` at every version tag. See `RECONSTRUCTION_NOTICE.md` for the interpretation boundary and `documentation/VERSION_CONTROL_LEDGER.md` for the tag-to-source mapping.
 
-From the release root:
+## Version tags
+
+| Tag | Preserved version |
+|---|---|
+| `legacy-v4` | Legacy v4 baseline |
+| `door-v5` | Door v5 phone-specialist version |
+| `note-v6` | Note v6 paper/note-context version |
+| `final-candidate-v1` | Final candidate v1 |
+| `6fe329-original` | Original 6FE329 engineering version |
+| `thesis-submission-20260823` | Portable frozen release used for submission |
+| `thesis-git-archive-20260824` | Verified Git delivery state |
+
+## Inspect and verify
 
 ```powershell
-python code/run_hybrid_v2.py --source input/FT_FINAL_UNSEEN_20260812.mp4 --no-display --exit-on-eof --save-output runtime_outputs/full_annotated.mp4 --evidence-dir runtime_outputs/evidence
+git status
+git log --graph --decorate --oneline --all
+git tag -n99
+git diff door-v5..note-v6
+git show thesis-submission-20260823:documentation/SNAPSHOT_PROVENANCE.json
+git fsck --full
+git bundle verify ..\Thesis_Source_Archive_Git_Delivery_20260824\Thesis_Source_Archive_Git.bundle
 ```
 
-All packaged resources are resolved relative to the release root. Runtime manifests, temporary tracker configuration and application outputs are written under `runtime_outputs/`.
+To restore the complete repository from the submitted bundle:
 
-## Validation evidence
+```powershell
+git clone Thesis_Source_Archive_Git.bundle Thesis_Source_Archive_Git_restored
+cd Thesis_Source_Archive_Git_restored
+git log --graph --decorate --oneline --all
+```
 
-The unit-test script, commands and retained outputs are under `tests/`. `FROZEN_MANIFEST.json` and `SHA256SUMS.txt` provide the frozen inventory and integrity hashes. Ethics and participant-consent status is stated in `documentation/ETHICS_AND_CONSENT_STATUS.md`.
+## Repository scope
+
+The repository contains code, configuration, tests, technical documentation, dependency information and integrity manifests. It intentionally excludes participant recordings, personal consent records, model-weight binaries and large derived videos. Those exclusions are documented rather than silently omitted.
+
+The runnable frozen technical package is distributed separately because it contains model weights and other non-Git artefacts. Its `FROZEN_MANIFEST.json` and `SHA256SUMS.txt` remain in this repository to connect the source history to the frozen release inventory.
+
+## Final runtime environment
+
+The recorded environment used Python 3.13.7 on Windows 11, PyTorch 2.8.0 with CUDA 12.8, torchvision 0.23.0, Ultralytics 8.4.105, OpenCV 4.13.0.92, NumPy 2.4.4 and PyYAML 6.0.3. See `requirements.txt` and `tests/README.md`.

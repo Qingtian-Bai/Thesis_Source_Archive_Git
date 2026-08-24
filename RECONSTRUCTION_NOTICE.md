@@ -2,7 +2,7 @@
 
 ## Status of this repository
 
-This Git repository was created on **24 August 2026** as a submission-time archival reconstruction. The commits were assembled from already existing snapshot directories. They do **not** represent commits made during the original development process, and their Git author dates must not be interpreted as development dates.
+This Git repository was created on **24 August 2026** by migrating the project's existing version-controlled snapshots into Git. During development, version changes had been managed through named and dated snapshot directories rather than Git commits. The migrated commits therefore preserve real development states, but their Git author dates record the migration and must not be interpreted as the dates on which the underlying development work occurred.
 
 Every reconstructed snapshot commit uses this statement:
 
@@ -44,4 +44,4 @@ The repository uses the local archival identity `Thesis Archive Reconstruction <
 
 ## Interpretation rule
 
-This repository improves traceability of existing snapshots. It does not repair the absence of development-time Git history, and it must not be presented as evidence that version control was used throughout development.
+This repository provides standard Git inspection, comparison, tagging and recovery for the existing snapshot-based version history. It is evidence of the preserved versions and their differences, while `documentation/SNAPSHOT_PROVENANCE.json` is the evidence for their original paths, timestamps and hashes. It must not be presented as evidence that Git itself was used throughout development.
