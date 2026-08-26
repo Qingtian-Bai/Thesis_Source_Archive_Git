@@ -22,6 +22,7 @@ On 26 August 2026, an assessor-facing English-only history was generated from th
 | `thesis-submission-20260823` | Portable frozen release used for submission |
 | `thesis-git-archive-20260824` | Verified Git delivery state |
 | `thesis-english-delivery-20260826` | English-only assessor delivery |
+| `thesis-english-final-20260826` | Final English-only source, tests, and integrity references |
 
 ## Inspect and verify
 
@@ -32,7 +33,7 @@ git tag -n99
 git diff door-v5..note-v6
 git show thesis-submission-20260823:documentation/SNAPSHOT_PROVENANCE.json
 git fsck --full
-git bundle verify ..\Thesis_Source_Archive_Git_Delivery_20260824\Thesis_Source_Archive_Git.bundle
+git bundle verify ..\Thesis_Source_Archive_Git_Delivery_20260826\Thesis_Source_Archive_Git.bundle
 ```
 
 To restore the complete repository from the submitted bundle:
