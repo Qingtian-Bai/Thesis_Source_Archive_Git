@@ -1,0 +1,27 @@
+Frozen 6FE329 deterministic fault-injection test evidence
+Executed: 2026-08-26T11:32:42.264222+00:00
+Working directory: D:\project zero\YOLO_Project\Thesis_Frozen_Release_6FE329_20260818
+Command: D:\python 3.13.7\python.exe D:\project zero\YOLO_Project\Thesis_Frozen_Release_6FE329_20260818\tests\test_fault_tolerance.py
+Monitor SHA-256: FBD06DA89AB25866BE89CAD26856156BE5FC25432EE518F39512A8F6EEEE0019
+Launcher SHA-256: DC44BB7BE2D6D82E93E05C0A7A05877259AC62A3C163B5DE648DD52CE37E8EED
+
+FT-01 Low-disk-space degradation: PASS (0.001s) - Event-video creation was disabled while the monitoring path remained callable.
+  captured runtime output: [EVENT VIDEO] Available disk space is below the protection threshold; new event-video creation is disabled, while screenshots, logs, and monitoring remain active.
+FT-02 Camera disconnect and recovery: PASS (0.242s) - Two failed reads triggered reopen; a frame from the replacement capture was delivered.
+  captured runtime output: [CAMERA] No frame was read; the capture thread remains active and will retry automatically.
+[CAMERA] Capture has not recovered; reconnecting to the camera...
+[CAMERA] No frame was read; the capture thread remains active and will retry automatically.
+FT-03 Video timestamp fallback: PASS (0.004s) - Non-increasing/negative timestamps resolved to monotonic frame-time values [0.0, 0.1, 0.2].
+  captured runtime output: System ready; live monitoring started (press 'q' to exit)...
+[TIME STATE] crossing=0.50s, note_confirm=0.15s, note_transfer_window=1.20s
+[EVENT VIDEO] 1.0s before + 2.0s after, directory=D:\project zero\YOLO_Project\Thesis_Frozen_Release_6FE329_20260818\runtime_outputs\fault_test_runs\run_20260826T113240Z\synthetic_work\timestamp_evidence\Event_Clips_v14
+[TEST] Reached max_frames=3.
+FT-04 Weight class-order startup rejection: PASS (0.000s) - A deliberately reordered phone model class map raised RuntimeError before monitoring began.
+  captured runtime output: Starting Hybrid Candidate v2 monitoring system: Door v5 phone evidence plus later note and interaction logic...
+Loading core model 1: YOLOv8n-Pose for person tracking and full-frame keypoint extraction...
+Loading auxiliary phone model: YOLOv8n COCO (cell phone only)...
+Loading authoritative phone model: Door v5 (phone and door only)...
+Loading the later context model (paper and note only)...
+FT-05 Manifest failure-state retention: PASS (0.098s) - Both latest and timestamped manifests retained failed status, exception, and finish time.
+FT-06 Event-buffer pre/post duration: PASS (0.002s) - At 10 FPS the clip retained frames 10-40: 1.0 s pre-trigger plus 2.0 s post-trigger.
+  captured runtime output: [EVENT VIDEO SAVED] Event_phone_20260826_123242_609_0001.mp4

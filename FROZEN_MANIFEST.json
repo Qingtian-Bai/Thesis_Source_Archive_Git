@@ -13,7 +13,15 @@
     "launcher_sha256": "DC44BB7BE2D6D82E93E05C0A7A05877259AC62A3C163B5DE648DD52CE37E8EED",
     "pose_weight_sha256": "C6FA93DD1EE4A2C18C900A45C1D864A1C6F7ABA75D84F91648A30B7FB641D212",
     "coco_weight_sha256": "F59B3D833E2FF32E194B5BB8E08D211DC7C5BDF144B90D2C8412C47CCFC83B36",
-    "requirements_sha256": "09FAC45F2A5387EE69C5F3EF21A4AF946D8ACFFFE3A0C55AAF6C56AEB8EC4E52"
+    "requirements_sha256": "09FAC45F2A5387EE69C5F3EF21A4AF946D8ACFFFE3A0C55AAF6C56AEB8EC4E52",
+    "final_candidate_v1_review_table_sha256": "DA44276B73D43B2BEA3967C1828678C411A574787CCD34C14481A9AF151BA226",
+    "final_candidate_v1_review_summary_sha256": "1BC3E6B52BDD1B4E9A323DDD718E4CBDA02D6E31A165E635D3BDFDEF7C5B4DB2",
+    "fault_test_script_sha256": "F74E54E85EB0758AE6DE1721BA7C477B7F3B77AAE15C13B170B551137B5C2F38",
+    "fault_test_results_sha256": "CA38E36A48C937C50080610BECAA68F411ED9760EABDE5515BF7F4D1CA690602",
+    "door_v5_review_table_sha256": "80A4FDC3D6301040A09BC2AFCE785415878FBA435ADC97946F07D5C4356C8A17",
+    "door_v5_review_summary_sha256": "067DC4E0A5C23A59950568E1B56D03C2C763EAA46C0F3D5F0247EBCED6C78557",
+    "phone_false_positive_taxonomy_sha256": "7F793B8CCD3C73F3715D0394C81E7DF427AA7D6AD36B19A96BD00E2493B673F3",
+    "phone_false_positive_taxonomy_summary_sha256": "873CEB5D0992CAEF65D3F5E871FF73B1ADF85476208CD62B58978C95C360C10C"
   },
   "reported_regression_results": {
     "frames": 3820,
@@ -30,13 +38,22 @@
     "cross_track_alerts_true": 15,
     "cross_track_alerts_false": 2,
     "combined_note_and_interaction_events_covered": "4/5",
-    "combined_note_and_interaction_precision_percent": 88.9
+    "combined_note_and_interaction_precision_percent": 88.9,
+    "phone_false_positive_taxonomy_counts": {
+      "clothing/garment shadow": 1,
+      "drink bottle label": 1,
+      "face/eyeglasses": 3,
+      "hand/fingers": 1,
+      "lanyard ID badge": 1,
+      "occluded person/hand region": 2,
+      "paper/card": 2
+    }
   },
   "files": [
     {
       "relative_path": "code/hybrid_monitor.py",
-      "bytes": 84789,
-      "sha256": "F4D16CCAC17F9100AFA1F4F7F2E24F1B2633B65D026CF61346013E525EDF7297"
+      "bytes": 85000,
+      "sha256": "FBD06DA89AB25866BE89CAD26856156BE5FC25432EE518F39512A8F6EEEE0019"
     },
     {
       "relative_path": "code/run_hybrid_v2.py",
@@ -50,13 +67,13 @@
     },
     {
       "relative_path": "documentation/CONSENT_RECORD_CHECKLIST.md",
-      "bytes": 654,
-      "sha256": "FCF1E4A5EE0E4BE5D5CCC9A16EF154398C2D07059A90D64A68D252D6B1BF3850"
+      "bytes": 764,
+      "sha256": "7233CB156AFE5D6D63D8D292EB99F11C48C209889B7528860182AD063D39A326"
     },
     {
       "relative_path": "documentation/ETHICS_AND_CONSENT_STATUS.md",
-      "bytes": 808,
-      "sha256": "5E8A1BA634E4F3D333EE7AEFA24F051420DE2A644FF3003394473DCC984B52A4"
+      "bytes": 1018,
+      "sha256": "5D51C63F58C1B668C5445972E945BD76B4CC5B8A871A6F088E77F9EE86CAE3B6"
     },
     {
       "relative_path": "evaluation/audit_comparison_with_previous_run.json",
@@ -97,6 +114,126 @@
       "relative_path": "evaluation/cross_track_adjudication.csv",
       "bytes": 5882,
       "sha256": "7B796270A6C49F43DEA963AFE1E538A59181552CA30155E3D1072D2071A58C43"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/door_v5_phone_alert_adjudication.csv",
+      "bytes": 7658,
+      "sha256": "80A4FDC3D6301040A09BC2AFCE785415878FBA435ADC97946F07D5C4356C8A17"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/door_v5_review_summary.json",
+      "bytes": 1373,
+      "sha256": "067DC4E0A5C23A59950568E1B56D03C2C763EAA46C0F3D5F0247EBCED6C78557"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213117.jpg",
+      "bytes": 242702,
+      "sha256": "54263AB8CE7D2602E4F0A5FA987F02EF0AF6BBEF5603842F9DB7B640074E348F"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213133.jpg",
+      "bytes": 243210,
+      "sha256": "6C83CB1583685F067367133E8E889ED0914D01EA5828E17D67CC63B39E084A3E"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213138.jpg",
+      "bytes": 233691,
+      "sha256": "B9F158DD3E7511C682E5A0E4AC5A3FD36957C9E334A0A9389C586018BDCD01B9"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213144.jpg",
+      "bytes": 234256,
+      "sha256": "6F197F6F70F9E6E629E700D293452198791C92AE1C8B8E143104595079191B92"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213151.jpg",
+      "bytes": 234332,
+      "sha256": "6E2FCF4CA35AFFD03F0F14F17C7EEAB3B806070A00ACE36DF8D8248EAA87E707"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213156.jpg",
+      "bytes": 220865,
+      "sha256": "6E164936E9C932692C4270CBB055C4990EA893297449C5B36266A1F6C6C416C5"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213201.jpg",
+      "bytes": 216493,
+      "sha256": "180FE9965CF2EF0D6EA5662430FD75931FFD8A3A6B7E5D5335FDDA719C86A1C6"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213206.jpg",
+      "bytes": 238551,
+      "sha256": "87EB40AEE86CFAAA87D621E74FF2D72D2B37969A48AFD9EBB9B9995EA0472005"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213213.jpg",
+      "bytes": 224269,
+      "sha256": "4B8FB3E8407CD61D3C40CD9404DE821C673AB4A6576D6CAB4FA2646ABD7AB3D2"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213218.jpg",
+      "bytes": 228647,
+      "sha256": "697D8A4630270C72C58DDC3850D4B7A809C2085BFE55F5EC7CEB5F99B6873D6B"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213223.jpg",
+      "bytes": 226782,
+      "sha256": "02BF849F0B37C1CBC7082624565A2FAE0CF537F2902447E20BBE3178B96AEC54"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213228.jpg",
+      "bytes": 232796,
+      "sha256": "6CCB6316573AB3EE7FB4B6AA4D41898B4F382D2337A59C8B864F2CB8A5AC040B"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213233.jpg",
+      "bytes": 225118,
+      "sha256": "2B2B54E1728F2F2BD73E5EE1CF1597B02F3898565B2C226961D83A1D69535BC8"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213238.jpg",
+      "bytes": 229344,
+      "sha256": "213F4F13EB14EBD5795DBD5A525185432886F480E4CC71E91D67538161A7C054"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213243.jpg",
+      "bytes": 230096,
+      "sha256": "D3E6CD212DBBD1E409A084F60C53FF4747FEFB1F8E05BD4F7B717F093595CA16"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213307.jpg",
+      "bytes": 241830,
+      "sha256": "7A2741F7F89349382BFF512EF551E4DAF5DB1F7B531172210F213305C344A202"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213330.jpg",
+      "bytes": 225817,
+      "sha256": "8E7C151FFCFDF98181F84139541262CBAA7DB686CB247DD91432133F7D86B78D"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/evidence/Violation_Object_phone_20260812_213336.jpg",
+      "bytes": 221825,
+      "sha256": "F3EA21D1166219C94E1ADE4E8E93679D7702D012F770AA393FF33F89683AD6EA"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/README.md",
+      "bytes": 1043,
+      "sha256": "35A827560625CE5C584B950A83A48ECE275507C4852BBE6277E65B7D4077C8DD"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/source_evidence_times.jsonl",
+      "bytes": 9282,
+      "sha256": "5CE2FF01B77ABF83E23F3CA7F72F1AC0D87F12FC7EA5BBFC67D887D54FBE6589"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/source_phone_contact_sheet.jpg",
+      "bytes": 717175,
+      "sha256": "68B74261F48CE85365C5B3F61E3C6868083FD594E15FFD73E7F56EE9E32C57A8"
+    },
+    {
+      "relative_path": "evaluation/door_v5_manual_review/source_run_summary.json",
+      "bytes": 633,
+      "sha256": "287472D40806D1CBA585E84CA019029143D352077638612E121D484DCA65D436"
     },
     {
       "relative_path": "evaluation/evidence/CrossTrack_1_2_20260818_155122_168.jpg",
@@ -544,6 +681,206 @@
       "sha256": "3E81BBF526CD7E3834E5BDFFE81903172F69C1BBC0162476C65AA94F6337D9DF"
     },
     {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/event_ground_truth_v1.csv",
+      "bytes": 1019,
+      "sha256": "88D4B7C80D69D2C2DD3FED67F4CF4B7B6822AF928171003A35D4470C20716416"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210335_132_0001.mp4",
+      "bytes": 5118426,
+      "sha256": "A35233121B830FB9A822068C5C236BC35BDFD5DCB84147FDA8E8815021A71554"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210348_083_0002.mp4",
+      "bytes": 4495067,
+      "sha256": "40AFE35D17B439D6450F19F9DFAD33D83448951C2905C92B55134CC9265254E1"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210357_229_0003.mp4",
+      "bytes": 4255021,
+      "sha256": "3CC91BCBC8C6D177A666C09FB4F3F838D3D171B8133A28E1F0EDBE31B49F5F47"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210406_791_0005.mp4",
+      "bytes": 4153431,
+      "sha256": "FF7793C2E9B81D4D823D7CBCF5E64E0EF0834DE26712A8D074F75745101BE630"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210415_692_0006.mp4",
+      "bytes": 3925965,
+      "sha256": "59F3FF9E0470579837263AF8C19952F31C7B8E22871407FD48216A83666058D6"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210424_434_0007.mp4",
+      "bytes": 4592453,
+      "sha256": "D36F922C55CD952E1F863144B04934AF6EDB7F8B8A21D1A20D655D935B6A8E6B"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210432_907_0009.mp4",
+      "bytes": 4203320,
+      "sha256": "E0F82DE1D84D606FCBD357574374E8D88E8620623ADC07F890813136A41929D6"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210440_857_0010.mp4",
+      "bytes": 4573643,
+      "sha256": "EE1954038DC05F4AFAC1B1C02106A73BF9B4932520F1E6C27645B1804C3A8E02"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210456_932_0012.mp4",
+      "bytes": 3179404,
+      "sha256": "EF221B836D8C9D9BDFE4256FB582FEEAB1839089B41B4F3A179DA6C48D0B4784"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210505_770_0013.mp4",
+      "bytes": 3596902,
+      "sha256": "C36313D2BAD57D6DB22F9E5232BBB2C6986D1421DFB8EAA00A778B5F5297B283"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210513_917_0014.mp4",
+      "bytes": 4536463,
+      "sha256": "3842AF753AA76846965922B62A4A1DBBF09E0604C6869E7E1F979DFEE5DC0B25"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210521_355_0015.mp4",
+      "bytes": 3707436,
+      "sha256": "0AE6D9B1DDECCC8EE1E5F02DCFDE8008D4D6CC011A2F2BC773533C61C4363286"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210529_776_0017.mp4",
+      "bytes": 4222571,
+      "sha256": "539A0A52D4299A793B5C2A645510135B9DED3BB749A2491E8456EF355F833884"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210538_121_0019.mp4",
+      "bytes": 3540885,
+      "sha256": "F577F16498E9654F8BB8F77AA7406503205401CAA815DF9017AD533E6536E3A8"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210546_559_0020.mp4",
+      "bytes": 4154255,
+      "sha256": "9C523E1F2475C022CBECA05F457201A5134D5F6A37A2D810291CCBC298D4B55B"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210612_043_0022.mp4",
+      "bytes": 4303504,
+      "sha256": "796D33AE84AF60EDE7304F883609157C1E7DDF363A414CEA7E16B657C45F0714"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Event_object_phone_20260812_210656_838_0033.mp4",
+      "bytes": 4610838,
+      "sha256": "11FDDE8ED9FDF48BC30D84267CE0794409FCAEFFD078BCF4E8B16BC6EEADC4D7"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210335_121.jpg",
+      "bytes": 232063,
+      "sha256": "E80E17DA5458ED9CE369223F0584ACB64E850ECBD80F5EFB8B74419C834A8307"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210348_080.jpg",
+      "bytes": 235312,
+      "sha256": "2E4CDC9080C2C7771BDB6AA5066F4871B12C12AB6DD914BEC47CC5DA217C6757"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210357_226.jpg",
+      "bytes": 241534,
+      "sha256": "3A3E5F8954334452159C01991BCB005800AA322DE3B02CC6C0A5E26CE9233D74"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210406_788.jpg",
+      "bytes": 228717,
+      "sha256": "A16BFFE93A721F6B95CAB84B88D25B84AC5EB9209C3A9E95B4DA889F079AEE67"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210415_686.jpg",
+      "bytes": 240337,
+      "sha256": "483D74D6910FC808E2A8198F9F6172D946810D7CB5DE3A9EC29C4F515A554F8A"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210424_431.jpg",
+      "bytes": 231181,
+      "sha256": "DCFECA03728D60D26C429C96C9278B24561F2CD7BC1457786A14186EEA88BC40"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210432_904.jpg",
+      "bytes": 230414,
+      "sha256": "2EDFA1B9C891BE5B5E0FFBBD04341477700551CB248C1016571B20AC7B4282FB"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210440_854.jpg",
+      "bytes": 230530,
+      "sha256": "0230BDF778EDF6D6B867D77EA718C93D00010DFC6F9BB2987FEFA08B205F0415"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210456_929.jpg",
+      "bytes": 217141,
+      "sha256": "6F829ADA1B6B97F3DA830087F57DF2599E56DB9212821BEA1E275811EF2F84C6"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210505_767.jpg",
+      "bytes": 222483,
+      "sha256": "C5142159D31F4CEADFB9715BF39598EDF515A93B6665FA2FBAF9E7A118E6E2D9"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210513_914.jpg",
+      "bytes": 231765,
+      "sha256": "CB392F8DE6A16015BA41F2EEE89BFF2F6900E7CF8243D71453B0436E7C261E22"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210521_352.jpg",
+      "bytes": 216153,
+      "sha256": "2FDF881223E51EACE04B892CD99F423CF073804B1A7B7ECEB64CC83DF2F68C70"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210529_772.jpg",
+      "bytes": 248304,
+      "sha256": "40DA6D08151282B9F6AAD44C7D66B5C6AFF1BF42E403503AE72EF4C76141AA80"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210538_118.jpg",
+      "bytes": 239400,
+      "sha256": "20839D0C6FBEF7E006BB07D5CA3429079AC363F98B94DD089480DF1CC5351441"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210546_556.jpg",
+      "bytes": 221792,
+      "sha256": "C76602AE443E0FEA64CC1A65EBDF063BCE39CD9792922E17CEDC128F6502C514"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210612_040.jpg",
+      "bytes": 244360,
+      "sha256": "7476862DCC0D9C270B0364C1EA95F88E7111997215A9141CEC2C1FABB9A141FD"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/evidence/Violation_Object_phone_20260812_210656_835.jpg",
+      "bytes": 226126,
+      "sha256": "572E5FC8483AFEF35872B9B32C7FBEA2420C61540F13A14F041F611222CA13AD"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/final_candidate_v1_phone_alert_adjudication.csv",
+      "bytes": 13085,
+      "sha256": "DA44276B73D43B2BEA3967C1828678C411A574787CCD34C14481A9AF151BA226"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/final_candidate_v1_phone_alert_log.jsonl",
+      "bytes": 14611,
+      "sha256": "E5431CB42B0F24D8E2B03B309CDC8F0D16CA1C52FA85098F14EE109D23CFBF17"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/final_candidate_v1_review_summary.json",
+      "bytes": 2870,
+      "sha256": "1BC3E6B52BDD1B4E9A323DDD718E4CBDA02D6E31A165E635D3BDFDEF7C5B4DB2"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/README.md",
+      "bytes": 849,
+      "sha256": "1D3C2BE6A3F212D14228890FE2B6C24EA66FF07863D4AB9849AC0B304E4186B5"
+    },
+    {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/run_manifest_final_candidate_v1.json",
+      "bytes": 4651,
+      "sha256": "85389D95748DBE4123EECF319547559EA691BD082462266A5BE2EABBF0388E23"
+    },
+    {
       "relative_path": "evaluation/hybrid_v2_6fe_full_annotated.mp4",
       "bytes": 171759558,
       "sha256": "308F6262D0115F3462C0FCE12B161ED1B62D82E5D6F4E6ED1C7E600F162475DA"
@@ -579,6 +916,16 @@
       "sha256": "475D6D994A1062E92F3179953DCEB1654A285BA3E4A90FB19581D4B01EF7BF97"
     },
     {
+      "relative_path": "evaluation/manual_review/phone_false_positive_taxonomy.csv",
+      "bytes": 6846,
+      "sha256": "7F793B8CCD3C73F3715D0394C81E7DF427AA7D6AD36B19A96BD00E2493B673F3"
+    },
+    {
+      "relative_path": "evaluation/manual_review/phone_false_positive_taxonomy_summary.json",
+      "bytes": 876,
+      "sha256": "873CEB5D0992CAEF65D3F5E871FF73B1ADF85476208CD62B58978C95C360C10C"
+    },
+    {
       "relative_path": "evaluation/note_alert_adjudication.csv",
       "bytes": 490,
       "sha256": "4F3C591AC2BCDF34D032C95729A2535C2F2BD99D944AB9BCB8DF7FA255E80940"
@@ -605,13 +952,13 @@
     },
     {
       "relative_path": "README.md",
-      "bytes": 1238,
-      "sha256": "AE575708876968E1AFCF7E9D6397A81B160EAC35F407BA7CD7DD86277BFDD585"
+      "bytes": 3392,
+      "sha256": "8DDFAC97A95AE32EA50BD3D26F8D2ADE21C4E39B9292FB3CDFE98A7D8F2E2EB9"
     },
     {
       "relative_path": "README_FREEZE_NOTICE.md",
-      "bytes": 677,
-      "sha256": "294E4C44C574ECE4D2F2A66B58CE9233BA9E1899FCCF5F1A287501C975E22C60"
+      "bytes": 832,
+      "sha256": "9F56E437A777FF2AD10824191F62430FCA45EF1CD57FACEBD3CEAD677D48A42F"
     },
     {
       "relative_path": "requirements.txt",
@@ -620,8 +967,83 @@
     },
     {
       "relative_path": "SHA256SUMS.txt",
-      "bytes": 16847,
-      "sha256": "241CC93D17A313220FE3BC228790B59843AD88D1D34E0B3843BC2B3CA5FF59CB"
+      "bytes": 29598,
+      "sha256": "EF6178F8A90F65F6F0776007013A5AAB418B79A25B02AF2203EE1FBCB79E1506"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/fault_test_output.txt",
+      "bytes": 2751,
+      "sha256": "1AE504FF0F8BDDF0B10F95C91E1D24311EA8D74175018A990DBFDD3827CB6B6D"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/fault_test_results.json",
+      "bytes": 2471,
+      "sha256": "DDE9D06C5C1EFCC581F6F234E17B780C1518128F276F14565D024F7982BED613"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165404_525_0001.mp4",
+      "bytes": 28,
+      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165415_909_0001.mp4",
+      "bytes": 28,
+      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165436_141_0001.mp4",
+      "bytes": 28,
+      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165445_801_0001.mp4",
+      "bytes": 28,
+      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165624_555_0001.mp4",
+      "bytes": 28,
+      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/code/hybrid_monitor.py",
+      "bytes": 27,
+      "sha256": "287092AE6A094394C97D3DB6ED713800A1D423BDF209B7E3552900380DF062F6"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/config/hybrid_config.yaml",
+      "bytes": 2025,
+      "sha256": "756A95094F4BEAC9367CCBAE2C2F13BAB0B67EC4D6C7C38972F6D7D522E0481A"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/runtime_outputs/manifests/run_20260824T155624Z.json",
+      "bytes": 5995,
+      "sha256": "304239E4F7EEF6477F140A6A67E64E0FE5A113324CE222AB0AA2961726BF1D23"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/runtime_outputs/run_manifest.json",
+      "bytes": 5995,
+      "sha256": "304239E4F7EEF6477F140A6A67E64E0FE5A113324CE222AB0AA2961726BF1D23"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/weights/door_v5_phone_authority.pt",
+      "bytes": 22,
+      "sha256": "8C011E87181AF8893D4652D941D5415ECE7F9A56744F2E67D8F85427BBD5306B"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/weights/late_note_context.pt",
+      "bytes": 29,
+      "sha256": "387625CF98C9F35E6C3646DE727B1BF2B548AFF3D4EBD479FDA1096FD0523A18"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/weights/yolov8n-pose.pt",
+      "bytes": 21,
+      "sha256": "2A9E18CCD17C0A1B645800F5D1E9B41E69249A8C4FA76949E2BE6DBB2F4627C1"
+    },
+    {
+      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/weights/yolov8n.pt",
+      "bytes": 21,
+      "sha256": "9B0323A2F8CAC7EE641EC2A402A7B5F6D8A2FCF0A80F0DA5C5C6A6296F0570CC"
     },
     {
       "relative_path": "tests/evidence/full_smoke_run_manifest.json",
@@ -644,9 +1066,24 @@
       "sha256": "1F07BFC3C70B12A9F4B326C648DB049854F7F2487820F182780D79192106A2B0"
     },
     {
+      "relative_path": "tests/FAULT_TEST_COMMAND.md",
+      "bytes": 704,
+      "sha256": "5C850DF91F6F451AEFB9665009DBDFBABCB9B4E2FEBDFFA433009584F8F11681"
+    },
+    {
       "relative_path": "tests/README.md",
       "bytes": 891,
       "sha256": "01F8EE28152AA89DC9326ECD302080E547C7CAFFD7085990A3EC41D461A5B9FA"
+    },
+    {
+      "relative_path": "tests/run_fault_tests.ps1",
+      "bytes": 308,
+      "sha256": "7716E2A89CF1F96155B8E85192CB5EFA03F7D1E5B9D34A6AC33543ED7DDD98FA"
+    },
+    {
+      "relative_path": "tests/test_fault_tolerance.py",
+      "bytes": 19012,
+      "sha256": "F74E54E85EB0758AE6DE1721BA7C477B7F3B77AAE15C13B170B551137B5C2F38"
     },
     {
       "relative_path": "tests/test_hybrid_logic.py",
@@ -674,8 +1111,8 @@
       "sha256": "F59B3D833E2FF32E194B5BB8E08D211DC7C5BDF144B90D2C8412C47CCFC83B36"
     }
   ],
-  "reissued_at_utc": "2026-08-23T20:28:39.613222+00:00",
-  "revision_note": "Reissued to correct release-root path resolution, package all four model weights explicitly, add an installable dependency list, retain UT-01 and clean-copy full-video smoke-test evidence, and record the unresolved ethics/consent handover status. Detection thresholds, reported manual adjudication and dissertation results were not changed.",
+  "reissued_at_utc": "2026-08-24T15:57:56+00:00",
+  "revision_note": "Six deterministic fault-injection tests were added on 24 August 2026 and all passed: low-disk event-video degradation, camera reconnect, video-timestamp fallback, model-class-order startup rejection, failed-manifest retention, and event-buffer pre/post duration. The tests use synthetic inputs and mocks only and do not change detector code, weights, thresholds, original outputs, or reported evaluation results. The earlier 24 August addition of the retrospective Final candidate v1 review remains authoritative: 12 TP, 5 FP, 70.6% precision, and 6/7 event coverage.",
   "superseded_automatic_matching_results": {
     "status": "retained for audit history; not authoritative for final thesis reporting",
     "summary": "evaluation/automatic_window_matching/regression_result_summary.json",
@@ -745,17 +1182,139 @@
         "bytes": 5659,
         "sha256": "61184C7CCB6F438A26D68A3BD558BA651DE6D6E60864376CAF8991EB6918A05E"
       }
+    },
+    "fault_injection_tests": {
+      "scope": "synthetic fault injection only; no participant video and no detector inference",
+      "result": "PASS",
+      "passed": 6,
+      "failed": 0,
+      "tests": [
+        {
+          "test_id": "FT-01",
+          "name": "Low-disk-space degradation",
+          "result": "PASS",
+          "evidence": "Event-video creation was disabled while the monitoring path remained callable."
+        },
+        {
+          "test_id": "FT-02",
+          "name": "Camera disconnect and recovery",
+          "result": "PASS",
+          "evidence": "Two failed reads triggered reopen; a frame from the replacement capture was delivered."
+        },
+        {
+          "test_id": "FT-03",
+          "name": "Video timestamp fallback",
+          "result": "PASS",
+          "evidence": "Non-increasing/negative timestamps resolved to monotonic frame-time values [0.0, 0.1, 0.2]."
+        },
+        {
+          "test_id": "FT-04",
+          "name": "Weight class-order startup rejection",
+          "result": "PASS",
+          "evidence": "A deliberately reordered phone model class map raised RuntimeError before monitoring began."
+        },
+        {
+          "test_id": "FT-05",
+          "name": "Manifest failure-state retention",
+          "result": "PASS",
+          "evidence": "Both latest and timestamped manifests retained failed status, exception, and finish time."
+        },
+        {
+          "test_id": "FT-06",
+          "name": "Event-buffer pre/post duration",
+          "result": "PASS",
+          "evidence": "At 10 FPS the clip retained frames 10-40: 1.0 s pre-trigger plus 2.0 s post-trigger."
+        }
+      ],
+      "test_script": {
+        "relative_path": "tests/test_fault_tolerance.py",
+        "bytes": 19012,
+        "sha256": "F74E54E85EB0758AE6DE1721BA7C477B7F3B77AAE15C13B170B551137B5C2F38"
+      },
+      "runner": {
+        "relative_path": "tests/run_fault_tests.ps1",
+        "bytes": 308,
+        "sha256": "7716E2A89CF1F96155B8E85192CB5EFA03F7D1E5B9D34A6AC33543ED7DDD98FA"
+      },
+      "command_notes": {
+        "relative_path": "tests/FAULT_TEST_COMMAND.md",
+        "bytes": 704,
+        "sha256": "5C850DF91F6F451AEFB9665009DBDFBABCB9B4E2FEBDFFA433009584F8F11681"
+      },
+      "retained_output": {
+        "relative_path": "tests/evidence/fault_tolerance/fault_test_output.txt",
+        "bytes": 2758,
+        "sha256": "D065B8268138E4E181F6BF9FD1E3EF63FB62CBB2E7F0BFB882B37256DA3ADD32"
+      },
+      "machine_readable_results": {
+        "relative_path": "tests/evidence/fault_tolerance/fault_test_results.json",
+        "bytes": 2472,
+        "sha256": "CA38E36A48C937C50080610BECAA68F411ED9760EABDE5515BF7F4D1CA690602"
+      },
+      "monitor_code_sha256_at_test": "F4D16CCAC17F9100AFA1F4F7F2E24F1B2633B65D026CF61346013E525EDF7297",
+      "launcher_sha256_at_test": "DC44BB7BE2D6D82E93E05C0A7A05877259AC62A3C163B5DE648DD52CE37E8EED"
     }
   },
   "ethics_and_consent_handover": {
-    "status": "not closed within the technical release",
+    "status": "covered by the School block ethical approval protocol for images of people; signed records retained separately; Minerva upload pending",
     "approval_or_exemption_reference_included": false,
     "participant_consent_records_included": false,
     "status_document": {
       "relative_path": "documentation/ETHICS_AND_CONSENT_STATUS.md",
-      "bytes": 808,
-      "sha256": "5E8A1BA634E4F3D333EE7AEFA24F051420DE2A644FF3003394473DCC984B52A4"
+      "bytes": 1018,
+      "sha256": "5D51C63F58C1B668C5445972E945BD76B4CC5B8A871A6F088E77F9EE86CAE3B6"
     },
-    "required_action": "The author and supervisor must confirm the genuine approval/exemption status and the secure location and permitted handover route for actual consent records."
+    "required_action": "The author and supervisor must confirm the genuine approval/exemption status and the secure location and permitted handover route for actual consent records.",
+    "submission_route": "private Minerva upload with the final report",
+    "submission_status": "pending final-report submission"
+  },
+  "final_candidate_v1_retrospective_review": {
+    "status": "complete",
+    "scope": "retrospective review of the original frozen run; no code, weight, threshold, or output changes",
+    "alerts_total": 17,
+    "true_alerts": 12,
+    "false_alerts": 5,
+    "alert_level_precision_percent": 70.6,
+    "phone_events_covered": "6/7",
+    "missed_event_ids": [
+      "PH07"
+    ],
+    "custom_exam_model": "11/14 true alerts (78.6%)",
+    "coco_auxiliary": "1/3 true alerts (33.3%)",
+    "supersedes": "earlier Final candidate v1 7/7 event-coverage statement",
+    "review_table": {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/final_candidate_v1_phone_alert_adjudication.csv",
+      "sha256": "DA44276B73D43B2BEA3967C1828678C411A574787CCD34C14481A9AF151BA226"
+    },
+    "summary": {
+      "relative_path": "evaluation/final_candidate_v1_manual_review/final_candidate_v1_review_summary.json",
+      "sha256": "1BC3E6B52BDD1B4E9A323DDD718E4CBDA02D6E31A165E635D3BDFDEF7C5B4DB2"
+    }
+  },
+  "retrospective_candidate_reviews": {
+    "door_v5": {
+      "alerts_total": 18,
+      "alerts_true": 14,
+      "alerts_false": 4,
+      "alert_level_precision_percent": 77.8,
+      "phone_events_covered": "7/7",
+      "review_completed": "2026-08-24"
+    },
+    "final_candidate_v1": {
+      "alerts_total": 17,
+      "alerts_true": 12,
+      "alerts_false": 5,
+      "alert_level_precision_percent": 70.6,
+      "phone_events_covered": "6/7",
+      "review_completed": "2026-08-24"
+    }
+  },
+  "integrity_reissued_at_utc": "2026-08-26T11:36:51+00:00",
+  "english_only_revision": {
+    "completed_at_utc": "2026-08-26T11:36:51+00:00",
+    "scope": "Assessor-facing source comments, console messages, explanatory text, retained text logs, and filename references",
+    "code_effect": "No detector logic, thresholds, configuration values, model weights, or evaluation decisions were changed",
+    "cleanup": "Generated Python bytecode caches were removed; retained deterministic tests were rerun and passed",
+    "language": "English only"
   }
 }

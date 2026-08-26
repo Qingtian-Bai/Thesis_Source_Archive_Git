@@ -179,8 +179,8 @@ class EventVideoBuffer:
         if free_bytes < self.min_free_bytes:
             if not self.disabled_for_space:
                 print(
-                    "[EVENT VIDEO] archived text,archived text;"
-                    "archived text、archived text."
+                    "[EVENT VIDEO] Available disk space is below the protection threshold; "
+                    "new event-video creation is disabled, while screenshots, logs, and monitoring remain active."
                 )
                 self.disabled_for_space = True
             return False
@@ -283,6 +283,7 @@ class DualCoreAntiCheatingSystem:
         print("Starting Hybrid Candidate v2 monitoring system: Door v5 phone evidence plus later note and interaction logic...")
         
         # ==============================================================
+        # Compatibility fix: load environment defaults dynamically and inject fuse_score.
         # ==============================================================
         self.tracker_path = self._build_tracker_config()
         
@@ -295,6 +296,7 @@ class DualCoreAntiCheatingSystem:
         )
         self.yolo_pose = YOLO(str(pose_model_path))
 
+        # COCO is only an auxiliary candidate source when the primary model returns no phone; it never overrides the primary model.
         print("Loading auxiliary phone model: YOLOv8n COCO (cell phone only)...")
         coco_model_path = Path(
             os.environ.get(
@@ -323,7 +325,7 @@ class DualCoreAntiCheatingSystem:
         ):
             if actual_names != EXPECTED_CUSTOM_CLASSES:
                 raise RuntimeError(
-                    f"{role} class mismatch:"
+                    f"{role} class mismatch: "
                     f"expected={EXPECTED_CUSTOM_CLASSES}, actual={actual_names}"
                 )
         model_name_items = phone_model_names.items()
@@ -383,6 +385,8 @@ class DualCoreAntiCheatingSystem:
         self.note_tracks = {}
         self.next_note_track_id = 1
 
+        # Conservative policy: prefer skipping one frame over reporting large, roughly rectangular bags or packaging as phones.
+        # Raw confidence varies with angle, glare, and phone cases; size and shape filters still make the final decision.
         self.POSE_CONFIDENCE = float(
             os.environ.get("POSE_CONFIDENCE", "0.45")
         )
@@ -527,7 +531,8 @@ class DualCoreAntiCheatingSystem:
             pass
 
     def _build_tracker_config(self):
-        """archived text,archived text"""
+        """Load local default configuration and inject compatibility settings."""
+        # Locate the environment's default configuration.
         default_yaml_path = Path(ultralytics.__file__).parent / "cfg" / "trackers" / "botsort.yaml"
         custom_yaml_path = Path(
             os.environ.get(
@@ -544,11 +549,13 @@ class DualCoreAntiCheatingSystem:
             has_fuse_score = False
             with open(custom_yaml_path, "w", encoding="utf-8") as f:
                 for line in lines:
+                    # Inject tracker-stability parameters.
                     f.write(line)
                     has_fuse_score = has_fuse_score or line.strip().startswith("fuse_score:")
                 if not has_fuse_score:
                     f.write("\nfuse_score: True\n")
         else:
+            # Fall back to a complete local configuration if the original cannot be found.
             yaml_content = (
                 "tracker_type: botsort\n"
                 "track_high_thresh: 0.25\n"
@@ -1461,8 +1468,8 @@ class DualCoreAntiCheatingSystem:
         print("System ready; live monitoring started (press 'q' to exit)...")
         if is_live_camera:
             print(
-                f"[LIVE BUFFER] archived text {self.CAMERA_FRAME_QUEUE_SIZE} archived text:"
-                "archived text,archived text."
+                f"[LIVE BUFFER] Using a short queue of the latest {self.CAMERA_FRAME_QUEUE_SIZE} frames: "
+                "fast targets are retained while queue latency is limited."
             )
         print(
             f"[TIME STATE] crossing={self.TIME_THRESHOLD_SECONDS:.2f}s, "
@@ -1470,8 +1477,8 @@ class DualCoreAntiCheatingSystem:
             f"note_transfer_window={self.NOTE_TRANSFER_WINDOW_SECONDS:.2f}s"
         )
         print(
-            f"[EVENT VIDEO] archived text {self.EVENT_PRE_SECONDS:.1f}s + "
-            f"archived text {self.EVENT_POST_SECONDS:.1f}s,archived text={self.event_video_buffer.output_dir}"
+            f"[EVENT VIDEO] {self.EVENT_PRE_SECONDS:.1f}s before + "
+            f"{self.EVENT_POST_SECONDS:.1f}s after, directory={self.event_video_buffer.output_dir}"
         )
 
         input_exhausted_notice_shown = False
@@ -1556,6 +1563,7 @@ class DualCoreAntiCheatingSystem:
             if raw_writer is not None:
                 raw_writer.write(frame)
 
+            # Mount the dynamically patched tracker configuration.
             results_pose = self.yolo_pose.track(
                 frame,
                 classes=[0],
@@ -1565,6 +1573,7 @@ class DualCoreAntiCheatingSystem:
                 verbose=False,
             )
             
+            # Custom weights propose phone, paper, and note candidates; the low threshold only generates candidates, which remain subject to strict filtering.
             # Preserve the successful phone/door operating point. Notes use a
             # separate high-resolution, low-threshold proposal pass and are
             # never promoted without hand association and temporal support.
@@ -1910,7 +1919,7 @@ class DualCoreAntiCheatingSystem:
                 self.manual_exit_requested = True
                 break
             if max_frames is not None and self.frame_index >= max_frames:
-                print(f"[TEST] archived text max_frames={max_frames}.")
+                print(f"[TEST] Reached max_frames={max_frames}.")
                 break
 
         self._release_runtime_resources()
@@ -1946,8 +1955,8 @@ class DualCoreAntiCheatingSystem:
                 self._release_runtime_resources()
                 self._log_runtime_error(error)
                 print(
-                    f"[SYSTEM] archived text {self.evidence_dir / 'runtime_errors.log'};"
-                    "1 archived text."
+                    f"[SYSTEM] Runtime error recorded in {self.evidence_dir / 'runtime_errors.log'}; "
+                    "monitoring will resume automatically after 1 second."
                 )
                 cv2.destroyAllWindows()
                 time.sleep(1.0)

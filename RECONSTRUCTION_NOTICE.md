@@ -10,6 +10,10 @@ Every reconstructed snapshot commit uses this statement:
 
 No commit date has been backdated. The original filesystem modification times and SHA-256 values of the selected source artefacts are recorded in `documentation/SNAPSHOT_PROVENANCE.json` at each tag.
 
+## English-only delivery normalization
+
+On 26 August 2026, each preserved tree was normalized for an English-only assessor delivery. Chinese-language comments, console messages, explanatory prose, and archived filename references were translated or omitted. The normalization did not change detector logic, thresholds, configuration values, model weights, or evaluation decisions. Because source bytes changed, the normalized commits and tags have new Git object IDs. `documentation/ENGLISH_NORMALIZATION_LEDGER.md` maps the earlier migration commits to the English-only commits.
+
 ## Source mapping
 
 | Reconstructed version | Existing source snapshot | Git tag |

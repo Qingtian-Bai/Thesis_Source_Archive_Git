@@ -8,6 +8,8 @@ During development, versions were controlled through named and dated snapshot di
 
 The Git commits record the migration operation. Their 24 August commit dates are not substitutes for the original file timestamps. Original paths, timestamps and SHA-256 values are retained in `documentation/SNAPSHOT_PROVENANCE.json` at every version tag. See `RECONSTRUCTION_NOTICE.md` for the interpretation boundary and `documentation/VERSION_CONTROL_LEDGER.md` for the tag-to-source mapping.
 
+On 26 August 2026, an assessor-facing English-only history was generated from those preserved states. This language normalization translated or omitted comments, console messages, explanatory prose, and archived filename references without changing detector logic, thresholds, configuration values, model weights, or evaluation decisions. The resulting commit mapping is recorded in `documentation/ENGLISH_NORMALIZATION_LEDGER.md`; hashes changed because textual bytes changed.
+
 ## Version tags
 
 | Tag | Preserved version |
@@ -19,6 +21,7 @@ The Git commits record the migration operation. Their 24 August commit dates are
 | `6fe329-original` | Original 6FE329 engineering version |
 | `thesis-submission-20260823` | Portable frozen release used for submission |
 | `thesis-git-archive-20260824` | Verified Git delivery state |
+| `thesis-english-delivery-20260826` | English-only assessor delivery |
 
 ## Inspect and verify
 
