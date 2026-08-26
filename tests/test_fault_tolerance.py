@@ -461,35 +461,35 @@ TESTS = [
 
 def run_tests(output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
-    work_root = output_dir / "synthetic_work"
-    work_root.mkdir(parents=True, exist_ok=True)
     results = []
     transcript_lines = []
     suite_started = datetime.now(timezone.utc)
 
-    for test_id, name, function in TESTS:
-        started = time.perf_counter()
-        captured = StringIO()
-        try:
-            with redirect_stdout(captured):
-                detail = function(work_root)
-            status = "PASS"
-            exception = None
-        except Exception:
-            status = "FAIL"
-            detail = "Test assertion or injected-path execution failed."
-            exception = traceback.format_exc()
-        duration = time.perf_counter() - started
-        result = TestResult(test_id, name, status, duration, detail, exception)
-        results.append(result)
-        line = f"{test_id} {name}: {status} ({duration:.3f}s) - {detail}"
-        print(line)
-        transcript_lines.append(line)
-        internal_output = captured.getvalue().strip()
-        if internal_output:
-            transcript_lines.append(f"  captured runtime output: {internal_output}")
-        if exception:
-            transcript_lines.append(exception.rstrip())
+    with tempfile.TemporaryDirectory(prefix="frozen_6fe329_fault_") as temporary:
+        work_root = Path(temporary)
+        for test_id, name, function in TESTS:
+            started = time.perf_counter()
+            captured = StringIO()
+            try:
+                with redirect_stdout(captured):
+                    detail = function(work_root)
+                status = "PASS"
+                exception = None
+            except Exception:
+                status = "FAIL"
+                detail = "Test assertion or injected-path execution failed."
+                exception = traceback.format_exc()
+            duration = time.perf_counter() - started
+            result = TestResult(test_id, name, status, duration, detail, exception)
+            results.append(result)
+            line = f"{test_id} {name}: {status} ({duration:.3f}s) - {detail}"
+            print(line)
+            transcript_lines.append(line)
+            internal_output = captured.getvalue().strip()
+            if internal_output:
+                transcript_lines.append(f"  captured runtime output: {internal_output}")
+            if exception:
+                transcript_lines.append(exception.rstrip())
 
     suite_finished = datetime.now(timezone.utc)
     summary = {

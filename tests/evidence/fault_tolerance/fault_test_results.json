@@ -1,8 +1,8 @@
 {
   "suite": "Frozen 6FE329 deterministic fault-injection tests",
   "scope": "Synthetic inputs only; no participant video and no detector inference",
-  "started_at_utc": "2026-08-26T11:32:42.264222+00:00",
-  "finished_at_utc": "2026-08-26T11:32:42.610665+00:00",
+  "started_at_utc": "2026-08-26T12:17:03.975201+00:00",
+  "finished_at_utc": "2026-08-26T12:17:04.296798+00:00",
   "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
   "release_root": "D:\\project zero\\YOLO_Project\\Thesis_Frozen_Release_6FE329_20260818",
   "monitor_sha256": "FBD06DA89AB25866BE89CAD26856156BE5FC25432EE518F39512A8F6EEEE0019",
@@ -12,7 +12,7 @@
       "test_id": "FT-01",
       "name": "Low-disk-space degradation",
       "status": "PASS",
-      "duration_seconds": 0.0005957999965175986,
+      "duration_seconds": 0.000528200005646795,
       "detail": "Event-video creation was disabled while the monitoring path remained callable.",
       "exception": null
     },
@@ -20,7 +20,7 @@
       "test_id": "FT-02",
       "name": "Camera disconnect and recovery",
       "status": "PASS",
-      "duration_seconds": 0.24167150002904236,
+      "duration_seconds": 0.24970480002230033,
       "detail": "Two failed reads triggered reopen; a frame from the replacement capture was delivered.",
       "exception": null
     },
@@ -28,7 +28,7 @@
       "test_id": "FT-03",
       "name": "Video timestamp fallback",
       "status": "PASS",
-      "duration_seconds": 0.004239599977154285,
+      "duration_seconds": 0.0006679000216536224,
       "detail": "Non-increasing/negative timestamps resolved to monotonic frame-time values [0.0, 0.1, 0.2].",
       "exception": null
     },
@@ -36,7 +36,7 @@
       "test_id": "FT-04",
       "name": "Weight class-order startup rejection",
       "status": "PASS",
-      "duration_seconds": 0.00013590004527941346,
+      "duration_seconds": 9.649997809901834e-05,
       "detail": "A deliberately reordered phone model class map raised RuntimeError before monitoring began.",
       "exception": null
     },
@@ -44,7 +44,7 @@
       "test_id": "FT-05",
       "name": "Manifest failure-state retention",
       "status": "PASS",
-      "duration_seconds": 0.09758659999351948,
+      "duration_seconds": 0.06227629998466,
       "detail": "Both latest and timestamped manifests retained failed status, exception, and finish time.",
       "exception": null
     },
@@ -52,7 +52,7 @@
       "test_id": "FT-06",
       "name": "Event-buffer pre/post duration",
       "status": "PASS",
-      "duration_seconds": 0.002144100028090179,
+      "duration_seconds": 0.002481499977875501,
       "detail": "At 10 FPS the clip retained frames 10-40: 1.0 s pre-trigger plus 2.0 s post-trigger.",
       "exception": null
     }

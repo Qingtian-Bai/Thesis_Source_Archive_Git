@@ -66,6 +66,11 @@
       "sha256": "E2AFE7EE2B8555E2CB070141A9749626852635FA5B39F06A9D365D32C910709F"
     },
     {
+      "relative_path": "documentation/CODE_INVENTORY.md",
+      "bytes": 1809,
+      "sha256": "DBD8DE0E9685042CF68B57E2D84F9C443D24E5598882BF0E23A8914D9AE15BC4"
+    },
+    {
       "relative_path": "documentation/CONSENT_RECORD_CHECKLIST.md",
       "bytes": 764,
       "sha256": "7233CB156AFE5D6D63D8D292EB99F11C48C209889B7528860182AD063D39A326"
@@ -104,11 +109,6 @@
       "relative_path": "evaluation/automatic_window_matching/regression_result_summary.json",
       "bytes": 2692,
       "sha256": "8DF4961AA72AD2B7BC308CAD5EB6127BB9FA868636506D61908515FDF23A88A3"
-    },
-    {
-      "relative_path": "evaluation/build_regression_audit.py",
-      "bytes": 8790,
-      "sha256": "CC44025ABC73E7E3C608C8511E12B9C37B3D2804589494985B67367DC5DFCEDB"
     },
     {
       "relative_path": "evaluation/cross_track_adjudication.csv",
@@ -952,8 +952,8 @@
     },
     {
       "relative_path": "README.md",
-      "bytes": 3392,
-      "sha256": "8DDFAC97A95AE32EA50BD3D26F8D2ADE21C4E39B9292FB3CDFE98A7D8F2E2EB9"
+      "bytes": 3728,
+      "sha256": "717FA52893DD3B474D79E535DCB7128A9F43912FCAD845D791930EF96B6EFE7A"
     },
     {
       "relative_path": "README_FREEZE_NOTICE.md",
@@ -967,83 +967,18 @@
     },
     {
       "relative_path": "SHA256SUMS.txt",
-      "bytes": 29598,
-      "sha256": "EF6178F8A90F65F6F0776007013A5AAB418B79A25B02AF2203EE1FBCB79E1506"
+      "bytes": 27687,
+      "sha256": "8CFDA675A7FDDAD7C02F3A4EDFFF365D06ED3E2AF8A270D781D1766933F733D0"
     },
     {
       "relative_path": "tests/evidence/fault_tolerance/fault_test_output.txt",
-      "bytes": 2751,
-      "sha256": "1AE504FF0F8BDDF0B10F95C91E1D24311EA8D74175018A990DBFDD3827CB6B6D"
+      "bytes": 2656,
+      "sha256": "E98ADB468B53DF30DFFCE41D1CFC2B224E01DEC6914E3B29379E39740DD2F094"
     },
     {
       "relative_path": "tests/evidence/fault_tolerance/fault_test_results.json",
-      "bytes": 2471,
-      "sha256": "DDE9D06C5C1EFCC581F6F234E17B780C1518128F276F14565D024F7982BED613"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165404_525_0001.mp4",
-      "bytes": 28,
-      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165415_909_0001.mp4",
-      "bytes": 28,
-      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165436_141_0001.mp4",
-      "bytes": 28,
-      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165445_801_0001.mp4",
-      "bytes": 28,
-      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/event_buffer/Event_phone_20260824_165624_555_0001.mp4",
-      "bytes": 28,
-      "sha256": "8A738768EA6C3461F97AE8E824EBBB8878911D28E3D86A3334CFFC155B2169E3"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/code/hybrid_monitor.py",
-      "bytes": 27,
-      "sha256": "287092AE6A094394C97D3DB6ED713800A1D423BDF209B7E3552900380DF062F6"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/config/hybrid_config.yaml",
-      "bytes": 2025,
-      "sha256": "756A95094F4BEAC9367CCBAE2C2F13BAB0B67EC4D6C7C38972F6D7D522E0481A"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/runtime_outputs/manifests/run_20260824T155624Z.json",
-      "bytes": 5995,
-      "sha256": "304239E4F7EEF6477F140A6A67E64E0FE5A113324CE222AB0AA2961726BF1D23"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/runtime_outputs/run_manifest.json",
-      "bytes": 5995,
-      "sha256": "304239E4F7EEF6477F140A6A67E64E0FE5A113324CE222AB0AA2961726BF1D23"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/weights/door_v5_phone_authority.pt",
-      "bytes": 22,
-      "sha256": "8C011E87181AF8893D4652D941D5415ECE7F9A56744F2E67D8F85427BBD5306B"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/weights/late_note_context.pt",
-      "bytes": 29,
-      "sha256": "387625CF98C9F35E6C3646DE727B1BF2B548AFF3D4EBD479FDA1096FD0523A18"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/weights/yolov8n-pose.pt",
-      "bytes": 21,
-      "sha256": "2A9E18CCD17C0A1B645800F5D1E9B41E69249A8C4FA76949E2BE6DBB2F4627C1"
-    },
-    {
-      "relative_path": "tests/evidence/fault_tolerance/synthetic_work/manifest_failure/weights/yolov8n.pt",
-      "bytes": 21,
-      "sha256": "9B0323A2F8CAC7EE641EC2A402A7B5F6D8A2FCF0A80F0DA5C5C6A6296F0570CC"
+      "bytes": 2467,
+      "sha256": "2182A6D5ADB541ED491D7FAF80F5A6E987383C587680EA97580AADD7FC9D5AFE"
     },
     {
       "relative_path": "tests/evidence/full_smoke_run_manifest.json",
@@ -1082,8 +1017,8 @@
     },
     {
       "relative_path": "tests/test_fault_tolerance.py",
-      "bytes": 19012,
-      "sha256": "F74E54E85EB0758AE6DE1721BA7C477B7F3B77AAE15C13B170B551137B5C2F38"
+      "bytes": 19127,
+      "sha256": "D954713D9AA08CBE9CF5982C1B4057CC4DF6EFA394A5C0BBA022AE8D6A1B992B"
     },
     {
       "relative_path": "tests/test_hybrid_logic.py",
@@ -1309,12 +1244,31 @@
       "review_completed": "2026-08-24"
     }
   },
-  "integrity_reissued_at_utc": "2026-08-26T11:36:51+00:00",
+  "integrity_reissued_at_utc": "2026-08-26T12:19:42.171028+00:00",
   "english_only_revision": {
     "completed_at_utc": "2026-08-26T11:36:51+00:00",
     "scope": "Assessor-facing source comments, console messages, explanatory text, retained text logs, and filename references",
     "code_effect": "No detector logic, thresholds, configuration values, model weights, or evaluation decisions were changed",
     "cleanup": "Generated Python bytecode caches were removed; retained deterministic tests were rerun and passed",
     "language": "English only"
+  },
+  "code_cleanup_revision": {
+    "completed_at_utc": "2026-08-26T12:19:42.171028+00:00",
+    "scope": "Safe removal of obsolete non-runtime artefacts and automatic cleanup of deterministic fault-test scratch data.",
+    "removed": [
+      "evaluation/build_regression_audit.py",
+      "tests/evidence/fault_tolerance/synthetic_work/"
+    ],
+    "retained_runtime": [
+      "code/run_hybrid_v2.py",
+      "code/hybrid_monitor.py",
+      "config/hybrid_config.yaml"
+    ],
+    "assurance": "No production logic, model path, threshold, configuration value, weight or evaluation decision changed.",
+    "validation": {
+      "unit_test": "passed",
+      "fault_tests": "6 passed, 0 failed",
+      "real_model_startup_smoke": "passed for three source frames"
+    }
   }
 }

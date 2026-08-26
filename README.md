@@ -50,6 +50,8 @@ The repository contains code, configuration, tests, technical documentation, dep
 
 The runnable frozen technical package is distributed separately because it contains model weights and other non-Git artefacts. Its `FROZEN_MANIFEST.json` and `SHA256SUMS.txt` remain in this repository to connect the source history to the frozen release inventory.
 
+The maintained runtime and validation files, together with the rationale for the 26 August 2026 safe cleanup of obsolete generated material, are listed in `documentation/CODE_INVENTORY.md`.
+
 ## Final runtime environment
 
 The recorded environment used Python 3.13.7 on Windows 11, PyTorch 2.8.0 with CUDA 12.8, torchvision 0.23.0, Ultralytics 8.4.105, OpenCV 4.13.0.92, NumPy 2.4.4 and PyYAML 6.0.3. See `requirements.txt` and `tests/README.md`.
