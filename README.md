@@ -23,6 +23,7 @@ On 26 August 2026, an assessor-facing English-only history was generated from th
 | `thesis-git-archive-20260824` | Verified Git delivery state |
 | `thesis-english-delivery-20260826` | English-only assessor delivery |
 | `thesis-english-final-20260826` | Final English-only source, tests, and integrity references |
+| `thesis-code-cleanup-20260826` | Verified safe cleanup of obsolete release artefacts |
 
 ## Inspect and verify
 

@@ -17,6 +17,10 @@ The Git commit dates record the migration. Original artefact paths, last-write t
 | 5 | 6FE329 original | `Experiments/post_final_hybrid_v2/` | `6e833ef4d535fd40ae0120ec92a884ef25e7ef5b` | `6fe329-original` |
 | 6 | 6FE329 portability reissue | `Thesis_Frozen_Release_6FE329_20260818/` | `7e1688a6ca9e7aa54f21573b53a6598bed40c436` | `thesis-submission-20260823` |
 
+## Post-migration maintenance
+
+On 26 August 2026, commit `f17a39a930026f3ea2a9365789a60ba2ce9e50d6` removed a one-off historical audit generator and generated fault-test scratch copies, changed the fault suite to use an automatically removed temporary directory, and regenerated the frozen integrity records. Production detector logic, thresholds, configuration values, weight files and evaluation decisions were unchanged. The synchronized delivery state is tagged `thesis-code-cleanup-20260826`; the detailed retained/removed inventory is in `documentation/CODE_INVENTORY.md`.
+
 ## Verification procedure
 
 1. Run `git fsck --full` to check the object database.
