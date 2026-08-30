@@ -34,22 +34,13 @@ git tag -n99
 git diff door-v5..note-v6
 git show thesis-submission-20260823:documentation/SNAPSHOT_PROVENANCE.json
 git fsck --full
-git bundle verify ..\Thesis_Source_Archive_Git_Delivery_20260826\Thesis_Source_Archive_Git.bundle
-```
-
-To restore the complete repository from the submitted bundle:
-
-```powershell
-git clone Thesis_Source_Archive_Git.bundle Thesis_Source_Archive_Git_restored
-cd Thesis_Source_Archive_Git_restored
-git log --graph --decorate --oneline --all
 ```
 
 ## Repository scope
 
-The repository contains code, configuration, tests, technical documentation, dependency information and integrity manifests. It intentionally excludes participant recordings, personal consent records, model-weight binaries and large derived videos. Those exclusions are documented rather than silently omitted.
+The repository contains runtime code, configuration, tests, non-personal training and dataset-reconstruction scripts, public dataset descriptors, dataset/version inventories, technical documentation, dependency information and integrity manifests. Training materials are documented under `Training_Additions/`.
 
-The runnable frozen technical package is distributed separately because it contains model weights and other non-Git artefacts. Its `FROZEN_MANIFEST.json` and `SHA256SUMS.txt` remain in this repository to connect the source history to the frozen release inventory.
+It intentionally excludes participant recordings, personal consent records, raw or derived participant images and videos, runtime evidence containing participant imagery, complete image datasets and model-weight binaries. These materials are retained privately and are not publicly distributed. `FROZEN_MANIFEST.json` and `SHA256SUMS.txt` remain in the repository to connect the source history to the frozen release inventory without publishing the excluded binaries or media.
 
 The maintained runtime and validation files, together with the rationale for the 26 August 2026 safe cleanup of obsolete generated material, are listed in `documentation/CODE_INVENTORY.md`.
 

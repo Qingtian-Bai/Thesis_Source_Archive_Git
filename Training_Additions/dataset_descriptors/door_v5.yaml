@@ -1,0 +1,8 @@
+# Replace this placeholder with the lawful local copy of the Door-v5 dataset.
+path: /path/to/ultimate_exam_dataset_camera_v5_door
+train: images/train
+val: images/val
+test: images/test
+nc: 5
+names: [student, phone, paper, note, door]
+

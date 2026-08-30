@@ -1,0 +1,8 @@
+# Replace this placeholder with the lawful local copy of the Paper-note v6 dataset.
+path: /path/to/ultimate_exam_dataset_camera_v6_paper_note
+train: images/train
+val: images/val
+test: images/test
+nc: 5
+names: [student, phone, paper, note, door]
+
